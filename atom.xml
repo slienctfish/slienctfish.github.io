@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-12T08:39:42.973Z</updated>
+  <updated>2017-08-13T14:37:45.980Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,18 +20,16 @@
     <link href="http://yoursite.com/2017/08/06/hello-world/"/>
     <id>http://yoursite.com/2017/08/06/hello-world/</id>
     <published>2017-08-06T02:43:07.298Z</published>
-    <updated>2017-08-12T08:39:42.973Z</updated>
+    <updated>2017-08-13T14:37:45.980Z</updated>
     
     <content type="html"><![CDATA[<h3 id="歌曲"><a href="#歌曲" class="headerlink" title="歌曲"></a>歌曲</h3><p>这里是我平时喜欢听的一歌曲，分享给大家听。</p>
-<hr>
-<h2 id=""><a href="#" class="headerlink" title=""></a><center><embed type="video/mp4" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" quality="high" height="300" width="480" src="http://ftp601056.host571.zhujiwu.me/1.mp4"></center></h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=26562739&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=26562739&auto=0&height=66"></iframe>
 ]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;歌曲&quot;&gt;&lt;a href=&quot;#歌曲&quot; class=&quot;headerlink&quot; title=&quot;歌曲&quot;&gt;&lt;/a&gt;歌曲&lt;/h3&gt;&lt;p&gt;这里是我平时喜欢听的一歌曲，分享给大家听。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwi
     
     </summary>
     

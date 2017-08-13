@@ -150,6 +150,237 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Code_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/13/Code_note/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/13/Code_note/" class="archive-article-date">
+  	<time datetime="2017-08-13T14:41:32.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://blog.csdn.net/ysydao/article/details/40181611" target="_blank" rel="external">产品经理小帖子</a></p>
+<pre><code>精华内容摘要：
+1、产品经理有一个毛病就是喜欢虚构一个功能出来，然后觉得用户一定要使用你的东西，不然就弄死他。  
+2、我们做一个产品一定要抓住硬需求，也就是用户不用你这个东西他就觉得浑身难受。    
+3、你又在想着怎么忽悠用户进来，然后再虐待他。
+</code></pre><h2 id="行唐积分兑换系统基本分析"><a href="#行唐积分兑换系统基本分析" class="headerlink" title="行唐积分兑换系统基本分析"></a>行唐积分兑换系统基本分析</h2><h3 id="系统用户"><a href="#系统用户" class="headerlink" title="系统用户"></a>系统用户</h3><p><a href="#jump2">XXXX</a></p>
+<ol>
+<li>微信端用户（微信用户）<ul>
+<li>用户绑定</li>
+<li>积分查询</li>
+<li>积分兑换</li>
+</ul>
+</li>
+<li>服务端用户（前台柜员）<ul>
+<li>积分规则查询</li>
+<li>积分消费登记</li>
+<li>积分预授权</li>
+<li>积分冻结</li>
+</ul>
+</li>
+<li>管理端用户（系统管理者）<ul>
+<li>积分规则配置</li>
+<li>商品管理</li>
+<li>风险日志控制</li>
+<li>活动，资讯，通知内容发布<h3 id="系统基本逻辑角色"><a href="#系统基本逻辑角色" class="headerlink" title="系统基本逻辑角色"></a>系统基本逻辑角色</h3></li>
+</ul>
+</li>
+<li>用户角色实体<ul>
+<li>微信用户</li>
+<li>服务端用户</li>
+<li>管理端用户</li>
+</ul>
+</li>
+<li>积分规则实体<ul>
+<li>基本积分规则</li>
+<li>特殊积分规则</li>
+</ul>
+</li>
+<li>日志风险实体<ul>
+<li>各种风险的实体</li>
+</ul>
+</li>
+<li>活动资讯实体<ul>
+<li>新闻的标题，内容</li>
+</ul>
+</li>
+<li>商品管理<ul>
+<li>主要是商品的内容管理CMS<h2 id="软件开发流程"><a href="#软件开发流程" class="headerlink" title="软件开发流程"></a>软件开发流程</h2></li>
+</ul>
+</li>
+<li>需求分析<ul>
+<li>主要是产品经理的工作</li>
+<li>结果是输出PRD（产品需求文档），供开发者查阅</li>
+</ul>
+</li>
+<li>概要设计<ul>
+<li>基本处理流程</li>
+<li>系统的组织结构</li>
+<li>模块划分</li>
+<li>功能分配</li>
+<li>接口设计</li>
+<li>数据结构设计</li>
+<li>出错处理设计</li>
+</ul>
+</li>
+<li>详细设计<ul>
+<li>主要算法</li>
+<li>数据结构</li>
+<li>类的层次结构及调用关系</li>
+</ul>
+</li>
+<li>编码</li>
+<li>测试</li>
+<li>软件交付</li>
+<li>验收</li>
+<li>运行维护</li>
+<li>软件维护，软件升级，报废处理<h2 id="行唐积分商城后台管理系统"><a href="#行唐积分商城后台管理系统" class="headerlink" title="行唐积分商城后台管理系统"></a>行唐积分商城后台管理系统</h2><h3 id="开发计划–功能"><a href="#开发计划–功能" class="headerlink" title="开发计划–功能"></a>开发计划–功能</h3></li>
+<li>商品列表查看</li>
+<li>商品批量删除</li>
+<li>商品上架/下架（逻辑删除）</li>
+<li>商品删除</li>
+<li>分页展示商品</li>
+<li>商品名称检索</li>
+<li>商品新增<ul>
+<li>商品图片上传</li>
+<li>商品分配列表导入（导入之后的工作？）</li>
+<li>商品详情也页面编辑</li>
+<li>新增加的商品是待上架的状态</li>
+<li>新增商品后</li>
+</ul>
+</li>
+<li>商品修改<ul>
+<li>根据是否包含商品id进行判断，是否需要从后台读取</li>
+<li>或新建一个新的页面专门进行数据修改的页面</li>
+</ul>
+</li>
+<li>商品查看<ul>
+<li>商品图片内容</li>
+<li>商品描述详情（可能是个页面）</li>
+<li>网点分配数量</li>
+<li>控制按钮（上架商品或下架商品  那么删除商品呢？）</li>
+<li>商品查看，提供商品二维码下载。</li>
+</ul>
+</li>
+<li>商品库存数量审核<h3 id="使用js生成二维码并保存到本地"><a href="#使用js生成二维码并保存到本地" class="headerlink" title="使用js生成二维码并保存到本地"></a>使用js生成二维码并保存到本地</h3></li>
+</ol>
+<blockquote>
+   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+   <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+   <div id="code"></div> 
+    <script>
+    $("#code").qrcode({ 
+        render: "table", //table方式 
+        width: 200, //宽度 
+        height:200, //高度 
+        text: "www.helloweba.com" //任意内容 
+    });
+    </script>
+
+<p>使用QRcode生成二维码，需要引入两个包。<br>生成后</p>
+</blockquote>
+<p><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">将canvas标签中的内容编程img标签，显示到我页面上</a>  </p>
+<p><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a></p>
+<p><a href="http://www.eclipse.org/webtools/" target="_blank" rel="external">web-tool-platform官方地址</a>  </p>
+<p><a href="http://blog.csdn.net/jbgtwang/article/details/44077853" target="_blank" rel="external">不安装WTP全包怎么添加Tomcat8到Eclipse Kepler中</a></p>
+<h3 id="项目请求地址记录"><a href="#项目请求地址记录" class="headerlink" title="项目请求地址记录"></a>项目请求地址记录</h3><ol>
+<li>商品管理 <ul>
+<li>商品列表 productList</li>
+<li>添加商品 productAdd</li>
+<li>查看商品 productDetail</li>
+<li>库存审核 repertoryCheck</li>
+</ul>
+</li>
+<li>积分查询intergral?page=intergralQuery</li>
+<li>发布管理publishManager?page=list</li>
+<li>managerSetting?page=index</li>
+</ol>
+<h2 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h2><ol>
+<li>项目部署时的问题，ide不支持tomcat8，试图添加ide对tomcat8的支持。  未成功</li>
+<li>添加菜单后，刷新后立即删除。原因是后台使用了ehcahe的缓存机制<ul>
+<li>解决：去掉后台中使用的缓存机制</li>
+</ul>
+</li>
+<li>添加菜单后，在管理员界面上不现实刚添加的菜单<ul>
+<li>原因是未授权，需要在角色菜单栏中为角色添加授权</li>
+</ul>
+</li>
+<li>生成产品的实体类，使用基础开发平台进行开发时出现问题，平台上的代码出现小问题。<ul>
+<li>在配置文件加载前设置了属性值</li>
+<li>修改，将读取配置文件的静态代码块提前</li>
+</ul>
+</li>
+<li>oracle数据库中的特殊类型，使用“select * from table”的方式查询，得到的基础平台框架自动包装clog类型，在前台中解析为一个json对象类型。<ul>
+<li>解决办法：使用sql语句解决<a href="http://blog.csdn.net/wumingqian_137229/article/details/48438959" target="_blank" rel="external">dbms_lob.substr(clob字段，4000,1)</a></li>
+<li>或者使用java代码进行解决。</li>
+<li>最好的解决办法是使用java，框架配置解决。（复用）</li>
+</ul>
+</li>
+<li>商品状态formatter方法，添加一个js数组，根据status进行修改。</li>
+</ol>
+<pre><code>var status = [&quot;删除&quot;,&quot;上架&quot;,&quot;待上架&quot;,&quot;下架&quot;];  
+return status[value]; 
+</code></pre><ol>
+<li>查看商品列表时，如果能将一整行的数据传过来，直接更新数据就行了。不用理会它是什么状态。</li>
+<li>直接操作数字比操作字符方便</li>
+<li>批量删除商品时，点击按钮时触发事件。需要使用闭包的特性进行处理。<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3></li>
+<li>状态为删除的时候怎么处理？</li>
+<li>文件别名的作用<h3 id="ibtatis-和hibernate的实体类扫描注解不同"><a href="#ibtatis-和hibernate的实体类扫描注解不同" class="headerlink" title="ibtatis 和hibernate的实体类扫描注解不同"></a>ibtatis 和hibernate的实体类扫描注解不同</h3><h3 id="kindeditor-和-easyui的冲突问题，在新建tab的时候"><a href="#kindeditor-和-easyui的冲突问题，在新建tab的时候" class="headerlink" title="kindeditor 和 easyui的冲突问题，在新建tab的时候"></a>kindeditor 和 easyui的冲突问题，在新建tab的时候</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/13/Code_note/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

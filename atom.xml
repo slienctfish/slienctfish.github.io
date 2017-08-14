@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-14T15:50:20.897Z</updated>
+  <updated>2017-08-14T16:09:28.070Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,11 @@
     <link href="http://yoursite.com/2017/08/14/vpn_help/"/>
     <id>http://yoursite.com/2017/08/14/vpn_help/</id>
     <published>2017-08-14T14:35:38.244Z</published>
-    <updated>2017-08-14T15:50:20.897Z</updated>
+    <updated>2017-08-14T16:09:28.070Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Common-sitess"><a href="#Common-sitess" class="headerlink" title="Common sitess"></a>Common sitess</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=68450&auto=1&height=66"></iframe>
+
+<h2 id="Common-sites"><a href="#Common-sites" class="headerlink" title="Common sites"></a>Common sites</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
 <li><a href="http://taoxiaozhong.com/" target="_blank" rel="external">淘小众</a></li>
 <li><a href="http://www.gogeeks.cn/" target="_blank" rel="external">极客导航</a></li>
 <li><a href="https://s.geekbang.org/" target="_blank" rel="external">极客搜索</a><h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3></li>
@@ -31,7 +33,8 @@
 <li><a href="http://www.10wallpaper.com/" target="_blank" rel="external">tenBeauty</a></li>
 <li><a href="http://sf.co.ua/" target="_blank" rel="external">Wallpapers</a><h3 id="vip视频解析网站"><a href="#vip视频解析网站" class="headerlink" title="vip视频解析网站"></a>vip视频解析网站</h3></li>
 <li><a href="http://www.tufutv.com/" target="_blank" rel="external">屠夫网</a></li>
-<li><a href="http://ifkdy.com" target="_blank" rel="external">疯狂影视搜索</a><h3 id="vip音乐解析网站"><a href="#vip音乐解析网站" class="headerlink" title="vip音乐解析网站"></a>vip音乐解析网站</h3></li>
+<li><a href="http://ifkdy.com" target="_blank" rel="external">疯狂影视搜索</a><a id="more"></a>
+<h3 id="vip音乐解析网站"><a href="#vip音乐解析网站" class="headerlink" title="vip音乐解析网站"></a>vip音乐解析网站</h3></li>
 <li><a href="http://www.liumingye.cn/tools/music/" target="_blank" rel="external">vip音乐解析</a></li>
 <li><a href="http://music.liuzhijin.cn/" target="_blank" rel="external">音乐直连搜索</a></li>
 <li><a href="http://www.66re.cn/vip/163.html" target="_blank" rel="external">全能vip音乐解析</a><h3 id="网站视频地址解析-另存为即下载"><a href="#网站视频地址解析-另存为即下载" class="headerlink" title="网站视频地址解析(另存为即下载)"></a>网站视频地址解析(另存为即下载)</h3></li>
@@ -67,7 +70,18 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Common-sitess&quot;&gt;&lt;a href=&quot;#Common-sitess&quot; class=&quot;headerlink&quot; title=&quot;Common sitess&quot;&gt;&lt;/a&gt;Common sitess&lt;/h2&gt;&lt;h3 id=&quot;网站索引导航&quot;&gt;&lt;a href=&quot;#网站索
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=68450&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;Common-sites&quot;&gt;&lt;a href=&quot;#Common-sites&quot; class=&quot;headerlink&quot; title=&quot;Common sites&quot;&gt;&lt;/a&gt;Common sites&lt;/h2&gt;&lt;h3 id=&quot;网站索引导航&quot;&gt;&lt;a href=&quot;#网站索引导航&quot; class=&quot;headerlink&quot; title=&quot;网站索引导航&quot;&gt;&lt;/a&gt;网站索引导航&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://taoxiaozhong.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;淘小众&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.gogeeks.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;极客导航&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://s.geekbang.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;极客搜索&lt;/a&gt;&lt;h3 id=&quot;科学上网&quot;&gt;&lt;a href=&quot;#科学上网&quot; class=&quot;headerlink&quot; title=&quot;科学上网&quot;&gt;&lt;/a&gt;科学上网&lt;/h3&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://sdk.cn/news/4723&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;免费科学上网镜像和工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pac.itzmx.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;浏览器代理科学上网&lt;/a&gt;&lt;h3 id=&quot;壁纸下载网站&quot;&gt;&lt;a href=&quot;#壁纸下载网站&quot; class=&quot;headerlink&quot; title=&quot;壁纸下载网站&quot;&gt;&lt;/a&gt;壁纸下载网站&lt;/h3&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.10wallpaper.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tenBeauty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sf.co.ua/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wallpapers&lt;/a&gt;&lt;h3 id=&quot;vip视频解析网站&quot;&gt;&lt;a href=&quot;#vip视频解析网站&quot; class=&quot;headerlink&quot; title=&quot;vip视频解析网站&quot;&gt;&lt;/a&gt;vip视频解析网站&lt;/h3&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.tufutv.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;屠夫网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ifkdy.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;疯狂影视搜索&lt;/a&gt;
     
     </summary>
     
@@ -81,14 +95,15 @@
     <link href="http://yoursite.com/2017/08/13/Code_note/"/>
     <id>http://yoursite.com/2017/08/13/Code_note/</id>
     <published>2017-08-13T14:41:32.392Z</published>
-    <updated>2017-08-14T12:34:52.310Z</updated>
+    <updated>2017-08-14T16:07:34.637Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/ysydao/article/details/40181611" target="_blank" rel="external">产品经理小帖子</a></p>
 <pre><code>精华内容摘要：
 1、产品经理有一个毛病就是喜欢虚构一个功能出来，然后觉得用户一定要使用你的东西，不然就弄死他。  
 2、我们做一个产品一定要抓住硬需求，也就是用户不用你这个东西他就觉得浑身难受。    
 3、你又在想着怎么忽悠用户进来，然后再虐待他。
-</code></pre><h2 id="行唐积分兑换系统基本分析"><a href="#行唐积分兑换系统基本分析" class="headerlink" title="行唐积分兑换系统基本分析"></a>行唐积分兑换系统基本分析</h2><h3 id="系统用户"><a href="#系统用户" class="headerlink" title="系统用户"></a>系统用户</h3><p><a href="#jump2">XXXX</a></p>
+</code></pre><a id="more"></a>
+<h2 id="行唐积分兑换系统基本分析"><a href="#行唐积分兑换系统基本分析" class="headerlink" title="行唐积分兑换系统基本分析"></a>行唐积分兑换系统基本分析</h2><h3 id="系统用户"><a href="#系统用户" class="headerlink" title="系统用户"></a>系统用户</h3><p><a href="#jump2">XXXX</a></p>
 <ol>
 <li>微信端用户（微信用户）<ul>
 <li>用户绑定</li>
@@ -258,7 +273,10 @@ return status[value];
     
       &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/ysydao/article/details/40181611&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;产品经理小帖子&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;精华内容摘要：
-1、产品经理有一
+1、产品经理有一个毛病就是喜欢虚构一个功能出来，然后觉得用户一定要使用你的东西，不然就弄死他。  
+2、我们做一个产品一定要抓住硬需求，也就是用户不用你这个东西他就觉得浑身难受。    
+3、你又在想着怎么忽悠用户进来，然后再虐待他。
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -272,16 +290,16 @@ return status[value];
     <link href="http://yoursite.com/2017/08/06/hello-world/"/>
     <id>http://yoursite.com/2017/08/06/hello-world/</id>
     <published>2017-08-06T02:43:07.298Z</published>
-    <updated>2017-08-14T12:34:32.347Z</updated>
+    <updated>2017-08-14T16:07:19.906Z</updated>
     
     <content type="html"><![CDATA[<h3 id="歌曲"><a href="#歌曲" class="headerlink" title="歌曲"></a>歌曲</h3><p>这里是我平时喜欢听的一歌曲，分享给大家听。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=26562739&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br><a id="more"></a><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=26562739&auto=0&height=66"></iframe>
 ]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;歌曲&quot;&gt;&lt;a href=&quot;#歌曲&quot; class=&quot;headerlink&quot; title=&quot;歌曲&quot;&gt;&lt;/a&gt;歌曲&lt;/h3&gt;&lt;p&gt;这里是我平时喜欢听的一歌曲，分享给大家听。&lt;/p&gt;
-&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwi
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=27890306&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=27646786&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=478725543&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%height=86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=165237&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;br&gt;
     
     </summary>
     

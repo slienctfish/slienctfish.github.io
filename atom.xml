@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-13T14:49:08.989Z</updated>
+  <updated>2017-08-14T15:50:20.897Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>常用工具网站介绍</title>
+    <link href="http://yoursite.com/2017/08/14/vpn_help/"/>
+    <id>http://yoursite.com/2017/08/14/vpn_help/</id>
+    <published>2017-08-14T14:35:38.244Z</published>
+    <updated>2017-08-14T15:50:20.897Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Common-sitess"><a href="#Common-sitess" class="headerlink" title="Common sitess"></a>Common sitess</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
+<li><a href="http://taoxiaozhong.com/" target="_blank" rel="external">淘小众</a></li>
+<li><a href="http://www.gogeeks.cn/" target="_blank" rel="external">极客导航</a></li>
+<li><a href="https://s.geekbang.org/" target="_blank" rel="external">极客搜索</a><h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3></li>
+<li><a href="https://sdk.cn/news/4723" target="_blank" rel="external">免费科学上网镜像和工具</a></li>
+<li><a href="https://pac.itzmx.com/" target="_blank" rel="external">浏览器代理科学上网</a><h3 id="壁纸下载网站"><a href="#壁纸下载网站" class="headerlink" title="壁纸下载网站"></a>壁纸下载网站</h3></li>
+<li><a href="http://www.10wallpaper.com/" target="_blank" rel="external">tenBeauty</a></li>
+<li><a href="http://sf.co.ua/" target="_blank" rel="external">Wallpapers</a><h3 id="vip视频解析网站"><a href="#vip视频解析网站" class="headerlink" title="vip视频解析网站"></a>vip视频解析网站</h3></li>
+<li><a href="http://www.tufutv.com/" target="_blank" rel="external">屠夫网</a></li>
+<li><a href="http://ifkdy.com" target="_blank" rel="external">疯狂影视搜索</a><h3 id="vip音乐解析网站"><a href="#vip音乐解析网站" class="headerlink" title="vip音乐解析网站"></a>vip音乐解析网站</h3></li>
+<li><a href="http://www.liumingye.cn/tools/music/" target="_blank" rel="external">vip音乐解析</a></li>
+<li><a href="http://music.liuzhijin.cn/" target="_blank" rel="external">音乐直连搜索</a></li>
+<li><a href="http://www.66re.cn/vip/163.html" target="_blank" rel="external">全能vip音乐解析</a><h3 id="网站视频地址解析-另存为即下载"><a href="#网站视频地址解析-另存为即下载" class="headerlink" title="网站视频地址解析(另存为即下载)"></a>网站视频地址解析(另存为即下载)</h3></li>
+<li><a href="http://www.flvurl.cn/Default.aspx" target="_blank" rel="external">点量视频解析</a></li>
+<li><a href="http://savevideo.me/" target="_blank" rel="external">国外视频网站解析</a><h3 id="微信-amp-二维码"><a href="#微信-amp-二维码" class="headerlink" title="微信&amp;二维码"></a>微信&amp;二维码</h3></li>
+<li><a href="http://cli.im/text" target="_blank" rel="external">草料二维码</a></li>
+<li><a href="http://www.liantu.com/" target="_blank" rel="external">联图二维码</a></li>
+<li><a href="http://jiema.wwei.cn/" target="_blank" rel="external">二维码在线解析</a></li>
+<li><a href="http://www.vjietu.com/" target="_blank" rel="external">微信聊天界面生成工具</a></li>
+<li><a href="http://bj.96weixin.com/" target="_blank" rel="external">微信公众号内容编辑工具</a><h2 id="Coder-sites"><a href="#Coder-sites" class="headerlink" title="Coder sites"></a>Coder sites</h2><h3 id="系统下载网站"><a href="#系统下载网站" class="headerlink" title="系统下载网站"></a>系统下载网站</h3></li>
+<li><a href="http://www.imsdn.cn/" target="_blank" rel="external">windows操作系统镜像下载</a></li>
+<li><a href="http://www.linuxdown.net/" target="_blank" rel="external">linux操作系统镜像下载</a></li>
+<li><a href="http://blog.csdn.net/youlianying/article/details/5411521" target="_blank" rel="external">各系统官方网站列表</a><h3 id="开发资源网站"><a href="#开发资源网站" class="headerlink" title="开发资源网站"></a>开发资源网站</h3></li>
+<li><a href="http://maven.aliyun.com/nexus/#welcome" target="_blank" rel="external">阿里巴巴mave私服_jar包下载</a></li>
+<li><a href="http://cdn.code.baidu.com/" target="_blank" rel="external">百度静态资源库</a></li>
+<li><a href="http://www.bootcdn.cn/" target="_blank" rel="external">bootCDN静态资源下载</a><h3 id="开发者讯息"><a href="#开发者讯息" class="headerlink" title="开发者讯息"></a>开发者讯息</h3></li>
+<li><a href="https://toutiao.io/explore" target="_blank" rel="external">开发者头条</a></li>
+<li><a href="http://www.infoq.com/cn/" target="_blank" rel="external">Infoq中国站</a></li>
+<li><a href="https://www.oschina.net/" target="_blank" rel="external">开源中国</a><h3 id="网页浏览工具"><a href="#网页浏览工具" class="headerlink" title="网页浏览工具"></a>网页浏览工具</h3></li>
+<li><a href="http://www.100ec.cn/zt/data/" target="_blank" rel="external">脚本之家在线工具</a></li>
+<li><a href="http://tool.oschina.net/" target="_blank" rel="external">开源中国在线工具</a></li>
+<li><a href="http://tool.lu/" target="_blank" rel="external">程序员工具箱</a><h2 id="Pmer-sites"><a href="#Pmer-sites" class="headerlink" title="Pmer sites"></a>Pmer sites</h2><h3 id="音乐电台"><a href="#音乐电台" class="headerlink" title="音乐电台"></a>音乐电台</h3></li>
+<li><a href="http://51.ruyo.net/p/4681.html" target="_blank" rel="external">落网</a><h3 id="电商资讯"><a href="#电商资讯" class="headerlink" title="电商资讯"></a>电商资讯</h3></li>
+<li><a href="http://www.ebrun.com/" target="_blank" rel="external">亿邦动力</a></li>
+<li><a href="http://www.iresearch.cn/" target="_blank" rel="external">艾瑞网</a></li>
+<li><a href="http://www.paidai.com/" target="_blank" rel="external">派代网</a></li>
+<li><a href="http://www.100ec.cn/" target="_blank" rel="external">中国电子商务研究中心</a><h3 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h3></li>
+<li><a href="http://www.woshipm.com/" target="_blank" rel="external">人人都是产品经理</a><h3 id="数据中心"><a href="#数据中心" class="headerlink" title="数据中心"></a>数据中心</h3></li>
+<li><a href="http://www.cnnic.net.cn/" target="_blank" rel="external">中国互联网络信息中心</a></li>
+<li><a href="http://www.100ec.cn/zt/data/" target="_blank" rel="external">中国电子商务数据中心</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Common-sitess&quot;&gt;&lt;a href=&quot;#Common-sitess&quot; class=&quot;headerlink&quot; title=&quot;Common sitess&quot;&gt;&lt;/a&gt;Common sitess&lt;/h2&gt;&lt;h3 id=&quot;网站索引导航&quot;&gt;&lt;a href=&quot;#网站索
+    
+    </summary>
+    
+    
+      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
     <title>项目开发小笔记</title>
     <link href="http://yoursite.com/2017/08/13/Code_note/"/>
     <id>http://yoursite.com/2017/08/13/Code_note/</id>
     <published>2017-08-13T14:41:32.392Z</published>
-    <updated>2017-08-13T14:49:08.989Z</updated>
+    <updated>2017-08-14T12:34:52.310Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/ysydao/article/details/40181611" target="_blank" rel="external">产品经理小帖子</a></p>
 <pre><code>精华内容摘要：
@@ -202,6 +263,8 @@ return status[value];
     </summary>
     
     
+      <category term="work" scheme="http://yoursite.com/tags/work/"/>
+    
   </entry>
   
   <entry>
@@ -209,7 +272,7 @@ return status[value];
     <link href="http://yoursite.com/2017/08/06/hello-world/"/>
     <id>http://yoursite.com/2017/08/06/hello-world/</id>
     <published>2017-08-06T02:43:07.298Z</published>
-    <updated>2017-08-13T14:42:05.809Z</updated>
+    <updated>2017-08-14T12:34:32.347Z</updated>
     
     <content type="html"><![CDATA[<h3 id="歌曲"><a href="#歌曲" class="headerlink" title="歌曲"></a>歌曲</h3><p>这里是我平时喜欢听的一歌曲，分享给大家听。</p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=26562739&auto=0&height=66"></iframe>
@@ -222,6 +285,8 @@ return status[value];
     
     </summary>
     
+    
+      <category term="life" scheme="http://yoursite.com/tags/life/"/>
     
   </entry>
   

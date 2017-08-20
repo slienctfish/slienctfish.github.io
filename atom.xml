@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-20T04:51:03.928Z</updated>
+  <updated>2017-08-20T15:21:58.159Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,201 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>项目开发小笔记</title>
+    <link href="http://yoursite.com/2017/08/20/Apache%20shiro/"/>
+    <id>http://yoursite.com/2017/08/20/Apache shiro/</id>
+    <published>2017-08-20T15:03:53.535Z</published>
+    <updated>2017-08-20T15:21:58.159Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="apache-shiro-权限控制和缓存框架ehcache的使用"><a href="#apache-shiro-权限控制和缓存框架ehcache的使用" class="headerlink" title="apache shiro(权限控制和缓存框架ehcache的使用)"></a>apache shiro(权限控制和缓存框架ehcache的使用)</h2><h4 id="实现权限控制三种方式"><a href="#实现权限控制三种方式" class="headerlink" title="实现权限控制三种方式:"></a>实现权限控制三种方式:</h4><ol>
+<li>spring security</li>
+<li>apache shiro</li>
+<li>自己写权限框架<h3 id="shiro-的结构："><a href="#shiro-的结构：" class="headerlink" title="shiro 的结构："></a>shiro 的结构：</h3></li>
+</ol>
+<ul>
+<li>Authentication 用户登录</li>
+<li>Authorization 授权</li>
+<li>Cryptography 安全数据加密</li>
+<li>Session Management 会话管理</li>
+<li>Web Integration Web 系统集成</li>
+<li>Interations 集成其他应用<h3 id="shiro的运行主要流程"><a href="#shiro的运行主要流程" class="headerlink" title="shiro的运行主要流程"></a>shiro的运行主要流程</h3></li>
+<li>application code</li>
+<li>subject（the current user）</li>
+<li>shiro SecurityManager (manages all subject)</li>
+<li>Realm (access your security data)<br>流程：应用程序–subject–securityManger–realm–安全数据<h3 id="shiro权限控制四中方式"><a href="#shiro权限控制四中方式" class="headerlink" title="shiro权限控制四中方式"></a>shiro权限控制四中方式</h3></li>
+</ul>
+<ol>
+<li>配置filter实现url级别权限控制</li>
+<li>配置代理，基于注解实现细粒度权限控制</li>
+<li>在jsp页面中使用shiro自定义标签控制</li>
+<li>程序中通过subject编程实现<h4 id="url权限控制（常用）"><a href="#url权限控制（常用）" class="headerlink" title="url权限控制（常用）"></a>url权限控制（常用）</h4></li>
+</ol>
+<ul>
+<li><p>anon 未认证可以访问</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/login.html* = anon    登录页面所有人都可以访问</div></pre></td></tr></table></figure>
+</li>
+<li><p>authc 认证后可以访问</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.html = authc		主页是需要登录后访问的</div></pre></td></tr></table></figure>
+</li>
+<li><p>perms 需要特定的权限访问</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/pages/base/courier.html* = perms[courier:list]   ：冒号代表子权限</div></pre></td></tr></table></figure>
+</li>
+<li><p>roles 需要特定的角色访问</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/pages/base/area.html* = roles[base]</div></pre></td></tr></table></figure>
+</li>
+<li><p>user 需要特定的用户访问</p>
+</li>
+<li>reset 根据指定的http请求访问<h2 id="粗粒度URL级别权限控制"><a href="#粗粒度URL级别权限控制" class="headerlink" title="粗粒度URL级别权限控制"></a>粗粒度URL级别权限控制</h2></li>
+</ul>
+<ol>
+<li><p>在pom文件中引入shiro的依赖  </p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;shiro.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置web.xml文件</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--在spring配置文件中需要有同名的bean存在--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置applicationContext-shiro.xml</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 配置Shiro核心Filter  --&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> </span></div><div class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 安全管理器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 未认证，跳转到哪个页面  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"loginUrl"</span> <span class="attr">value</span>=<span class="string">"/login.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 登录页面页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"successUrl"</span> <span class="attr">value</span>=<span class="string">"/index.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 认证后，没有权限跳转页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"unauthorizedUrl"</span> <span class="attr">value</span>=<span class="string">"/unauthorized.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- shiro URL控制过滤器规则  --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span></div><div class="line">			/login.html* = anon</div><div class="line">			/user_login.action* = anon</div><div class="line">			/validatecode.jsp* = anon</div><div class="line">			/css/** = anon</div><div class="line">			/js/** = anon</div><div class="line">			/images/** = anon</div><div class="line">			/services/** = anon </div><div class="line">			/pages/base/courier.html* = perms[courier:list]</div><div class="line">			/pages/base/area.html* = roles[base]</div><div class="line">			/** = authc</div><div class="line">		<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在applicationContext-shiro.xml中配置安全管理器</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">&lt;!-- 安全管理器  --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> </span></div><div class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 自定义的realm 需要交于spring管理 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"bosRealm"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span></span></div><div class="line"><span class="tag">			<span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>UserAction 中得到subject对象，执行login</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Subject subject = SecurityUtils.getSubject();</div><div class="line">AuthenticationToken token = <span class="keyword">new</span> UsernamePasswordToken(model.getUsername(), model.getPassword());</div><div class="line">subject.login(token);</div></pre></td></tr></table></figure>
+</li>
+<li><p>subject 调用securityManager，manager调用自定义的realm安全数据（自定义的realm继承AuthorizingRealm）</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BosRealm</span> <span class="keyword">extends</span> <span class="title">AuthorizingRealm</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Autowired</span>	</div><div class="line">	<span class="keyword">private</span> UserService userService;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> RoleService roleService;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> PermissionService perssionService;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principalCollection)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"shiro 授权管理..."</span>);</div><div class="line">		SimpleAuthorizationInfo authenticationInfo = <span class="keyword">new</span> SimpleAuthorizationInfo();</div><div class="line">		<span class="comment">//根据当前登陆用户查询对象角色和权限</span></div><div class="line">		Subject subject = SecurityUtils.getSubject();</div><div class="line">		User user = (User) subject.getPrincipal();</div><div class="line">		<span class="comment">//调用业务层，查询角色</span></div><div class="line">		List&lt;Role&gt; roles = roleService.findByUser(user);</div><div class="line">		<span class="keyword">for</span> (Role role : roles) &#123;</div><div class="line">			authenticationInfo.addRole(role.getKeyword());</div><div class="line">		&#125;</div><div class="line">		List&lt;Permission&gt; persssion = perssionService.findByUser(user);</div><div class="line">		<span class="keyword">for</span> (Permission permission : persssion) &#123;</div><div class="line">			authenticationInfo.addStringPermission(permission.getKeyword());</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//返回所有的角色和权限</span></div><div class="line">		<span class="keyword">return</span> authenticationInfo;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken token)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</div><div class="line">		System.out.println(<span class="string">"shiro 认证管理..."</span>);</div><div class="line">		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;</div><div class="line">		User user = userService.findByUsername(usernamePasswordToken.getUsername());</div><div class="line">		<span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="comment">//参数一：期望登录后保存在subject中的信息</span></div><div class="line">			<span class="comment">//参数二：如果返回为null，说明用户不存在</span></div><div class="line">			<span class="comment">//参数三：realm的名称</span></div><div class="line">			<span class="comment">// 表示用户不存在</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// 表示用户存在--回到securityManager中比对密码是否正确</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(),	getName());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在配置文件中将自定义realm注入到securityManager中，使manager能够找到realm</p>
+</li>
+<li>认证时常见的异常：<ul>
+<li>org.apache.shiro.authc.UnknownAccountException  用户名不存在</li>
+<li>org.apache.shiro.authc.IncorrectCredentialsException 用户输入的密码不正确<h2 id="细粒度方法级别权限控制"><a href="#细粒度方法级别权限控制" class="headerlink" title="细粒度方法级别权限控制"></a>细粒度方法级别权限控制</h2></li>
+</ul>
+</li>
+<li><p>配置applicationContext-shiro.xml激活注解</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启shiro注解模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span></span></div><div class="line"><span class="tag">	<span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>/&gt;</span>	</div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>开发常用的shiro方法上的权限注解【注解是加在ServiceImpl上的】</p>
+<ul>
+<li>@requireAuthentication（需要登录）</li>
+<li>@RequireUser（是否被记忆）</li>
+<li>@requireGuest（未登录时允许访问的）</li>
+<li>@requireRoles（需要角色）</li>
+<li>@requirePermissions（需要权限）</li>
+<li>示例<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="meta">@RequiresPermissions</span>(<span class="string">"courier:add"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(Courier courier)</span> </span>&#123;</div><div class="line">	courierRepository.save(courier);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>有时需要针对ServiceImpl进行代理<br>配置spring 的事务管理，以继承方式创建代理</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注解管理事务--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> <span class="attr">proxy-target-class</span>=<span class="string">"true"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置shiro的注解模式参数</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启shiro注解模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span></span></div><div class="line"><span class="tag"><span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"proxyTargetClass"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用shiro标签元素，实现页面元素的显示控制"><a href="#使用shiro标签元素，实现页面元素的显示控制" class="headerlink" title="使用shiro标签元素，实现页面元素的显示控制"></a>使用shiro标签元素，实现页面元素的显示控制</h2><ol>
+<li><p>页面引入shiro标签库</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%<span class="meta">@taglib</span> uri=<span class="string">"http://shiro.apache.org/tags"</span> prefix=<span class="string">"shiro"</span> %&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用shiro标签实现显示的代码</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:add"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>添加<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:edit"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>修改<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:delete"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:list"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>查询<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="在shiro中使用缓存框架（优化）"><a href="#在shiro中使用缓存框架（优化）" class="headerlink" title="在shiro中使用缓存框架（优化）"></a>在shiro中使用缓存框架（优化）</h2><p>使用缓存技术后，第一次从数据库中去取数据，第二次从缓存中取数据（缓存是内容中的速度快）</p>
+<ol>
+<li><p>spring和ehcache框架整合（导入依赖）</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--缓存--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置ehcache.xml(解压ehcahce-core.jar包，得到ehcache-failsafe.xml)</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"../config/ehcache.xsd"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir"</span>/&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">defaultCache</span></span></div><div class="line"><span class="tag">           <span class="attr">maxElementsInMemory</span>=<span class="string">"10000"</span></span></div><div class="line"><span class="tag">           <span class="attr">eternal</span>=<span class="string">"false"</span></span></div><div class="line"><span class="tag">           <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">maxElementsOnDisk</span>=<span class="string">"10000000"</span></span></div><div class="line"><span class="tag">           <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">persistence</span> <span class="attr">strategy</span>=<span class="string">"localTempSwap"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置spring整合ehcache</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 缓存配置 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"ehCacheManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.cache.ehcache.EhCacheManagerFactoryBean"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:ehcache.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="ehcache对登录认证业务数据进行缓存"><a href="#ehcache对登录认证业务数据进行缓存" class="headerlink" title="ehcache对登录认证业务数据进行缓存"></a>ehcache对登录认证业务数据进行缓存</h3><ol>
+<li><p>配置shiro整合ehcache完成授权数据缓存</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- shiro封装cacheManager--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroCacheManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.cache.ehcache.EhCacheManager"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cacheManager"</span> <span class="attr">ref</span>=<span class="string">"ehCacheManager"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>将shiro缓存管理器，注入到安全管理器中</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 安全管理器  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> </span></div><div class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"bosRealm"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cacheManager"</span> <span class="attr">ref</span>=<span class="string">"shiroCacheManager"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>对认证数据，授权数据，进行选择性缓存（配置realm bean）</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 配置realm --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"bosRealm"</span> <span class="attr">class</span>=<span class="string">"cn.itcast.bos.shiro.BosRealm"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"authorizationCacheName"</span> <span class="attr">value</span>=<span class="string">"bos"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="ehcache对普通业务数据进行缓存"><a href="#ehcache对普通业务数据进行缓存" class="headerlink" title="ehcache对普通业务数据进行缓存"></a>ehcache对普通业务数据进行缓存</h3><ol>
+<li>常用的注解<ol>
+<li>@Cacheable   设置缓存位置<ul>
+<li>应用缓存区，对方法返回结果进行缓存，用于查询方法</li>
+</ul>
+</li>
+<li>@CacheEvict  清空缓存<ul>
+<li>清除缓存区数据，用于增加，修改、删除方法</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>配置spring缓存管理器，封装ehcache自带的CacheManager</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- spring 封装ehcache缓存管理器 --&gt;</div><div class="line">&lt;bean id=&quot;springCacheManager&quot; class=&quot;org.springframework.cache.ehcache.EhCacheCacheManager&quot;&gt;</div><div class="line">	&lt;property name=&quot;cacheManager&quot; ref=&quot;ehCacheManager&quot;&gt;&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在配置文件中引入cache的名称空间</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xmlns:cache="http://www.springframework.org/schema/cache"</div><div class="line">xsi:schemaLocation="</div><div class="line">http://www.springframework.org/schema/cache </div><div class="line">http://www.springframework.org/schema/cache/spring-cache.xsd "&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>激活spring缓存注解</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 激活spring 缓存注解--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">cache:annotation-driven</span> <span class="attr">cache-manager</span>=<span class="string">"springCacheManager"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>注意点：需要进行缓存的数据要实现<strong>Serializable</strong>接口</p>
+<h3 id="有参数的方法进行缓存"><a href="#有参数的方法进行缓存" class="headerlink" title="有参数的方法进行缓存"></a>有参数的方法进行缓存</h3></li>
+<li>需要使用SpEL表达式–示例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">@Cacheable(value=&quot;bos&quot;,key=&quot;#pageable.pageNum+&apos;_&apos;+#pageable.pageSize&quot;)</div><div class="line">public Page&lt;Courier&gt; findAll(Specification specification, Pageable pageable)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;apache-shiro-权限控制和缓存框架ehcache的使用&quot;&gt;&lt;a href=&quot;#apache-shiro-权限控制和缓存框架ehcache的使用&quot; class=&quot;headerlink&quot; title=&quot;apache shiro(权限控制和缓存框架ehcach
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="shiro" scheme="http://yoursite.com/tags/shiro/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>项目开发小笔记</title>
+    <link href="http://yoursite.com/2017/08/20/apache%20poi/"/>
+    <id>http://yoursite.com/2017/08/20/apache poi/</id>
+    <published>2017-08-20T15:02:01.173Z</published>
+    <updated>2017-08-20T15:03:26.098Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Apache-POI技术-读取和生成excel文件"><a href="#Apache-POI技术-读取和生成excel文件" class="headerlink" title="Apache POI技术 读取和生成excel文件"></a>Apache POI技术 读取和生成excel文件</h2><ol>
+<li><p>读取excel文件</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">HSSFWorkbook workbook = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	workbook = <span class="keyword">new</span> HSSFWorkbook(<span class="keyword">new</span> FileInputStream(file));</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line">	</div><div class="line">HSSFSheet sheet = workbook.getSheetAt(<span class="number">0</span>);</div><div class="line">	</div><div class="line">List&lt;Area&gt; areas = <span class="keyword">new</span> ArrayList&lt;Area&gt;();</div><div class="line">	</div><div class="line"><span class="keyword">for</span> (Row row : sheet) &#123;</div><div class="line">	System.out.println(<span class="string">"read data"</span>);</div><div class="line">	<span class="comment">// 跳过第一行</span></div><div class="line">	<span class="keyword">if</span> (row.getRowNum() == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 跳过空行</span></div><div class="line">	<span class="keyword">if</span> (row.getCell(<span class="number">0</span>) == <span class="keyword">null</span> || StringUtils.isBlank(row.getCell(<span class="number">0</span>).getStringCellValue())) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	Area area = <span class="keyword">new</span> Area();</div><div class="line">	</div><div class="line">	area.setId(row.getCell(<span class="number">0</span>).getStringCellValue());</div><div class="line">	area.setProvince(row.getCell(<span class="number">1</span>).getStringCellValue());</div><div class="line">	area.setCity(row.getCell(<span class="number">2</span>).getStringCellValue());</div><div class="line">	area.setDistrict(row.getCell(<span class="number">3</span>).getStringCellValue());</div><div class="line">	area.setPostcode(row.getCell(<span class="number">4</span>).getStringCellValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>生成excel文件</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">List&lt;WayBill&gt; wayBills = wayBillService.findWayBills(model);</div><div class="line"></div><div class="line">HSSFWorkbook hssfWorkbook = <span class="keyword">new</span> HSSFWorkbook();</div><div class="line">HSSFSheet sheet = hssfWorkbook.createSheet(<span class="string">"运单数据"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表头</span></div><div class="line">HSSFRow headRow = sheet.createRow(<span class="number">0</span>);</div><div class="line">headRow.createCell(<span class="number">0</span>).setCellValue(<span class="string">"运单号"</span>);</div><div class="line">headRow.createCell(<span class="number">1</span>).setCellValue(<span class="string">"寄件人"</span>);</div><div class="line">headRow.createCell(<span class="number">2</span>).setCellValue(<span class="string">"寄件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">3</span>).setCellValue(<span class="string">"寄件人地址"</span>);</div><div class="line">headRow.createCell(<span class="number">4</span>).setCellValue(<span class="string">"收件人"</span>);</div><div class="line">headRow.createCell(<span class="number">5</span>).setCellValue(<span class="string">"收件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">6</span>).setCellValue(<span class="string">"收件人地址"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表格数据</span></div><div class="line"><span class="keyword">for</span> (WayBill wayBill: wayBills) &#123;</div><div class="line">	HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum()+<span class="number">1</span>);</div><div class="line">	dataRow.createCell(<span class="number">0</span>).setCellValue(wayBill.getWayBillNum());</div><div class="line">	dataRow.createCell(<span class="number">1</span>).setCellValue(wayBill.getSendName());</div><div class="line">	dataRow.createCell(<span class="number">2</span>).setCellValue(wayBill.getSendMobile());</div><div class="line">	dataRow.createCell(<span class="number">3</span>).setCellValue(wayBill.getSendAddress());</div><div class="line">	dataRow.createCell(<span class="number">4</span>).setCellValue(wayBill.getRecName());</div><div class="line">	dataRow.createCell(<span class="number">5</span>).setCellValue(wayBill.getRecMobile());</div><div class="line">	dataRow.createCell(<span class="number">6</span>).setCellValue(wayBill.getRecAddress());</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Apache-POI技术-读取和生成excel文件&quot;&gt;&lt;a href=&quot;#Apache-POI技术-读取和生成excel文件&quot; class=&quot;headerlink&quot; title=&quot;Apache POI技术 读取和生成excel文件&quot;&gt;&lt;/a&gt;Apache POI技
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="poi" scheme="http://yoursite.com/tags/poi/"/>
+    
+  </entry>
   
   <entry>
     <title>技术积累（QRcode,fileReader）</title>
@@ -49,9 +244,9 @@
     
       <category term="code" scheme="http://yoursite.com/tags/code/"/>
     
-      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="服务端" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
+    
+      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   

@@ -150,41 +150,437 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-vpn_help" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-code004" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/vpn_help/">常用工具网站介绍</a>
+      <a class="article-title" href="/2017/08/20/code004/">技术积累（QRcode,fileReader）</a>
     </h1>
   
 
         
-        <a href="/2017/08/14/vpn_help/" class="archive-article-date">
-  	<time datetime="2017-08-14T14:35:38.244Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+        <a href="/2017/08/20/code004/" class="archive-article-date">
+  	<time datetime="2017-08-20T04:34:40.187Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=68450&auto=1&height=66"></iframe>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
 
-<h2 id="Common-sites"><a href="#Common-sites" class="headerlink" title="Common sites"></a>Common sites</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
-<li><a href="http://taoxiaozhong.com/" target="_blank" rel="external">淘小众</a></li>
-<li><a href="http://www.gogeeks.cn/" target="_blank" rel="external">极客导航</a></li>
-<li><a href="https://s.geekbang.org/" target="_blank" rel="external">极客搜索</a><h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3></li>
-<li><a href="https://sdk.cn/news/4723" target="_blank" rel="external">免费科学上网镜像和工具</a></li>
-<li><a href="https://pac.itzmx.com/" target="_blank" rel="external">浏览器代理科学上网</a><h3 id="壁纸下载网站"><a href="#壁纸下载网站" class="headerlink" title="壁纸下载网站"></a>壁纸下载网站</h3></li>
-<li><a href="http://www.10wallpaper.com/" target="_blank" rel="external">tenBeauty</a></li>
-<li><a href="http://sf.co.ua/" target="_blank" rel="external">Wallpapers</a><h3 id="vip视频解析网站"><a href="#vip视频解析网站" class="headerlink" title="vip视频解析网站"></a>vip视频解析网站</h3></li>
-<li><a href="http://www.tufutv.com/" target="_blank" rel="external">屠夫网</a></li>
-<li><a href="http://ifkdy.com" target="_blank" rel="external">疯狂影视搜索</a>
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<ol>
+<li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
+<li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
+</ol>
+<h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
+<li>oracle数据库中的特殊类型，使用“select * from table”的方式查询，得到的基础平台框架自动包装clog类型，在前台中解析为一个json对象类型。<ul>
+<li>解决办法：使用sql语句解决<a href="http://blog.csdn.net/wumingqian_137229/article/details/48438959" target="_blank" rel="external">dbms_lob.substr(clob字段，4000,1)</a></li>
+<li>或者使用java代码进行解决。</li>
+</ul>
+</li>
+<li><a href="http://www.eclipse.org/webtools/" target="_blank" rel="external">web-tool-platform官方地址</a>  wtp是webtoolplant，web开发的平台工具</li>
+<li><a href="http://blog.csdn.net/jbgtwang/article/details/44077853" target="_blank" rel="external">不安装WTP全包怎么添加Tomcat8到Eclipse Kepler中</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/code004/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2017/08/14/vpn_help/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
         
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-code003" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/code003/">技术积累（git,ODS_压缩，解压缩、文件夹监听）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/code003/" class="archive-article-date">
+  	<time datetime="2017-08-20T03:58:53.475Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>解释：项目由开发小组共同开发，由大部分人一起开发的部分叫做trunk（主干），当已经发布的程序出现问题，且trunk还在继续开发时，就需要新创建一个branch分支。</p>
+<p>冲突：当开发人员因为不同需求需要修改同一项目中的相同文件位置时，就出现了冲突。<br>需要首先做对比，按照需求合并，然后强迫强制提交。</p>
+<p>如果项目开发中出现了分支，当进行pull操作时，能够将所有分支上的内容下载到本地。<br>节点，项目开发到一个版本结束的时候需要打一个节点。标志项目的一个里程碑的结束。</p>
+<h3 id="ODS之文件压缩和解压缩"><a href="#ODS之文件压缩和解压缩" class="headerlink" title="ODS之文件压缩和解压缩"></a>ODS之文件压缩和解压缩</h3><ol>
+<li>解压缩</li>
+<li>整理，建立文件夹，放文件</li>
+<li>压缩</li>
+<li>分发
+        
+          <a class="article-more-a" href="/2017/08/20/code003/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/code003/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-code002" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/code002/">技术积累（svn,hibernate）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/code002/" class="archive-article-date">
+  	<time datetime="2017-08-20T03:48:54.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>枚举类型：A,B,C,D;   可以有构造方法  可以有函数<br>A(1,2,3) 三个参数都是构造属性  属性和一些方法用来返回属性</li>
+</ul>
+<h2 id="svn项目导入-webRoot-gt-webContent"><a href="#svn项目导入-webRoot-gt-webContent" class="headerlink" title="svn项目导入(webRoot-&gt;webContent)"></a>svn项目导入(webRoot-&gt;webContent)</h2><h3 id="先导入到本地再导入到eclipse中"><a href="#先导入到本地再导入到eclipse中" class="headerlink" title="先导入到本地再导入到eclipse中"></a>先导入到本地再导入到eclipse中</h3><ol>
+<li>先将项目内容复制到本地，将项目内容进行备份，将备份的数据与svn服务器的链接断开。</li>
+<li>新建动态网页项目，注意将内容输出值进行修改，WebRoot/WEB-INF/classes  将项目的主要内容文件夹设置为webRoot。</li>
+<li>最后将备份后的项目数据导入到本地集成开发环境中(以文件系统的方式)</li>
+</ol>
+<h3 id="使用集成开发环境中的svn插件进行项目检出"><a href="#使用集成开发环境中的svn插件进行项目检出" class="headerlink" title="使用集成开发环境中的svn插件进行项目检出"></a>使用集成开发环境中的svn插件进行项目检出</h3><ol>
+<li>将项目导入到集成开发环境中，作为本地的项目导出</li>
+<li>修改项目在本地路径中的配置文件，setting文件夹下的org.eclipse.wst.common.component,修改里面的source-path<br><code>&lt;wb-resource deploy-path=&quot;/&quot; source-path=&quot;/WebRoot&quot; tag=&quot;defaultRootSource&quot;/&gt;</code></li>
+<li>修改项目根目录下的.classpath文件下的内容，修改path的值<br><code>&lt;classpathentry kind=&quot;output&quot; path=&quot;WebRoot/WEB-INF/classes&quot;/&gt;</code><h2 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h2><h3 id="Criteria-QBC-查询方法"><a href="#Criteria-QBC-查询方法" class="headerlink" title="Criteria  QBC 查询方法"></a>Criteria  QBC 查询方法</h3></li>
+<li>criteria.add(crtierition)  criterion类的主要的三个子类：Example junction simpleExpression
+        
+          <a class="article-more-a" href="/2017/08/20/code002/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/code002/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-code001" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/code001/">技术积累（ajax-sync，闭包）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/code001/" class="archive-article-date">
+  	<time datetime="2017-08-20T03:16:41.300Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><ul>
+<li><p>如何解决页面中具有相同id的对象的问题：如在两个页面中同时存在id为datagrid的表格，在对象后面添加.element();为对象ID添加时间戳  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">element: function() &#123;</div><div class="line">   var idStr = this.attr(&apos;id&apos;) + &apos;_&apos; + new Date().getTime();</div><div class="line">   this.attr(&apos;id&apos;, idStr);</div><div class="line">   return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编码风格：将同一类型的或者完成相似功能的函数，定义到统一对象中，方便调用</p>
+</li>
+<li><p>js中闭包的好处：</p>
+<ul>
+<li>什么是闭包</li>
+<li>闭包就是能够在函数内部读取函数外部的变量的一座桥梁  </li>
+<li>闭包的作用：  <ol>
+<li>可以读取到函数内部的数据</li>
+<li>闭包让变量始终存在于内存中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var name = &quot;The Window&quot;;   </div><div class="line">　　var object = &#123;   </div><div class="line">　　　　name : &quot;My Object&quot;,   </div><div class="line">　　　　getNameFunc : function()&#123;   </div><div class="line">　　　　　　return function()&#123;   </div><div class="line">　　　　　　　　return this.name;   </div><div class="line">　　　　　&#125;;   </div><div class="line">　　　　&#125;   </div><div class="line">&#125;;   </div><div class="line">alert(object.getNameFunc()());  //The Window</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>在匿名函数前面加上这些符号后，就把一个函数声明语句变成了一个函数表达式，是表达式就会在script标签中自动执行。</p>
+</li>
+<li>ajax请求中的asyn 该值默认为true，即进行同步请求，当该值为false时，该ajax请求将会被锁死,适用于异步请求之后的代码，需要用到此次异步请求中返回的数据。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;  </div><div class="line">        async: false,  </div><div class="line">        type : &quot;GET&quot;,  </div><div class="line">        url : &apos;tet.php&apos;,  </div><div class="line">        complete: function(msg)&#123;  </div><div class="line">            alert(&apos;complete&apos;);  </div><div class="line">        &#125;,  </div><div class="line">        success : function(data) &#123;  </div><div class="line">            alert(&apos;success&apos;);  </div><div class="line">            temp=data;  </div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    alert(temp+&apos;end&apos;);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/code001/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/note/">关于hacker的信仰</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/note/" class="archive-article-date">
+  	<time datetime="2017-08-20T02:45:43.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=483671599&auto=0&height=66"></iframe>
+
+<h2 id="hacker的信仰"><a href="#hacker的信仰" class="headerlink" title="hacker的信仰"></a>hacker的信仰</h2><ol>
+<li>The world is full of fascinating problems waiting to be solved.</li>
+<li>No problem should ever have to be solved twice.</li>
+<li>Boredom and drudgery are evil.</li>
+<li>Freedom is good.</li>
+<li>Attitude is so subsititute for competence.<blockquote>
+<p>1、这个世界充满了待解决的迷人问题<br>2、一个问题都不应该被解决两次<br>3、无趣和乏味的工作是犯罪<br>4、追求自由<br>5、态度不能代替能力（态度无法替代技术）</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="程序设计基本原则"><a href="#程序设计基本原则" class="headerlink" title="程序设计基本原则"></a>程序设计基本原则</h3><pre><code>模块原则：使用简洁的接口拼合简单的部件
+清晰原则：清晰胜于机巧
+组合原则：设计时，考虑拼接组合
+分离原则：策略同机制分离，接口同引擎分离
+简洁原则：设计要简洁，复杂度能低则低
+吝啬原则：除非确无他法，不要编写庞大的程序
+透明性原则：设计要可见，以便审查和调试
+健壮性原则：健壮性源于透明和简洁
+通俗原则：接口设计避免标新立异
+表示原则：把知识叠入数据以求逻辑质朴而健壮
+缄默原则：如果一个程序没什么好说的，就沉默
+经济原则：宁花机器一分，不花程序员一秒
+补救原则：出现异常时，马上退出并给出足够的错误信息
+生成原则：避免手工hack，尽量编写程序去生成程序
+优化原则：雕琢前先要有原型，跑之前先学会走
+多样原则：决不相信所谓“不二法门”的断言
+扩展原则：设计着眼未来，未来总比预想来的快
+</code></pre>
       
 
       
@@ -207,7 +603,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/14/vpn_help/">继续探索 >></a>
+          <a class="article-more-a" href="/2017/08/20/note/">继续探索 >></a>
         </p>
       
 
@@ -237,164 +633,10 @@
 
 
   
-    <article id="post-Code_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/Code_note/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/13/Code_note/" class="archive-article-date">
-  	<time datetime="2017-08-13T14:41:32.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://blog.csdn.net/ysydao/article/details/40181611" target="_blank" rel="external">产品经理小帖子</a></p>
-<pre><code>精华内容摘要：
-1、产品经理有一个毛病就是喜欢虚构一个功能出来，然后觉得用户一定要使用你的东西，不然就弄死他。  
-2、我们做一个产品一定要抓住硬需求，也就是用户不用你这个东西他就觉得浑身难受。    
-3、你又在想着怎么忽悠用户进来，然后再虐待他。
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/08/13/Code_note/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">work</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/13/Code_note/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/hello-world/">个人博客第一弹：歌曲分享</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-06T02:43:07.298Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="歌曲"><a href="#歌曲" class="headerlink" title="歌曲"></a>歌曲</h3><p>这里是我平时喜欢听的一歌曲，分享给大家听。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br>
-        
-          <a class="article-more-a" href="/2017/08/06/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/hello-world/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -492,11 +734,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">life</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务端</a>
               </li>
             
             <div class="clearfix"></div>

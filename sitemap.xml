@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/20/code003/</loc>
+    
+    <lastmod>2017-08-20T04:53:45.263Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/20/code004/</loc>
+    
+    <lastmod>2017-08-20T04:51:03.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/20/note/</loc>
+    
+    <lastmod>2017-08-20T04:47:28.656Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/20/code002/</loc>
+    
+    <lastmod>2017-08-20T03:58:30.537Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/20/code001/</loc>
+    
+    <lastmod>2017-08-20T03:48:05.441Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/14/vpn_help/</loc>
     
-    <lastmod>2017-08-14T16:09:28.070Z</lastmod>
+    <lastmod>2017-08-20T03:02:35.434Z</lastmod>
     
   </url>
   

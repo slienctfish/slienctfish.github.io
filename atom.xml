@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-14T16:09:28.070Z</updated>
+  <updated>2017-08-20T04:51:03.928Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,264 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>技术积累（QRcode,fileReader）</title>
+    <link href="http://yoursite.com/2017/08/20/code004/"/>
+    <id>http://yoursite.com/2017/08/20/code004/</id>
+    <published>2017-08-20T04:34:40.187Z</published>
+    <updated>2017-08-20T04:51:03.928Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
+
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<ol>
+<li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
+<li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
+</ol>
+<h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
+<li>oracle数据库中的特殊类型，使用“select * from table”的方式查询，得到的基础平台框架自动包装clog类型，在前台中解析为一个json对象类型。<ul>
+<li>解决办法：使用sql语句解决<a href="http://blog.csdn.net/wumingqian_137229/article/details/48438959" target="_blank" rel="external">dbms_lob.substr(clob字段，4000,1)</a></li>
+<li>或者使用java代码进行解决。</li>
+</ul>
+</li>
+<li><a href="http://www.eclipse.org/webtools/" target="_blank" rel="external">web-tool-platform官方地址</a>  wtp是webtoolplant，web开发的平台工具</li>
+<li><a href="http://blog.csdn.net/jbgtwang/article/details/44077853" target="_blank" rel="external">不安装WTP全包怎么添加Tomcat8到Eclipse Kepler中</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="服务端" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>技术积累（git,ODS_压缩，解压缩、文件夹监听）</title>
+    <link href="http://yoursite.com/2017/08/20/code003/"/>
+    <id>http://yoursite.com/2017/08/20/code003/</id>
+    <published>2017-08-20T03:58:53.475Z</published>
+    <updated>2017-08-20T04:53:45.263Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>解释：项目由开发小组共同开发，由大部分人一起开发的部分叫做trunk（主干），当已经发布的程序出现问题，且trunk还在继续开发时，就需要新创建一个branch分支。</p>
+<p>冲突：当开发人员因为不同需求需要修改同一项目中的相同文件位置时，就出现了冲突。<br>需要首先做对比，按照需求合并，然后强迫强制提交。</p>
+<p>如果项目开发中出现了分支，当进行pull操作时，能够将所有分支上的内容下载到本地。<br>节点，项目开发到一个版本结束的时候需要打一个节点。标志项目的一个里程碑的结束。</p>
+<h3 id="ODS之文件压缩和解压缩"><a href="#ODS之文件压缩和解压缩" class="headerlink" title="ODS之文件压缩和解压缩"></a>ODS之文件压缩和解压缩</h3><ol>
+<li>解压缩</li>
+<li>整理，建立文件夹，放文件</li>
+<li>压缩</li>
+<li>分发<a id="more"></a>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	File zipfile = <span class="keyword">new</span> File(<span class="string">"C:/Users/Administrator/Desktop/ods.zip"</span>);</div><div class="line">	String destDir = <span class="string">"C:/Users/Administrator/Desktop"</span>;</div><div class="line">	<span class="keyword">if</span> (StringUtils.isBlank(destDir)) &#123;</div><div class="line">		destDir = zipfile.getParent();</div><div class="line">	&#125;</div><div class="line">	destDir = destDir.endsWith(File.separator) ? destDir : destDir + File.separator;</div><div class="line">	ZipArchiveInputStream is = <span class="keyword">null</span>;</div><div class="line">	List&lt;String&gt; fileNames = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		is = <span class="keyword">new</span> ZipArchiveInputStream(<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(zipfile), <span class="number">8192</span>));</div><div class="line">		ZipArchiveEntry entry = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span> ((entry = is.getNextZipEntry()) != <span class="keyword">null</span>) &#123;</div><div class="line">			fileNames.add(entry.getName());</div><div class="line">			<span class="keyword">if</span> (entry.isDirectory()) &#123;</div><div class="line">				File directory = <span class="keyword">new</span> File(destDir, entry.getName());</div><div class="line">				directory.mkdirs();</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				OutputStream os = <span class="keyword">null</span>;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					os = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(destDir, entry.getName())),</div><div class="line">							<span class="number">8192</span>);</div><div class="line">					IOUtils.copy(is, os);</div><div class="line">				&#125; <span class="keyword">finally</span> &#123;</div><div class="line">					IOUtils.closeQuietly(os);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">		<span class="keyword">throw</span> e;</div><div class="line">	&#125; <span class="keyword">finally</span> &#123;</div><div class="line">		IOUtils.closeQuietly(is);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">for</span> (String string : fileNames) &#123;</div><div class="line">		<span class="keyword">if</span>(string.endsWith(<span class="string">"/"</span>))&#123;</div><div class="line">			System.out.println(<span class="string">"文件夹："</span>+string);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			System.out.println(<span class="string">"文    件："</span>+string);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	System.out.println(<span class="string">"finished"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>主要是流的变化和处理，写出时是按照，压缩文件为一个整体的思想进行写出的所以不需要运用递归的写法将数据写出<br>压缩的时候相当于往里面写文件，需要递归地写。相当于把系统中的数据递归地写到一个黑匣子里面</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	String srcFilepath = <span class="string">"C:\\Users\\Administrator\\Desktop\\ad"</span>;</div><div class="line">	File srcFile = <span class="keyword">new</span> File(srcFilepath);</div><div class="line">	String destFilepath = srcFile.getAbsolutePath() + <span class="string">".zip"</span>;</div><div class="line">	File destFile = <span class="keyword">new</span> File(destFilepath);</div><div class="line">	</div><div class="line">	<span class="keyword">if</span> (srcFile.exists()) &#123;</div><div class="line">		ZipArchiveOutputStream out = <span class="keyword">new</span> ZipArchiveOutputStream(<span class="keyword">new</span> FileOutputStream(destFile));</div><div class="line">		InputStream is = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="keyword">if</span> (srcFile.isDirectory()) &#123;</div><div class="line">				File[] files = srcFile.listFiles();</div><div class="line">				<span class="keyword">for</span> (File file : files) &#123;</div><div class="line">					zip(srcFile, file, out);</div><div class="line">				&#125;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					is = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(srcFile), <span class="number">8192</span>);</div><div class="line">					ZipArchiveEntry entry = <span class="keyword">new</span> ZipArchiveEntry(srcFile.getName());</div><div class="line">					entry.setSize(srcFile.length());</div><div class="line">					out.putArchiveEntry(entry);</div><div class="line">					IOUtils.copy(is, out);</div><div class="line">					out.closeArchiveEntry();</div><div class="line">				&#125; <span class="keyword">finally</span> &#123;</div><div class="line">					IOUtils.closeQuietly(is);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			IOUtils.closeQuietly(out);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">zip</span><span class="params">(File root, File parent, ZipArchiveOutputStream zipArchiveOutputStream)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="keyword">if</span> (parent.exists()) &#123;</div><div class="line">		InputStream is = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">if</span> (parent.isDirectory()) &#123;</div><div class="line">			File[] files = parent.listFiles();</div><div class="line">			<span class="keyword">for</span> (File file : files) &#123;</div><div class="line">				zip(root, file, zipArchiveOutputStream);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				is = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(parent), <span class="number">8192</span>);</div><div class="line">				ZipArchiveEntry entry = <span class="keyword">new</span> ZipArchiveEntry(parent,</div><div class="line">						parent.getAbsolutePath().replace(root.getAbsolutePath(), <span class="string">""</span>));</div><div class="line">				entry.setSize(parent.length());</div><div class="line">				zipArchiveOutputStream.putArchiveEntry(entry);</div><div class="line">				IOUtils.copy(is, zipArchiveOutputStream);</div><div class="line">				zipArchiveOutputStream.closeArchiveEntry();</div><div class="line">			&#125; <span class="keyword">finally</span> &#123;</div><div class="line">				IOUtils.closeQuietly(is);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><h3 id="ODS之文件内容监控"><a href="#ODS之文件内容监控" class="headerlink" title="ODS之文件内容监控"></a>ODS之文件内容监控</h3><p>需要使用Java.io 包中的文件和 commons.io 的子包monitor包中的文件观察类和文件监听类<br>可以实现对文件和文件夹的的监听。包括文件的创建，文件的删除</p>
+<ol>
+<li>监听开启后，每隔一段时间进行一次观察和检测</li>
+<li>监听需要确定检测的时间间隔</li>
+<li>监听需要传入一个观察者对象</li>
+<li>监听需要传入一个监听者对象 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZJPFileMonitor</span> </span>&#123;  </div><div class="line">    FileAlterationMonitor monitor = <span class="keyword">null</span>;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ZJPFileMonitor</span><span class="params">(<span class="keyword">long</span> interval)</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line">        monitor = <span class="keyword">new</span> FileAlterationMonitor(interval);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">monitor</span><span class="params">(String path, FileAlterationListener listener)</span> </span>&#123;  </div><div class="line">        FileAlterationObserver observer = <span class="keyword">new</span> FileAlterationObserver(<span class="keyword">new</span> File(path));  </div><div class="line">        monitor.addObserver(observer);  </div><div class="line">        observer.addListener(listener);  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;  </div><div class="line">        monitor.stop();  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line">        monitor.start();  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line">        ZJPFileMonitor m = <span class="keyword">new</span> ZJPFileMonitor(<span class="number">5000</span>);  </div><div class="line">        m.monitor(<span class="string">"E:\\filepath"</span>,<span class="keyword">new</span> ZJPFileListener());  </div><div class="line">        m.start();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<!-- -->
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZJPFileListener</span> <span class="keyword">implements</span> <span class="title">FileAlterationListener</span></span>&#123;</div><div class="line">			</div><div class="line">	ZJPFileMonitor monitor = <span class="keyword">null</span>;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">(FileAlterationObserver observer)</span> </span>&#123;</div><div class="line">		<span class="comment">//System.out.println("onStart");</span></div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDirectoryCreate</span><span class="params">(File directory)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onDirectoryCreate:"</span> +  directory.getName());</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDirectoryChange</span><span class="params">(File directory)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onDirectoryChange:"</span> + directory.getName());</div><div class="line">	&#125;	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDirectoryDelete</span><span class="params">(File directory)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onDirectoryDelete:"</span> + directory.getName());</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFileCreate</span><span class="params">(File file)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onFileCreate:"</span> + file.getName());</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFileChange</span><span class="params">(File file)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onFileCreate : "</span> + file.getName());</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFileDelete</span><span class="params">(File file)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"onFileDelete :"</span> + file.getName());</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">(FileAlterationObserver observer)</span> </span>&#123;</div><div class="line">		<span class="comment">//System.out.println("onStop");</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=407002091&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;&lt;a href=&quot;#git&quot; class=&quot;headerlink&quot; title=&quot;git&quot;&gt;&lt;/a&gt;git&lt;/h2&gt;&lt;p&gt;解释：项目由开发小组共同开发，由大部分人一起开发的部分叫做trunk（主干），当已经发布的程序出现问题，且trunk还在继续开发时，就需要新创建一个branch分支。&lt;/p&gt;
+&lt;p&gt;冲突：当开发人员因为不同需求需要修改同一项目中的相同文件位置时，就出现了冲突。&lt;br&gt;需要首先做对比，按照需求合并，然后强迫强制提交。&lt;/p&gt;
+&lt;p&gt;如果项目开发中出现了分支，当进行pull操作时，能够将所有分支上的内容下载到本地。&lt;br&gt;节点，项目开发到一个版本结束的时候需要打一个节点。标志项目的一个里程碑的结束。&lt;/p&gt;
+&lt;h3 id=&quot;ODS之文件压缩和解压缩&quot;&gt;&lt;a href=&quot;#ODS之文件压缩和解压缩&quot; class=&quot;headerlink&quot; title=&quot;ODS之文件压缩和解压缩&quot;&gt;&lt;/a&gt;ODS之文件压缩和解压缩&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;解压缩&lt;/li&gt;
+&lt;li&gt;整理，建立文件夹，放文件&lt;/li&gt;
+&lt;li&gt;压缩&lt;/li&gt;
+&lt;li&gt;分发
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="服务端" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>技术积累（svn,hibernate）</title>
+    <link href="http://yoursite.com/2017/08/20/code002/"/>
+    <id>http://yoursite.com/2017/08/20/code002/</id>
+    <published>2017-08-20T03:48:54.354Z</published>
+    <updated>2017-08-20T03:58:30.537Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>枚举类型：A,B,C,D;   可以有构造方法  可以有函数<br>A(1,2,3) 三个参数都是构造属性  属性和一些方法用来返回属性</li>
+</ul>
+<h2 id="svn项目导入-webRoot-gt-webContent"><a href="#svn项目导入-webRoot-gt-webContent" class="headerlink" title="svn项目导入(webRoot-&gt;webContent)"></a>svn项目导入(webRoot-&gt;webContent)</h2><h3 id="先导入到本地再导入到eclipse中"><a href="#先导入到本地再导入到eclipse中" class="headerlink" title="先导入到本地再导入到eclipse中"></a>先导入到本地再导入到eclipse中</h3><ol>
+<li>先将项目内容复制到本地，将项目内容进行备份，将备份的数据与svn服务器的链接断开。</li>
+<li>新建动态网页项目，注意将内容输出值进行修改，WebRoot/WEB-INF/classes  将项目的主要内容文件夹设置为webRoot。</li>
+<li>最后将备份后的项目数据导入到本地集成开发环境中(以文件系统的方式)</li>
+</ol>
+<h3 id="使用集成开发环境中的svn插件进行项目检出"><a href="#使用集成开发环境中的svn插件进行项目检出" class="headerlink" title="使用集成开发环境中的svn插件进行项目检出"></a>使用集成开发环境中的svn插件进行项目检出</h3><ol>
+<li>将项目导入到集成开发环境中，作为本地的项目导出</li>
+<li>修改项目在本地路径中的配置文件，setting文件夹下的org.eclipse.wst.common.component,修改里面的source-path<br><code>&lt;wb-resource deploy-path=&quot;/&quot; source-path=&quot;/WebRoot&quot; tag=&quot;defaultRootSource&quot;/&gt;</code></li>
+<li>修改项目根目录下的.classpath文件下的内容，修改path的值<br><code>&lt;classpathentry kind=&quot;output&quot; path=&quot;WebRoot/WEB-INF/classes&quot;/&gt;</code><h2 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h2><h3 id="Criteria-QBC-查询方法"><a href="#Criteria-QBC-查询方法" class="headerlink" title="Criteria  QBC 查询方法"></a>Criteria  QBC 查询方法</h3></li>
+<li>criteria.add(crtierition)  criterion类的主要的三个子类：Example junction simpleExpression<a id="more"></a>
+<h3 id="Criteria-和-DetachedCriteria"><a href="#Criteria-和-DetachedCriteria" class="headerlink" title="Criteria 和 DetachedCriteria"></a>Criteria 和 DetachedCriteria</h3></li>
+</ol>
+<p>CriteriaSpecification 是一个接口， Criteria 是CriteriaSpecifiction的子接口<br>DetachedCriteria是CriteriaSpecification的一个实现类<br>Criteria是在线查询，需要由HIbernate Sesison创建<br>DetachedCriteria是离线的，使用了装饰者模式，包装了一个CriteriaImpl Criteria的实现<br>Criteria可以<code>addOrder(Order.asc(&quot;field&quot;))</code>  <code>setMaxResult(50)</code></p>
+<p>设置查询条件:使用Criterion 和 Projection</p>
+<p>可以使用Criterion和Projection设置查询条件</p>
+<p>Criterion条件是一个接口，实现类包括Example(例子)、Junction(连接)[conjunction disjunction]、SimpleExpression(简单表达式)</p>
+<p>使用Restrictions工具类创建Criterion对象，可以创建除Example之外的其他类型的Criterion</p>
+<p>Project主要有SimpleProjection、ProjectionList和Property三个实现<br>Property 是对某个字段进行查询条件设置，<code>Property.forName(&quot;color&quot;).in({数组});</code><br>（聚合函数）</p>
+<p>DetachedCriteria 和Criteria之间的相互转换<br><code>detachedCriteria.getExecutableCriteria(Sesision)</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=407002091&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;枚举类型：A,B,C,D;   可以有构造方法  可以有函数&lt;br&gt;A(1,2,3) 三个参数都是构造属性  属性和一些方法用来返回属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;svn项目导入-webRoot-gt-webContent&quot;&gt;&lt;a href=&quot;#svn项目导入-webRoot-gt-webContent&quot; class=&quot;headerlink&quot; title=&quot;svn项目导入(webRoot-&amp;gt;webContent)&quot;&gt;&lt;/a&gt;svn项目导入(webRoot-&amp;gt;webContent)&lt;/h2&gt;&lt;h3 id=&quot;先导入到本地再导入到eclipse中&quot;&gt;&lt;a href=&quot;#先导入到本地再导入到eclipse中&quot; class=&quot;headerlink&quot; title=&quot;先导入到本地再导入到eclipse中&quot;&gt;&lt;/a&gt;先导入到本地再导入到eclipse中&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;先将项目内容复制到本地，将项目内容进行备份，将备份的数据与svn服务器的链接断开。&lt;/li&gt;
+&lt;li&gt;新建动态网页项目，注意将内容输出值进行修改，WebRoot/WEB-INF/classes  将项目的主要内容文件夹设置为webRoot。&lt;/li&gt;
+&lt;li&gt;最后将备份后的项目数据导入到本地集成开发环境中(以文件系统的方式)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;使用集成开发环境中的svn插件进行项目检出&quot;&gt;&lt;a href=&quot;#使用集成开发环境中的svn插件进行项目检出&quot; class=&quot;headerlink&quot; title=&quot;使用集成开发环境中的svn插件进行项目检出&quot;&gt;&lt;/a&gt;使用集成开发环境中的svn插件进行项目检出&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;将项目导入到集成开发环境中，作为本地的项目导出&lt;/li&gt;
+&lt;li&gt;修改项目在本地路径中的配置文件，setting文件夹下的org.eclipse.wst.common.component,修改里面的source-path&lt;br&gt;&lt;code&gt;&amp;lt;wb-resource deploy-path=&amp;quot;/&amp;quot; source-path=&amp;quot;/WebRoot&amp;quot; tag=&amp;quot;defaultRootSource&amp;quot;/&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;修改项目根目录下的.classpath文件下的内容，修改path的值&lt;br&gt;&lt;code&gt;&amp;lt;classpathentry kind=&amp;quot;output&amp;quot; path=&amp;quot;WebRoot/WEB-INF/classes&amp;quot;/&amp;gt;&lt;/code&gt;&lt;h2 id=&quot;Criteria&quot;&gt;&lt;a href=&quot;#Criteria&quot; class=&quot;headerlink&quot; title=&quot;Criteria&quot;&gt;&lt;/a&gt;Criteria&lt;/h2&gt;&lt;h3 id=&quot;Criteria-QBC-查询方法&quot;&gt;&lt;a href=&quot;#Criteria-QBC-查询方法&quot; class=&quot;headerlink&quot; title=&quot;Criteria  QBC 查询方法&quot;&gt;&lt;/a&gt;Criteria  QBC 查询方法&lt;/h3&gt;&lt;/li&gt;
+&lt;li&gt;criteria.add(crtierition)  criterion类的主要的三个子类：Example junction simpleExpression
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="服务端" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>技术积累（ajax-sync，闭包）</title>
+    <link href="http://yoursite.com/2017/08/20/code001/"/>
+    <id>http://yoursite.com/2017/08/20/code001/</id>
+    <published>2017-08-20T03:16:41.300Z</published>
+    <updated>2017-08-20T03:48:05.441Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><ul>
+<li><p>如何解决页面中具有相同id的对象的问题：如在两个页面中同时存在id为datagrid的表格，在对象后面添加.element();为对象ID添加时间戳  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">element: function() &#123;</div><div class="line">   var idStr = this.attr(&apos;id&apos;) + &apos;_&apos; + new Date().getTime();</div><div class="line">   this.attr(&apos;id&apos;, idStr);</div><div class="line">   return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编码风格：将同一类型的或者完成相似功能的函数，定义到统一对象中，方便调用</p>
+</li>
+<li><p>js中闭包的好处：</p>
+<ul>
+<li>什么是闭包</li>
+<li>闭包就是能够在函数内部读取函数外部的变量的一座桥梁  </li>
+<li>闭包的作用：  <ol>
+<li>可以读取到函数内部的数据</li>
+<li>闭包让变量始终存在于内存中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var name = &quot;The Window&quot;;   </div><div class="line">　　var object = &#123;   </div><div class="line">　　　　name : &quot;My Object&quot;,   </div><div class="line">　　　　getNameFunc : function()&#123;   </div><div class="line">　　　　　　return function()&#123;   </div><div class="line">　　　　　　　　return this.name;   </div><div class="line">　　　　　&#125;;   </div><div class="line">　　　　&#125;   </div><div class="line">&#125;;   </div><div class="line">alert(object.getNameFunc()());  //The Window</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>在匿名函数前面加上这些符号后，就把一个函数声明语句变成了一个函数表达式，是表达式就会在script标签中自动执行。</p>
+</li>
+<li>ajax请求中的asyn 该值默认为true，即进行同步请求，当该值为false时，该ajax请求将会被锁死,适用于异步请求之后的代码，需要用到此次异步请求中返回的数据。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;  </div><div class="line">        async: false,  </div><div class="line">        type : &quot;GET&quot;,  </div><div class="line">        url : &apos;tet.php&apos;,  </div><div class="line">        complete: function(msg)&#123;  </div><div class="line">            alert(&apos;complete&apos;);  </div><div class="line">        &#125;,  </div><div class="line">        success : function(data) &#123;  </div><div class="line">            alert(&apos;success&apos;);  </div><div class="line">            temp=data;  </div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    alert(temp+&apos;end&apos;);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+    
+    </summary>
+    
+    
+      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+    
+      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于hacker的信仰</title>
+    <link href="http://yoursite.com/2017/08/20/note/"/>
+    <id>http://yoursite.com/2017/08/20/note/</id>
+    <published>2017-08-20T02:45:43.319Z</published>
+    <updated>2017-08-20T04:47:28.656Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=483671599&auto=0&height=66"></iframe>
+
+<h2 id="hacker的信仰"><a href="#hacker的信仰" class="headerlink" title="hacker的信仰"></a>hacker的信仰</h2><ol>
+<li>The world is full of fascinating problems waiting to be solved.</li>
+<li>No problem should ever have to be solved twice.</li>
+<li>Boredom and drudgery are evil.</li>
+<li>Freedom is good.</li>
+<li>Attitude is so subsititute for competence.<blockquote>
+<p>1、这个世界充满了待解决的迷人问题<br>2、一个问题都不应该被解决两次<br>3、无趣和乏味的工作是犯罪<br>4、追求自由<br>5、态度不能代替能力（态度无法替代技术）</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="程序设计基本原则"><a href="#程序设计基本原则" class="headerlink" title="程序设计基本原则"></a>程序设计基本原则</h3><pre><code>模块原则：使用简洁的接口拼合简单的部件
+清晰原则：清晰胜于机巧
+组合原则：设计时，考虑拼接组合
+分离原则：策略同机制分离，接口同引擎分离
+简洁原则：设计要简洁，复杂度能低则低
+吝啬原则：除非确无他法，不要编写庞大的程序
+透明性原则：设计要可见，以便审查和调试
+健壮性原则：健壮性源于透明和简洁
+通俗原则：接口设计避免标新立异
+表示原则：把知识叠入数据以求逻辑质朴而健壮
+缄默原则：如果一个程序没什么好说的，就沉默
+经济原则：宁花机器一分，不花程序员一秒
+补救原则：出现异常时，马上退出并给出足够的错误信息
+生成原则：避免手工hack，尽量编写程序去生成程序
+优化原则：雕琢前先要有原型，跑之前先学会走
+多样原则：决不相信所谓“不二法门”的断言
+扩展原则：设计着眼未来，未来总比预想来的快
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+    
+    </summary>
+    
+    
+      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
     <title>常用工具网站介绍</title>
     <link href="http://yoursite.com/2017/08/14/vpn_help/"/>
     <id>http://yoursite.com/2017/08/14/vpn_help/</id>
     <published>2017-08-14T14:35:38.244Z</published>
-    <updated>2017-08-14T16:09:28.070Z</updated>
+    <updated>2017-08-20T03:02:35.434Z</updated>
     
-    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=68450&auto=1&height=66"></iframe>
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=68450&auto=0&height=66"></iframe>
 
 <h2 id="Common-sites"><a href="#Common-sites" class="headerlink" title="Common sites"></a>Common sites</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
 <li><a href="http://taoxiaozhong.com/" target="_blank" rel="external">淘小众</a></li>
@@ -70,7 +321,7 @@
     
     <summary type="html">
     
-      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=68450&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;100%&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=68450&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
 
 &lt;h2 id=&quot;Common-sites&quot;&gt;&lt;a href=&quot;#Common-sites&quot; class=&quot;headerlink&quot; title=&quot;Common sites&quot;&gt;&lt;/a&gt;Common sites&lt;/h2&gt;&lt;h3 id=&quot;网站索引导航&quot;&gt;&lt;a href=&quot;#网站索引导航&quot; class=&quot;headerlink&quot; title=&quot;网站索引导航&quot;&gt;&lt;/a&gt;网站索引导航&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;http://taoxiaozhong.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;淘小众&lt;/a&gt;&lt;/li&gt;

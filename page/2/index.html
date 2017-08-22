@@ -150,50 +150,433 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-code001" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-logger" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/code001/">技术积累（ajax-sync，闭包）</a>
+      <a class="article-title" href="/2017/08/22/logger/">项目开发小笔记</a>
     </h1>
   
 
         
-        <a href="/2017/08/20/code001/" class="archive-article-date">
-  	<time datetime="2017-08-20T03:16:41.300Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+        <a href="/2017/08/22/logger/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:44:34.923Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
-
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><ul>
-<li><p>如何解决页面中具有相同id的对象的问题：如在两个页面中同时存在id为datagrid的表格，在对象后面添加.element();为对象ID添加时间戳  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">element: function() &#123;</div><div class="line">   var idStr = this.attr(&apos;id&apos;) + &apos;_&apos; + new Date().getTime();</div><div class="line">   this.attr(&apos;id&apos;, idStr);</div><div class="line">   return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编码风格：将同一类型的或者完成相似功能的函数，定义到统一对象中，方便调用</p>
-</li>
-<li><p>js中闭包的好处：</p>
-<ul>
-<li>什么是闭包</li>
-<li>闭包就是能够在函数内部读取函数外部的变量的一座桥梁  </li>
-<li>闭包的作用：  <ol>
-<li>可以读取到函数内部的数据</li>
-<li>闭包让变量始终存在于内存中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var name = &quot;The Window&quot;;   </div><div class="line">　　var object = &#123;   </div><div class="line">　　　　name : &quot;My Object&quot;,   </div><div class="line">　　　　getNameFunc : function()&#123;   </div><div class="line">　　　　　　return function()&#123;   </div><div class="line">　　　　　　　　return this.name;   </div><div class="line">　　　　　&#125;;   </div><div class="line">　　　　&#125;   </div><div class="line">&#125;;   </div><div class="line">alert(object.getNameFunc()());  //The Window</div></pre></td></tr></table></figure>
+        <h2 id="日志技术"><a href="#日志技术" class="headerlink" title="日志技术"></a>日志技术</h2><h3 id="常用日志技术"><a href="#常用日志技术" class="headerlink" title="常用日志技术"></a>常用日志技术</h3><ol>
+<li>log4j (日志框架 )</li>
+<li>slf4j （简单日志门面 接口 必须有实现）</li>
+<li>apache commons-logging —-  JCL （日志接口 ，自带一个简单实现 ） </li>
+<li>JDK java.util.logging —- JUL （JDK自带日志技术）<ul>
+<li>slf4j和JCL 是接口 </li>
+<li>log4j和JUL 是实现 </li>
+</ul>
 </li>
 </ol>
+<ul>
+<li><p>JCL有两个基本的抽象类：Log(基本记录器)和LogFactory(负责创建Log实例)。当commons-logging.jar被加入到 CLASSPATH之后，它会心可能合理地猜测你想用的日志工具，然后进行自我设置，用户根本不需要做任何设置。默认的LogFactory是按照下列的步骤去发现并决定那个日志工具将被使用的（按照顺序，寻找过程会在找到第一个工具时中止）:</p>
+<ol>
+<li>寻找当前factory中名叫org.apache.commons.logging.Log配置属性的值</li>
+<li>寻找系统中属性中名叫org.apache.commons.logging.Log的值</li>
+<li>如果应用程序的classpath中有log4j,则使用相关的包装(wrapper)类(Log4JLogger)</li>
+<li>如果应用程序运行在jdk1.4的系统中，使用相关的包装类(Jdk14Logger)</li>
+<li>使用简易日志包装类(SimpleLog)<br>commons-logging + log4j
+        
+          <a class="article-more-a" href="/2017/08/22/logger/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日志技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/logger/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hadoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/hadoop/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/hadoop/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:12:05.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="hadoop入门"><a href="#hadoop入门" class="headerlink" title="hadoop入门"></a>hadoop入门</h2><ol>
+<li>hadoop的两个大功能<ul>
+<li>提供海量数据的<strong>存储</strong>服务</li>
+<li>提供<strong>分析海量数据</strong>的编程框架及运行平台</li>
+</ul>
+</li>
+<li>hadoop3大核心组件<ul>
+<li>Hdfs——hadoop分布式文件系统海量数据的存储</li>
+<li>MapReduce——分布式运算框架，海量数据运算分析（spark）</li>
+<li>Yarn——资源调度管理集群<blockquote>
+<p>1.可以把hadoop理解为一个编程框架（类比：structs、spring、hibernate/mybatis），有着自己特定的API封装和用户编程规范，用户可借助这些API来实现数据处理逻辑；<br>2.从另一个角度，hadoop又可以理解为一个提供服务的软件（类比：数据库服务oracle/mysql、索引服务solr，缓存服务redis等），用户程序通过客户端向hadoop集群请求服务来实现特定的功能；</p>
+</blockquote>
 </li>
 </ul>
 </li>
-<li><p>在匿名函数前面加上这些符号后，就把一个函数声明语句变成了一个函数表达式，是表达式就会在script标签中自动执行。</p>
-</li>
-<li>ajax请求中的asyn 该值默认为true，即进行同步请求，当该值为false时，该ajax请求将会被锁死,适用于异步请求之后的代码，需要用到此次异步请求中返回的数据。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;  </div><div class="line">        async: false,  </div><div class="line">        type : &quot;GET&quot;,  </div><div class="line">        url : &apos;tet.php&apos;,  </div><div class="line">        complete: function(msg)&#123;  </div><div class="line">            alert(&apos;complete&apos;);  </div><div class="line">        &#125;,  </div><div class="line">        success : function(data) &#123;  </div><div class="line">            alert(&apos;success&apos;);  </div><div class="line">            temp=data;  </div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    alert(temp+&apos;end&apos;);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="hdfs的优缺点"><a href="#hdfs的优缺点" class="headerlink" title="hdfs的优缺点"></a>hdfs的优缺点</h2><h3 id="1-hdfs的优点"><a href="#1-hdfs的优点" class="headerlink" title="1.hdfs的优点"></a>1.hdfs的优点</h3><ol>
+<li>高容错性————数据自动保存多个副本；副本丢失后，自动恢复</li>
+<li>适合批处理————移动计算而非数据，数据位置暴露给计算框架</li>
+<li>适合大数据处理————GB、TB甚至TB级数据百万规模以上的文件量，10K+节点</li>
+<li>可构建在廉价机器上————通过多个副本提供可靠性，提供容错和恢复机制</li>
+</ol>
+<h3 id="2-hdfs缺点"><a href="#2-hdfs缺点" class="headerlink" title="2.hdfs缺点"></a>2.hdfs缺点</h3><ol>
+<li>低延迟数据访问————比如毫秒级，低延迟与高吞吐率</li>
+<li>小文件存取————占用NameNode大量内存，寻道时间超过读取时间</li>
+<li>并发写入、文件随机修改————一个文件只能有一个写者，仅支持append（2.0）</li>
+</ol>
+<h3 id="hadoop集群部署安装"><a href="#hadoop集群部署安装" class="headerlink" title="hadoop集群部署安装"></a>hadoop集群部署安装</h3>
+        
+          <a class="article-more-a" href="/2017/08/22/hadoop/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/hadoop/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Apache shiro" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/Apache shiro/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/Apache shiro/" class="archive-article-date">
+  	<time datetime="2017-08-20T15:03:53.535Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="apache-shiro-权限控制和缓存框架ehcache的使用"><a href="#apache-shiro-权限控制和缓存框架ehcache的使用" class="headerlink" title="apache shiro(权限控制和缓存框架ehcache的使用)"></a>apache shiro(权限控制和缓存框架ehcache的使用)</h2><h4 id="实现权限控制三种方式"><a href="#实现权限控制三种方式" class="headerlink" title="实现权限控制三种方式:"></a>实现权限控制三种方式:</h4><ol>
+<li>spring security</li>
+<li>apache shiro</li>
+<li>自己写权限框架<h3 id="shiro-的结构："><a href="#shiro-的结构：" class="headerlink" title="shiro 的结构："></a>shiro 的结构：</h3></li>
+</ol>
+<ul>
+<li>Authentication 用户登录</li>
+<li>Authorization 授权</li>
+<li>Cryptography 安全数据加密</li>
+<li>Session Management 会话管理</li>
+<li>Web Integration Web 系统集成</li>
+<li>Interations 集成其他应用<h3 id="shiro的运行主要流程"><a href="#shiro的运行主要流程" class="headerlink" title="shiro的运行主要流程"></a>shiro的运行主要流程</h3></li>
+<li>application code</li>
+<li>subject（the current user）</li>
+<li>shiro SecurityManager (manages all subject)</li>
+<li>Realm (access your security data)<br>流程：应用程序–subject–securityManger–realm–安全数据<h3 id="shiro权限控制四中方式"><a href="#shiro权限控制四中方式" class="headerlink" title="shiro权限控制四中方式"></a>shiro权限控制四中方式</h3></li>
 </ul>
+<ol>
+<li>配置filter实现url级别权限控制</li>
+<li>配置代理，基于注解实现细粒度权限控制</li>
+<li>在jsp页面中使用shiro自定义标签控制</li>
+<li>程序中通过subject编程实现</li>
+<li>
+        
+          <a class="article-more-a" href="/2017/08/20/Apache shiro/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/Apache shiro/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-apache poi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/apache poi/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/apache poi/" class="archive-article-date">
+  	<time datetime="2017-08-20T15:02:01.173Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Apache-POI技术-读取和生成excel文件"><a href="#Apache-POI技术-读取和生成excel文件" class="headerlink" title="Apache POI技术 读取和生成excel文件"></a>Apache POI技术 读取和生成excel文件</h2><ol>
+<li><p>读取excel文件</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">HSSFWorkbook workbook = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	workbook = <span class="keyword">new</span> HSSFWorkbook(<span class="keyword">new</span> FileInputStream(file));</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line">	</div><div class="line">HSSFSheet sheet = workbook.getSheetAt(<span class="number">0</span>);</div><div class="line">	</div><div class="line">List&lt;Area&gt; areas = <span class="keyword">new</span> ArrayList&lt;Area&gt;();</div><div class="line">	</div><div class="line"><span class="keyword">for</span> (Row row : sheet) &#123;</div><div class="line">	System.out.println(<span class="string">"read data"</span>);</div><div class="line">	<span class="comment">// 跳过第一行</span></div><div class="line">	<span class="keyword">if</span> (row.getRowNum() == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 跳过空行</span></div><div class="line">	<span class="keyword">if</span> (row.getCell(<span class="number">0</span>) == <span class="keyword">null</span> || StringUtils.isBlank(row.getCell(<span class="number">0</span>).getStringCellValue())) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	Area area = <span class="keyword">new</span> Area();</div><div class="line">	</div><div class="line">	area.setId(row.getCell(<span class="number">0</span>).getStringCellValue());</div><div class="line">	area.setProvince(row.getCell(<span class="number">1</span>).getStringCellValue());</div><div class="line">	area.setCity(row.getCell(<span class="number">2</span>).getStringCellValue());</div><div class="line">	area.setDistrict(row.getCell(<span class="number">3</span>).getStringCellValue());</div><div class="line">	area.setPostcode(row.getCell(<span class="number">4</span>).getStringCellValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>生成excel文件</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">List&lt;WayBill&gt; wayBills = wayBillService.findWayBills(model);</div><div class="line"></div><div class="line">HSSFWorkbook hssfWorkbook = <span class="keyword">new</span> HSSFWorkbook();</div><div class="line">HSSFSheet sheet = hssfWorkbook.createSheet(<span class="string">"运单数据"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表头</span></div><div class="line">HSSFRow headRow = sheet.createRow(<span class="number">0</span>);</div><div class="line">headRow.createCell(<span class="number">0</span>).setCellValue(<span class="string">"运单号"</span>);</div><div class="line">headRow.createCell(<span class="number">1</span>).setCellValue(<span class="string">"寄件人"</span>);</div><div class="line">headRow.createCell(<span class="number">2</span>).setCellValue(<span class="string">"寄件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">3</span>).setCellValue(<span class="string">"寄件人地址"</span>);</div><div class="line">headRow.createCell(<span class="number">4</span>).setCellValue(<span class="string">"收件人"</span>);</div><div class="line">headRow.createCell(<span class="number">5</span>).setCellValue(<span class="string">"收件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">6</span>).setCellValue(<span class="string">"收件人地址"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表格数据</span></div><div class="line"><span class="keyword">for</span> (WayBill wayBill: wayBills) &#123;</div><div class="line">	HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum()+<span class="number">1</span>);</div><div class="line">	dataRow.createCell(<span class="number">0</span>).setCellValue(wayBill.getWayBillNum());</div><div class="line">	dataRow.createCell(<span class="number">1</span>).setCellValue(wayBill.getSendName());</div><div class="line">	dataRow.createCell(<span class="number">2</span>).setCellValue(wayBill.getSendMobile());</div><div class="line">	dataRow.createCell(<span class="number">3</span>).setCellValue(wayBill.getSendAddress());</div><div class="line">	dataRow.createCell(<span class="number">4</span>).setCellValue(wayBill.getRecName());</div><div class="line">	dataRow.createCell(<span class="number">5</span>).setCellValue(wayBill.getRecMobile());</div><div class="line">	dataRow.createCell(<span class="number">6</span>).setCellValue(wayBill.getRecAddress());</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">poi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/apache poi/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-code004" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/code004/">技术积累（QRcode,fileReader）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/code004/" class="archive-article-date">
+  	<time datetime="2017-08-20T04:34:40.187Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
+
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<ol>
+<li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
+<li><a href="http://blog.csdn.net/u011127019/article/details/51226104" target="_blank" rel="external">二维码和图片格式转换</a></li>
+<li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
+</ol>
+<h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
+<li>oracle数据库中的特殊类型，使用“select * from table”的方式查询，得到的基础平台框架自动包装clog类型，在前台中解析为一个json对象类型。<ul>
+<li>解决办法：使用sql语句解决<a href="http://blog.csdn.net/wumingqian_137229/article/details/48438959" target="_blank" rel="external">dbms_lob.substr(clob字段，4000,1)</a></li>
+<li>或者使用java代码进行解决。</li>
+</ul>
+</li>
+<li><a href="http://www.eclipse.org/webtools/" target="_blank" rel="external">web-tool-platform官方地址</a>  wtp是webtoolplant，web开发的平台工具</li>
+<li><a href="http://blog.csdn.net/jbgtwang/article/details/44077853" target="_blank" rel="external">不安装WTP全包怎么添加Tomcat8到Eclipse Kepler中</a></li>
+</ol>
 
       
 
@@ -213,107 +596,9 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/code001/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/note/">关于hacker的信仰</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/note/" class="archive-article-date">
-  	<time datetime="2017-08-20T02:45:43.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=483671599&auto=0&height=66"></iframe>
-
-<h2 id="hacker的信仰"><a href="#hacker的信仰" class="headerlink" title="hacker的信仰"></a>hacker的信仰</h2><ol>
-<li>The world is full of fascinating problems waiting to be solved.</li>
-<li>No problem should ever have to be solved twice.</li>
-<li>Boredom and drudgery are evil.</li>
-<li>Freedom is good.</li>
-<li>Attitude is so subsititute for competence.<blockquote>
-<p>1、这个世界充满了待解决的迷人问题<br>2、一个问题都不应该被解决两次<br>3、无趣和乏味的工作是犯罪<br>4、追求自由<br>5、态度不能代替能力（态度无法替代技术）</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="程序设计基本原则"><a href="#程序设计基本原则" class="headerlink" title="程序设计基本原则"></a>程序设计基本原则</h3><pre><code>模块原则：使用简洁的接口拼合简单的部件
-清晰原则：清晰胜于机巧
-组合原则：设计时，考虑拼接组合
-分离原则：策略同机制分离，接口同引擎分离
-简洁原则：设计要简洁，复杂度能低则低
-吝啬原则：除非确无他法，不要编写庞大的程序
-透明性原则：设计要可见，以便审查和调试
-健壮性原则：健壮性源于透明和简洁
-通俗原则：接口设计避免标新立异
-表示原则：把知识叠入数据以求逻辑质朴而健壮
-缄默原则：如果一个程序没什么好说的，就沉默
-经济原则：宁花机器一分，不花程序员一秒
-补救原则：出现异常时，马上退出并给出足够的错误信息
-生成原则：避免手工hack，尽量编写程序去生成程序
-优化原则：雕琢前先要有原型，跑之前先学会走
-多样原则：决不相信所谓“不二法门”的断言
-扩展原则：设计着眼未来，未来总比预想来的快
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
         		</li>
       		
 		</ul>
@@ -323,252 +608,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/note/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vpn_help" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/vpn_help/">常用工具网站介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/14/vpn_help/" class="archive-article-date">
-  	<time datetime="2017-08-14T14:35:38.244Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=68450&auto=0&height=66"></iframe>
-
-<h2 id="Common-sites"><a href="#Common-sites" class="headerlink" title="Common sites"></a>Common sites</h2><h3 id="网站索引导航"><a href="#网站索引导航" class="headerlink" title="网站索引导航"></a>网站索引导航</h3><ol>
-<li><a href="http://taoxiaozhong.com/" target="_blank" rel="external">淘小众</a></li>
-<li><a href="http://www.gogeeks.cn/" target="_blank" rel="external">极客导航</a></li>
-<li><a href="https://s.geekbang.org/" target="_blank" rel="external">极客搜索</a><h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3></li>
-<li><a href="https://sdk.cn/news/4723" target="_blank" rel="external">免费科学上网镜像和工具</a></li>
-<li><a href="https://pac.itzmx.com/" target="_blank" rel="external">浏览器代理科学上网</a><h3 id="壁纸下载网站"><a href="#壁纸下载网站" class="headerlink" title="壁纸下载网站"></a>壁纸下载网站</h3></li>
-<li><a href="http://www.10wallpaper.com/" target="_blank" rel="external">tenBeauty</a></li>
-<li><a href="http://sf.co.ua/" target="_blank" rel="external">Wallpapers</a><h3 id="vip视频解析网站"><a href="#vip视频解析网站" class="headerlink" title="vip视频解析网站"></a>vip视频解析网站</h3></li>
-<li><a href="http://www.tufutv.com/" target="_blank" rel="external">屠夫网</a></li>
-<li><a href="http://ifkdy.com" target="_blank" rel="external">疯狂影视搜索</a>
-        
-          <a class="article-more-a" href="/2017/08/14/vpn_help/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/14/vpn_help/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Code_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/Code_note/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/13/Code_note/" class="archive-article-date">
-  	<time datetime="2017-08-13T14:41:32.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://blog.csdn.net/ysydao/article/details/40181611" target="_blank" rel="external">产品经理小帖子</a></p>
-<pre><code>精华内容摘要：
-1、产品经理有一个毛病就是喜欢虚构一个功能出来，然后觉得用户一定要使用你的东西，不然就弄死他。  
-2、我们做一个产品一定要抓住硬需求，也就是用户不用你这个东西他就觉得浑身难受。    
-3、你又在想着怎么忽悠用户进来，然后再虐待他。
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/08/13/Code_note/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">work</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/13/Code_note/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/hello-world/">个人博客第一弹：歌曲分享</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-06T02:43:07.298Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="歌曲"><a href="#歌曲" class="headerlink" title="歌曲"></a>歌曲</h3><p>这里是我平时喜欢听的一歌曲，分享给大家听。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27890306&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=27646786&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=478725543&auto=0&height=66"></iframe><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%height=86" src="//music.163.com/outchain/player?type=2&id=165237&auto=0&height=66"></iframe><br>
-        
-          <a class="article-more-a" href="/2017/08/06/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/hello-world/">继续探索 >></a>
+          <a class="article-more-a" href="/2017/08/20/code004/">继续探索 >></a>
         </p>
       
 
@@ -600,7 +640,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -695,11 +735,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,7 +759,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">模板静态化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,11 +779,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+                <a href="javascript:void(0)" class="js-tag color2">quartz</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color5">日志技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>

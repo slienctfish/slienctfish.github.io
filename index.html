@@ -150,169 +150,57 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Apache shiro" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js代码片段" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/Apache shiro/">项目开发小笔记</a>
+      <a class="article-title" href="/2017/08/22/js代码片段/">项目开发小笔记</a>
     </h1>
   
 
         
-        <a href="/2017/08/20/Apache shiro/" class="archive-article-date">
-  	<time datetime="2017-08-20T15:03:53.535Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+        <a href="/2017/08/22/js代码片段/" class="archive-article-date">
+  	<time datetime="2017-08-22T14:08:59.423Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="apache-shiro-权限控制和缓存框架ehcache的使用"><a href="#apache-shiro-权限控制和缓存框架ehcache的使用" class="headerlink" title="apache shiro(权限控制和缓存框架ehcache的使用)"></a>apache shiro(权限控制和缓存框架ehcache的使用)</h2><h4 id="实现权限控制三种方式"><a href="#实现权限控制三种方式" class="headerlink" title="实现权限控制三种方式:"></a>实现权限控制三种方式:</h4><ol>
-<li>spring security</li>
-<li>apache shiro</li>
-<li>自己写权限框架<h3 id="shiro-的结构："><a href="#shiro-的结构：" class="headerlink" title="shiro 的结构："></a>shiro 的结构：</h3></li>
-</ol>
+        <p>##js使用代码小片段</p>
+<h3 id="将表单内容序列化成一个json片段（需要依赖jQ）"><a href="#将表单内容序列化成一个json片段（需要依赖jQ）" class="headerlink" title="将表单内容序列化成一个json片段（需要依赖jQ）"></a>将表单内容序列化成一个json片段（需要依赖jQ）</h3><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$.fn.serializeJson=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">           <span class="keyword">var</span> serializeObj=&#123;&#125;;  </div><div class="line">           <span class="keyword">var</span> array=<span class="keyword">this</span>.serializeArray();  </div><div class="line">           <span class="keyword">var</span> str=<span class="keyword">this</span>.serialize();  </div><div class="line">           $(array).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">               <span class="keyword">if</span>(serializeObj[<span class="keyword">this</span>.name])&#123;  </div><div class="line">                   <span class="keyword">if</span>($.isArray(serializeObj[<span class="keyword">this</span>.name]))&#123;  </div><div class="line">                       serializeObj[<span class="keyword">this</span>.name].push(<span class="keyword">this</span>.value);  </div><div class="line">                   &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                       serializeObj[<span class="keyword">this</span>.name]=[serializeObj[<span class="keyword">this</span>.name],<span class="keyword">this</span>.value];  </div><div class="line">                   &#125;  </div><div class="line">               &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                   serializeObj[<span class="keyword">this</span>.name]=<span class="keyword">this</span>.value;   </div><div class="line">               &#125;  </div><div class="line">           &#125;);  </div><div class="line">           <span class="keyword">return</span> serializeObj;  </div><div class="line">       &#125;;</div></pre></td></tr></table></figure>
+</code></pre><h3 id="跨域请求原理（需要依赖jQ）"><a href="#跨域请求原理（需要依赖jQ）" class="headerlink" title="跨域请求原理（需要依赖jQ）"></a>跨域请求原理（需要依赖jQ）</h3><ol>
+<li>跨域问题简述：<ul>
+<li>这里说的js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。只要协议、域名、端口有任何一个不同，都被当作是不同的域。</li>
+</ul>
+</li>
+<li><p>跨域问题的解决方法：</p>
 <ul>
-<li>Authentication 用户登录</li>
-<li>Authorization 授权</li>
-<li>Cryptography 安全数据加密</li>
-<li>Session Management 会话管理</li>
-<li>Web Integration Web 系统集成</li>
-<li>Interations 集成其他应用<h3 id="shiro的运行主要流程"><a href="#shiro的运行主要流程" class="headerlink" title="shiro的运行主要流程"></a>shiro的运行主要流程</h3></li>
-<li>application code</li>
-<li>subject（the current user）</li>
-<li>shiro SecurityManager (manages all subject)</li>
-<li>Realm (access your security data)<br>流程：应用程序–subject–securityManger–realm–安全数据<h3 id="shiro权限控制四中方式"><a href="#shiro权限控制四中方式" class="headerlink" title="shiro权限控制四中方式"></a>shiro权限控制四中方式</h3></li>
+<li>使用jQuery发起ajax请求,在路径后加上callback参数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">"utl=?callback=?"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">	code...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<ol>
-<li>配置filter实现url级别权限控制</li>
-<li>配置代理，基于注解实现细粒度权限控制</li>
-<li>在jsp页面中使用shiro自定义标签控制</li>
-<li>程序中通过subject编程实现<h4 id="url权限控制（常用）"><a href="#url权限控制（常用）" class="headerlink" title="url权限控制（常用）"></a>url权限控制（常用）</h4></li>
-</ol>
+</li>
+<li><p>原理分析</p>
 <ul>
-<li><p>anon 未认证可以访问</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/login.html* = anon    登录页面所有人都可以访问</div></pre></td></tr></table></figure>
-</li>
-<li><p>authc 认证后可以访问</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.html = authc		主页是需要登录后访问的</div></pre></td></tr></table></figure>
-</li>
-<li><p>perms 需要特定的权限访问</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/pages/base/courier.html* = perms[courier:list]   ：冒号代表子权限</div></pre></td></tr></table></figure>
-</li>
-<li><p>roles 需要特定的角色访问</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/pages/base/area.html* = roles[base]</div></pre></td></tr></table></figure>
-</li>
-<li><p>user 需要特定的用户访问</p>
-</li>
-<li>reset 根据指定的http请求访问<h2 id="粗粒度URL级别权限控制"><a href="#粗粒度URL级别权限控制" class="headerlink" title="粗粒度URL级别权限控制"></a>粗粒度URL级别权限控制</h2></li>
-</ul>
-<ol>
-<li><p>在pom文件中引入shiro的依赖  </p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;shiro.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>配置web.xml文件</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--在spring配置文件中需要有同名的bean存在--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>配置applicationContext-shiro.xml</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 配置Shiro核心Filter  --&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> </span></div><div class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 安全管理器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 未认证，跳转到哪个页面  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"loginUrl"</span> <span class="attr">value</span>=<span class="string">"/login.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 登录页面页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"successUrl"</span> <span class="attr">value</span>=<span class="string">"/index.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 认证后，没有权限跳转页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"unauthorizedUrl"</span> <span class="attr">value</span>=<span class="string">"/unauthorized.html"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- shiro URL控制过滤器规则  --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span></div><div class="line">			/login.html* = anon</div><div class="line">			/user_login.action* = anon</div><div class="line">			/validatecode.jsp* = anon</div><div class="line">			/css/** = anon</div><div class="line">			/js/** = anon</div><div class="line">			/images/** = anon</div><div class="line">			/services/** = anon </div><div class="line">			/pages/base/courier.html* = perms[courier:list]</div><div class="line">			/pages/base/area.html* = roles[base]</div><div class="line">			/** = authc</div><div class="line">		<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在applicationContext-shiro.xml中配置安全管理器</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">&lt;!-- 安全管理器  --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> </span></div><div class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 自定义的realm 需要交于spring管理 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"bosRealm"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span></span></div><div class="line"><span class="tag">			<span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>UserAction 中得到subject对象，执行login</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Subject subject = SecurityUtils.getSubject();</div><div class="line">AuthenticationToken token = <span class="keyword">new</span> UsernamePasswordToken(model.getUsername(), model.getPassword());</div><div class="line">subject.login(token);</div></pre></td></tr></table></figure>
-</li>
-<li><p>subject 调用securityManager，manager调用自定义的realm安全数据（自定义的realm继承AuthorizingRealm）</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BosRealm</span> <span class="keyword">extends</span> <span class="title">AuthorizingRealm</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Autowired</span>	</div><div class="line">	<span class="keyword">private</span> UserService userService;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> RoleService roleService;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> PermissionService perssionService;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principalCollection)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"shiro 授权管理..."</span>);</div><div class="line">		SimpleAuthorizationInfo authenticationInfo = <span class="keyword">new</span> SimpleAuthorizationInfo();</div><div class="line">		<span class="comment">//根据当前登陆用户查询对象角色和权限</span></div><div class="line">		Subject subject = SecurityUtils.getSubject();</div><div class="line">		User user = (User) subject.getPrincipal();</div><div class="line">		<span class="comment">//调用业务层，查询角色</span></div><div class="line">		List&lt;Role&gt; roles = roleService.findByUser(user);</div><div class="line">		<span class="keyword">for</span> (Role role : roles) &#123;</div><div class="line">			authenticationInfo.addRole(role.getKeyword());</div><div class="line">		&#125;</div><div class="line">		List&lt;Permission&gt; persssion = perssionService.findByUser(user);</div><div class="line">		<span class="keyword">for</span> (Permission permission : persssion) &#123;</div><div class="line">			authenticationInfo.addStringPermission(permission.getKeyword());</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//返回所有的角色和权限</span></div><div class="line">		<span class="keyword">return</span> authenticationInfo;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken token)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</div><div class="line">		System.out.println(<span class="string">"shiro 认证管理..."</span>);</div><div class="line">		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;</div><div class="line">		User user = userService.findByUsername(usernamePasswordToken.getUsername());</div><div class="line">		<span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="comment">//参数一：期望登录后保存在subject中的信息</span></div><div class="line">			<span class="comment">//参数二：如果返回为null，说明用户不存在</span></div><div class="line">			<span class="comment">//参数三：realm的名称</span></div><div class="line">			<span class="comment">// 表示用户不存在</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// 表示用户存在--回到securityManager中比对密码是否正确</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(),	getName());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在配置文件中将自定义realm注入到securityManager中，使manager能够找到realm</p>
-</li>
-<li>认证时常见的异常：<ul>
-<li>org.apache.shiro.authc.UnknownAccountException  用户名不存在</li>
-<li>org.apache.shiro.authc.IncorrectCredentialsException 用户输入的密码不正确<h2 id="细粒度方法级别权限控制"><a href="#细粒度方法级别权限控制" class="headerlink" title="细粒度方法级别权限控制"></a>细粒度方法级别权限控制</h2></li>
-</ul>
-</li>
-<li><p>配置applicationContext-shiro.xml激活注解</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启shiro注解模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span></span></div><div class="line"><span class="tag">	<span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>/&gt;</span>	</div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>开发常用的shiro方法上的权限注解【注解是加在ServiceImpl上的】</p>
-<ul>
-<li>@requireAuthentication（需要登录）</li>
-<li>@RequireUser（是否被记忆）</li>
-<li>@requireGuest（未登录时允许访问的）</li>
-<li>@requireRoles（需要角色）</li>
-<li>@requirePermissions（需要权限）</li>
-<li>示例<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="meta">@RequiresPermissions</span>(<span class="string">"courier:add"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(Courier courier)</span> </span>&#123;</div><div class="line">	courierRepository.save(courier);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>浏览器将ajax请求中的匿名函数,起名<code>&lt;script src = &quot;url?callback=JQuery12345&quot;&gt;</code></li>
+<li>将请求发送给服务器，并得到返回的结果</li>
+<li>调用匿名函数执行函数中的代码<h3 id="仿百度分页效果js代码（需要依赖jQ）"><a href="#仿百度分页效果js代码（需要依赖jQ）" class="headerlink" title="仿百度分页效果js代码（需要依赖jQ）"></a>仿百度分页效果js代码（需要依赖jQ）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>BootStrap+AngularJS分页显示 <span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/bootstrap.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../css/bootstrap/bootstrap.css"</span> /&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">"paginationApp"</span> <span class="attr">ng-controller</span>=<span class="string">"paginationCtrl"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination pull-middle"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> <span class="attr">ng-click</span>=<span class="string">"prev()"</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"page in pageList"</span> <span class="attr">ng-class</span>=<span class="string">"&#123;active: isActivePage(page)&#125;"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">ng-click</span>=<span class="string">" selectPage(page) "</span>&gt;</span>&#123;&#123;page&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> <span class="attr">ng-click</span>=<span class="string">"next() "</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript "</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">		<span class="keyword">var</span> paginationApp = angular.module(<span class="string">"paginationApp"</span>, []);</span></div><div class="line"><span class="javascript">		paginationApp.controller(<span class="string">"paginationCtrl"</span>, [<span class="string">"$scope"</span>, <span class="string">"$http"</span>, </span></div><div class="line"><span class="javascript">			<span class="function"><span class="keyword">function</span>(<span class="params">$scope, $http</span>) </span>&#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			<span class="comment">// 全局属性 </span></span></div><div class="line"><span class="javascript">			$scope.currentPage = <span class="number">1</span>; <span class="comment">//当前页码 </span></span></div><div class="line"><span class="javascript">			$scope.pageSize = <span class="number">4</span>; <span class="comment">// 每页多少条</span></span></div><div class="line"><span class="javascript">			$scope.totalCount = <span class="number">0</span>; <span class="comment">// 总记录数 </span></span></div><div class="line"><span class="javascript">			$scope.totalPages = <span class="number">0</span>; <span class="comment">// 总页数，根据总记录数和每页多少条进行计算 </span></span></div><div class="line"><span class="javascript">			<span class="comment">//链接到上一页</span></span></div><div class="line"><span class="javascript">			$scope.prev = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>($scope.currentPage &gt; <span class="number">1</span>) &#123;</span></div><div class="line"><span class="undefined">					$scope.selectPage($scope.currentPage - 1);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">			&#125;;</span></div><div class="line"><span class="javascript">			<span class="comment">//链接到下一页</span></span></div><div class="line"><span class="javascript">			$scope.next = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>($scope.currentPage &lt; $scope.totalPages) &#123;</span></div><div class="line"><span class="undefined">					$scope.selectPage($scope.currentPage + 1);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">			&#125;;</span></div><div class="line"><span class="javascript">			$scope.selectPage = <span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span></div><div class="line"><span class="undefined">				$http(&#123;</span></div><div class="line"><span class="javascript">					method: <span class="string">'GET'</span>,</span></div><div class="line"><span class="javascript">					url: <span class="string">''</span>,</span></div><div class="line"><span class="undefined">					params: &#123;</span></div><div class="line"><span class="undefined">						page: page,</span></div><div class="line"><span class="undefined">						pageSize: $scope.pageSize</span></div><div class="line"><span class="undefined">					&#125;</span></div><div class="line"><span class="javascript">				&#125;).success(<span class="function"><span class="keyword">function</span>(<span class="params">data, status, headers, config</span>) </span>&#123;</span></div><div class="line"><span class="javascript">					<span class="comment">// 计算总页数</span></span></div><div class="line"><span class="undefined">					$scope.totalPages = 13;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">				<span class="keyword">var</span> begin ;</span></div><div class="line"><span class="javascript">				<span class="keyword">var</span> end; </span></div><div class="line"><span class="undefined">				begin = page - 5;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(begin &lt;= <span class="number">0</span>)&#123;</span></div><div class="line"><span class="undefined">					begin = 1;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				end = begin + 9 ;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(end &gt; $scope.totalPages)&#123;</span></div><div class="line"><span class="undefined">					end = $scope.totalPages;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				begin = end - 9;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(begin &lt; <span class="number">1</span>)&#123;</span></div><div class="line"><span class="undefined">					begin = 1;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="javascript">				$scope.pageList = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></div><div class="line"><span class="javascript">				<span class="keyword">for</span>(<span class="keyword">var</span> i= begin;i &lt;= end; i ++)&#123;</span></div><div class="line"><span class="undefined">					$scope.pageList.push(i);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">				<span class="comment">// 不能小于1大于最大</span></span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(page &lt; <span class="number">1</span> || page &gt; $scope.totalPages) <span class="keyword">return</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">				$scope.currentPage = page;</span></div><div class="line"><span class="undefined">				$scope.isActivePage(page);</span></div><div class="line"><span class="undefined">			&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$scope.isActivePage = <span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">return</span> page == $scope.currentPage;</span></div><div class="line"><span class="undefined">			&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">			$scope.selectPage($scope.currentPage);</span></div><div class="line"><span class="undefined">		&#125;]);</span></div><div class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>有时需要针对ServiceImpl进行代理<br>配置spring 的事务管理，以继承方式创建代理</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注解管理事务--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> <span class="attr">proxy-target-class</span>=<span class="string">"true"</span>/&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>配置shiro的注解模式参数</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启shiro注解模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span></span></div><div class="line"><span class="tag"><span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"proxyTargetClass"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
 </ol>
-<h2 id="使用shiro标签元素，实现页面元素的显示控制"><a href="#使用shiro标签元素，实现页面元素的显示控制" class="headerlink" title="使用shiro标签元素，实现页面元素的显示控制"></a>使用shiro标签元素，实现页面元素的显示控制</h2><ol>
-<li><p>页面引入shiro标签库</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%<span class="meta">@taglib</span> uri=<span class="string">"http://shiro.apache.org/tags"</span> prefix=<span class="string">"shiro"</span> %&gt;</div></pre></td></tr></table></figure>
+<h2 id="在线html编辑器（kindeditor）"><a href="#在线html编辑器（kindeditor）" class="headerlink" title="在线html编辑器（kindeditor）"></a>在线html编辑器（kindeditor）</h2><ol>
+<li><p>在使用kindeditor的页面上导入</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--导入在线HTML编辑器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../editor/kindeditor.js"</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../editor/lang/zh_CN.js"</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../../editor/themes/default/default.css"</span> /&gt;</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>使用shiro标签实现显示的代码</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:add"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>添加<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:edit"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>修改<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:delete"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">shiro:hasPermission</span> <span class="attr">name</span>=<span class="string">"courier:list"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"easyui-linkbutton"</span> &gt;</span>查询<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shiro:hasPermission</span>&gt;</span></div></pre></td></tr></table></figure>
+<li><p>应用kindeditor,页面需要提供的元素</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"description"</span> </span></div><div class="line"><span class="tag">	<span class="attr">id</span>=<span class="string">"description"</span> <span class="attr">style</span>=<span class="string">"width:80%"</span> <span class="attr">rows</span>=<span class="string">"20"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
-</ol>
-<h2 id="在shiro中使用缓存框架（优化）"><a href="#在shiro中使用缓存框架（优化）" class="headerlink" title="在shiro中使用缓存框架（优化）"></a>在shiro中使用缓存框架（优化）</h2><p>使用缓存技术后，第一次从数据库中去取数据，第二次从缓存中取数据（缓存是内容中的速度快）</p>
-<ol>
-<li><p>spring和ehcache框架整合（导入依赖）</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--缓存--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>配置ehcache.xml(解压ehcahce-core.jar包，得到ehcache-failsafe.xml)</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"../config/ehcache.xsd"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir"</span>/&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">defaultCache</span></span></div><div class="line"><span class="tag">           <span class="attr">maxElementsInMemory</span>=<span class="string">"10000"</span></span></div><div class="line"><span class="tag">           <span class="attr">eternal</span>=<span class="string">"false"</span></span></div><div class="line"><span class="tag">           <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">maxElementsOnDisk</span>=<span class="string">"10000000"</span></span></div><div class="line"><span class="tag">           <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span></span></div><div class="line"><span class="tag">           <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">persistence</span> <span class="attr">strategy</span>=<span class="string">"localTempSwap"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>配置spring整合ehcache</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 缓存配置 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"ehCacheManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.cache.ehcache.EhCacheManagerFactoryBean"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:ehcache.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="ehcache对登录认证业务数据进行缓存"><a href="#ehcache对登录认证业务数据进行缓存" class="headerlink" title="ehcache对登录认证业务数据进行缓存"></a>ehcache对登录认证业务数据进行缓存</h3><ol>
-<li><p>配置shiro整合ehcache完成授权数据缓存</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- shiro封装cacheManager--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroCacheManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.cache.ehcache.EhCacheManager"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cacheManager"</span> <span class="attr">ref</span>=<span class="string">"ehCacheManager"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>将shiro缓存管理器，注入到安全管理器中</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 安全管理器  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> </span></div><div class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"bosRealm"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cacheManager"</span> <span class="attr">ref</span>=<span class="string">"shiroCacheManager"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>对认证数据，授权数据，进行选择性缓存（配置realm bean）</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 配置realm --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"bosRealm"</span> <span class="attr">class</span>=<span class="string">"cn.itcast.bos.shiro.BosRealm"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"authorizationCacheName"</span> <span class="attr">value</span>=<span class="string">"bos"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="ehcache对普通业务数据进行缓存"><a href="#ehcache对普通业务数据进行缓存" class="headerlink" title="ehcache对普通业务数据进行缓存"></a>ehcache对普通业务数据进行缓存</h3><ol>
-<li>常用的注解<ol>
-<li>@Cacheable   设置缓存位置<ul>
-<li>应用缓存区，对方法返回结果进行缓存，用于查询方法</li>
-</ul>
-</li>
-<li>@CacheEvict  清空缓存<ul>
-<li>清除缓存区数据，用于增加，修改、删除方法</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>配置spring缓存管理器，封装ehcache自带的CacheManager</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- spring 封装ehcache缓存管理器 --&gt;</div><div class="line">&lt;bean id=&quot;springCacheManager&quot; class=&quot;org.springframework.cache.ehcache.EhCacheCacheManager&quot;&gt;</div><div class="line">	&lt;property name=&quot;cacheManager&quot; ref=&quot;ehCacheManager&quot;&gt;&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在配置文件中引入cache的名称空间</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xmlns:cache="http://www.springframework.org/schema/cache"</div><div class="line">xsi:schemaLocation="</div><div class="line">http://www.springframework.org/schema/cache </div><div class="line">http://www.springframework.org/schema/cache/spring-cache.xsd "&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>激活spring缓存注解</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 激活spring 缓存注解--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">cache:annotation-driven</span> <span class="attr">cache-manager</span>=<span class="string">"springCacheManager"</span>/&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>注意点：需要进行缓存的数据要实现<strong>Serializable</strong>接口</p>
-<h3 id="有参数的方法进行缓存"><a href="#有参数的方法进行缓存" class="headerlink" title="有参数的方法进行缓存"></a>有参数的方法进行缓存</h3></li>
-<li>需要使用SpEL表达式–示例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">@Cacheable(value=&quot;bos&quot;,key=&quot;#pageable.pageNum+&apos;_&apos;+#pageable.pageSize&quot;)</div><div class="line">public Page&lt;Courier&gt; findAll(Specification specification, Pageable pageable)</div></pre></td></tr></table></figure>
-</li>
+<li><p>js 代码:</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">KindEditor.ready(<span class="function"><span class="keyword">function</span>(<span class="params">K</span>) </span>&#123;</div><div class="line">    <span class="built_in">window</span>.editor = K.create(<span class="string">'#description'</span>,&#123;</div><div class="line">		<span class="comment">//开启图片空间管理</span></div><div class="line">    	allowFileManager:<span class="literal">true</span>,</div><div class="line">		<span class="comment">//文件上传处理的请求路径</span></div><div class="line">		uploadJson : <span class="string">'../../image_upload.action'</span>,</div><div class="line">		<span class="comment">//管理图片的服务器请求路径</span></div><div class="line">   		fileManagerJson : <span class="string">'../../image_manage.action'</span></div><div class="line">    &#125;);</div><div class="line">	&#125;);</div></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -328,187 +216,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/Apache shiro/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-apache poi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/apache poi/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/apache poi/" class="archive-article-date">
-  	<time datetime="2017-08-20T15:02:01.173Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Apache-POI技术-读取和生成excel文件"><a href="#Apache-POI技术-读取和生成excel文件" class="headerlink" title="Apache POI技术 读取和生成excel文件"></a>Apache POI技术 读取和生成excel文件</h2><ol>
-<li><p>读取excel文件</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">HSSFWorkbook workbook = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	workbook = <span class="keyword">new</span> HSSFWorkbook(<span class="keyword">new</span> FileInputStream(file));</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line">	</div><div class="line">HSSFSheet sheet = workbook.getSheetAt(<span class="number">0</span>);</div><div class="line">	</div><div class="line">List&lt;Area&gt; areas = <span class="keyword">new</span> ArrayList&lt;Area&gt;();</div><div class="line">	</div><div class="line"><span class="keyword">for</span> (Row row : sheet) &#123;</div><div class="line">	System.out.println(<span class="string">"read data"</span>);</div><div class="line">	<span class="comment">// 跳过第一行</span></div><div class="line">	<span class="keyword">if</span> (row.getRowNum() == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 跳过空行</span></div><div class="line">	<span class="keyword">if</span> (row.getCell(<span class="number">0</span>) == <span class="keyword">null</span> || StringUtils.isBlank(row.getCell(<span class="number">0</span>).getStringCellValue())) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	Area area = <span class="keyword">new</span> Area();</div><div class="line">	</div><div class="line">	area.setId(row.getCell(<span class="number">0</span>).getStringCellValue());</div><div class="line">	area.setProvince(row.getCell(<span class="number">1</span>).getStringCellValue());</div><div class="line">	area.setCity(row.getCell(<span class="number">2</span>).getStringCellValue());</div><div class="line">	area.setDistrict(row.getCell(<span class="number">3</span>).getStringCellValue());</div><div class="line">	area.setPostcode(row.getCell(<span class="number">4</span>).getStringCellValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>生成excel文件</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">List&lt;WayBill&gt; wayBills = wayBillService.findWayBills(model);</div><div class="line"></div><div class="line">HSSFWorkbook hssfWorkbook = <span class="keyword">new</span> HSSFWorkbook();</div><div class="line">HSSFSheet sheet = hssfWorkbook.createSheet(<span class="string">"运单数据"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表头</span></div><div class="line">HSSFRow headRow = sheet.createRow(<span class="number">0</span>);</div><div class="line">headRow.createCell(<span class="number">0</span>).setCellValue(<span class="string">"运单号"</span>);</div><div class="line">headRow.createCell(<span class="number">1</span>).setCellValue(<span class="string">"寄件人"</span>);</div><div class="line">headRow.createCell(<span class="number">2</span>).setCellValue(<span class="string">"寄件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">3</span>).setCellValue(<span class="string">"寄件人地址"</span>);</div><div class="line">headRow.createCell(<span class="number">4</span>).setCellValue(<span class="string">"收件人"</span>);</div><div class="line">headRow.createCell(<span class="number">5</span>).setCellValue(<span class="string">"收件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">6</span>).setCellValue(<span class="string">"收件人地址"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表格数据</span></div><div class="line"><span class="keyword">for</span> (WayBill wayBill: wayBills) &#123;</div><div class="line">	HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum()+<span class="number">1</span>);</div><div class="line">	dataRow.createCell(<span class="number">0</span>).setCellValue(wayBill.getWayBillNum());</div><div class="line">	dataRow.createCell(<span class="number">1</span>).setCellValue(wayBill.getSendName());</div><div class="line">	dataRow.createCell(<span class="number">2</span>).setCellValue(wayBill.getSendMobile());</div><div class="line">	dataRow.createCell(<span class="number">3</span>).setCellValue(wayBill.getSendAddress());</div><div class="line">	dataRow.createCell(<span class="number">4</span>).setCellValue(wayBill.getRecName());</div><div class="line">	dataRow.createCell(<span class="number">5</span>).setCellValue(wayBill.getRecMobile());</div><div class="line">	dataRow.createCell(<span class="number">6</span>).setCellValue(wayBill.getRecAddress());</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">poi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/apache poi/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-code004" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/code004/">技术积累（QRcode,fileReader）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/code004/" class="archive-article-date">
-  	<time datetime="2017-08-20T04:34:40.187Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
-
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
-<ol>
-<li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
-<li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
-</ol>
-<h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
-<li>oracle数据库中的特殊类型，使用“select * from table”的方式查询，得到的基础平台框架自动包装clog类型，在前台中解析为一个json对象类型。<ul>
-<li>解决办法：使用sql语句解决<a href="http://blog.csdn.net/wumingqian_137229/article/details/48438959" target="_blank" rel="external">dbms_lob.substr(clob字段，4000,1)</a></li>
-<li>或者使用java代码进行解决。</li>
-</ul>
-</li>
-<li><a href="http://www.eclipse.org/webtools/" target="_blank" rel="external">web-tool-platform官方地址</a>  wtp是webtoolplant，web开发的平台工具</li>
-<li><a href="http://blog.csdn.net/jbgtwang/article/details/44077853" target="_blank" rel="external">不安装WTP全包怎么添加Tomcat8到Eclipse Kepler中</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -522,7 +229,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/code004/">继续探索 >></a>
+          <a class="article-more-a" href="/2017/08/22/js代码片段/">继续探索 >></a>
         </p>
       
 
@@ -552,132 +259,43 @@
 
 
   
-    <article id="post-code003" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-quartz" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/code003/">技术积累（git,ODS_压缩，解压缩、文件夹监听）</a>
+      <a class="article-title" href="/2017/08/22/quartz/">项目开发小笔记</a>
     </h1>
   
 
         
-        <a href="/2017/08/20/code003/" class="archive-article-date">
-  	<time datetime="2017-08-20T03:58:53.475Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+        <a href="/2017/08/22/quartz/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:56:00.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
-
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>解释：项目由开发小组共同开发，由大部分人一起开发的部分叫做trunk（主干），当已经发布的程序出现问题，且trunk还在继续开发时，就需要新创建一个branch分支。</p>
-<p>冲突：当开发人员因为不同需求需要修改同一项目中的相同文件位置时，就出现了冲突。<br>需要首先做对比，按照需求合并，然后强迫强制提交。</p>
-<p>如果项目开发中出现了分支，当进行pull操作时，能够将所有分支上的内容下载到本地。<br>节点，项目开发到一个版本结束的时候需要打一个节点。标志项目的一个里程碑的结束。</p>
-<h3 id="ODS之文件压缩和解压缩"><a href="#ODS之文件压缩和解压缩" class="headerlink" title="ODS之文件压缩和解压缩"></a>ODS之文件压缩和解压缩</h3><ol>
-<li>解压缩</li>
-<li>整理，建立文件夹，放文件</li>
-<li>压缩</li>
-<li>分发
-        
-          <a class="article-more-a" href="/2017/08/20/code003/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/code003/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-code002" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/code002/">技术积累（svn,hibernate）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/code002/" class="archive-article-date">
-  	<time datetime="2017-08-20T03:48:54.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
-
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
-<li>枚举类型：A,B,C,D;   可以有构造方法  可以有函数<br>A(1,2,3) 三个参数都是构造属性  属性和一些方法用来返回属性</li>
-</ul>
-<h2 id="svn项目导入-webRoot-gt-webContent"><a href="#svn项目导入-webRoot-gt-webContent" class="headerlink" title="svn项目导入(webRoot-&gt;webContent)"></a>svn项目导入(webRoot-&gt;webContent)</h2><h3 id="先导入到本地再导入到eclipse中"><a href="#先导入到本地再导入到eclipse中" class="headerlink" title="先导入到本地再导入到eclipse中"></a>先导入到本地再导入到eclipse中</h3><ol>
-<li>先将项目内容复制到本地，将项目内容进行备份，将备份的数据与svn服务器的链接断开。</li>
-<li>新建动态网页项目，注意将内容输出值进行修改，WebRoot/WEB-INF/classes  将项目的主要内容文件夹设置为webRoot。</li>
-<li>最后将备份后的项目数据导入到本地集成开发环境中(以文件系统的方式)</li>
+        <h2 id="quartz任务调度框架"><a href="#quartz任务调度框架" class="headerlink" title="quartz任务调度框架"></a>quartz任务调度框架</h2><ol>
+<li><p>在maven项目的pom文件中引入依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;quartz&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line"></div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;quartz-jobs&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>quartz中的基本元素： </p>
+</li>
 </ol>
-<h3 id="使用集成开发环境中的svn插件进行项目检出"><a href="#使用集成开发环境中的svn插件进行项目检出" class="headerlink" title="使用集成开发环境中的svn插件进行项目检出"></a>使用集成开发环境中的svn插件进行项目检出</h3><ol>
-<li>将项目导入到集成开发环境中，作为本地的项目导出</li>
-<li>修改项目在本地路径中的配置文件，setting文件夹下的org.eclipse.wst.common.component,修改里面的source-path<br><code>&lt;wb-resource deploy-path=&quot;/&quot; source-path=&quot;/WebRoot&quot; tag=&quot;defaultRootSource&quot;/&gt;</code></li>
-<li>修改项目根目录下的.classpath文件下的内容，修改path的值<br><code>&lt;classpathentry kind=&quot;output&quot; path=&quot;WebRoot/WEB-INF/classes&quot;/&gt;</code><h2 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h2><h3 id="Criteria-QBC-查询方法"><a href="#Criteria-QBC-查询方法" class="headerlink" title="Criteria  QBC 查询方法"></a>Criteria  QBC 查询方法</h3></li>
-<li>criteria.add(crtierition)  criterion类的主要的三个子类：Example junction simpleExpression
+<ul>
+<li><p>job 工作任务，你要做什么</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJob</span> <span class="keyword">implements</span> <span class="title">Job</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</div><div class="line">		System.out.println(<span class="string">"hello,quartz !!!...."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>trigger执行工作任务 触发条件，什么时间执行，多久执行一次</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置任务立即开始并且隔5秒钟执行一次</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException </span>&#123;</div><div class="line">	<span class="comment">// 定时器对象</span></div><div class="line">	Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();</div><div class="line"></div><div class="line">	<span class="comment">// 定义一个工作对象</span></div><div class="line">	JobDetail job = JobBuilder.newJob(HelloJob.class)</div><div class="line">			.withIdentity(<span class="string">"job1"</span>, <span class="string">"group1"</span>).build();</div><div class="line">	<span class="comment">// 定义触发器</span></div><div class="line">	Trigger trigger = TriggerBuilder.newTrigger()</div><div class="line">			.withIdentity(<span class="string">"trigger1"</span>, <span class="string">"group1"</span>).startNow()</div><div class="line">			.withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(<span class="number">5</span>))</div><div class="line">			.build();</div><div class="line">	scheduler.scheduleJob(job,trigger);</div><div class="line">	<span class="comment">// 开启定时器</span></div><div class="line">	scheduler.start();</div><div class="line">	<span class="comment">// 关闭定时器</span></div><div class="line">	scheduler.shutdown();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>trigger执行工作任务 触发条件，什么时间执行，多久执行一次(每天的特定时间执行)</p>
         
-          <a class="article-more-a" href="/2017/08/20/code002/#more">more >></a>
+          <a class="article-more-a" href="/2017/08/22/quartz/#more">more >></a>
         
       
 
@@ -695,7 +313,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">quartz</a>
         		</li>
       		
 		</ul>
@@ -705,7 +323,276 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/code002/">继续探索 >></a>
+          <a class="article-more-a" href="/2017/08/22/quartz/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-reids" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/reids/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/reids/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:53:35.379Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h2><h3 id="String字符串类型（存变量）"><a href="#String字符串类型（存变量）" class="headerlink" title="String字符串类型（存变量）"></a>String字符串类型（存变量）</h3><ol>
+<li>set key value 【赋值】</li>
+<li>get key    【取值】</li>
+<li>getset key value    【取值并赋值】</li>
+<li>del key 【删除】</li>
+<li>incr key 【整数数据增加1】</li>
+<li>incrby key increment    【整数数据安步长增加】</li>
+<li>decr key 【整数数据减少1】</li>
+<li>decrby key decrement    【整数数据安步长减少】</li>
+<li>append key value 【向尾部追加值】</li>
+<li>setlen key 【获取字符串长度】</li>
+<li>mset key1 value1 key2 value2 【同时设置多个键值】</li>
+<li>mget key1 key2 key3    【同时获取多个值】<h3 id="Hash类型（存对象）"><a href="#Hash类型（存对象）" class="headerlink" title="Hash类型（存对象）"></a>Hash类型（存对象）</h3></li>
+<li>hset key field value 【赋值】</li>
+<li>hmset key field value [field value…] 【多字段赋值】</li>
+<li>hget key field 【取值】</li>
+<li>hmget key field1 field2 【多字段取值】</li>
+<li>hgetall key 【获取所有字段值】
+        
+          <a class="article-more-a" href="/2017/08/22/reids/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/reids/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-dubbo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/dubbo/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/dubbo/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:50:24.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Dubbo架构"><a href="#Dubbo架构" class="headerlink" title="Dubbo架构"></a>Dubbo架构</h1><ol>
+<li>•Provider: 暴露服务的服务提供方。</li>
+<li>•Consumer: 调用远程服务的服务消费方。</li>
+<li>•Registry: 服务注册与发现的注册中心。</li>
+<li>•Monitor: 统计服务的调用次调和调用时间的监控中心。</li>
+<li>•Container: 服务运行容器。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 使用dubbo发布服务 --&gt;</div><div class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager"</span> /&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span></div><div class="line">	address=<span class="string">"192.168.25.154:2181,192.168.25.154:2182,192.168.25.154:2183"</span> /&gt;</div><div class="line">&lt;!-- 用dubbo协议在<span class="number">20880</span>端口暴露服务 --&gt;</div><div class="line">&lt;dubbo:protocol name=<span class="string">"dubbo"</span> port=<span class="string">"20880"</span> /&gt;</div><div class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</div><div class="line">&lt;dubbo:service <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> ref=<span class="string">"itemServiceImpl"</span> /&gt;</div></pre></td></tr></table></figure>
+<!-- -->
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 引用dubbo服务 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager-web"</span>/&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span> address=<span class="string">"192.168.25.154:2181,</span></div><div class="line"><span class="string">192.168.25.154:2182,  192.168.25.154:2183"</span>/&gt;	</div><div class="line">&lt;dubbo:reference <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> id=<span class="string">"itemService"</span> /&gt;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/dubbo/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-freemark" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/freemark/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/freemark/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:46:39.013Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="freemark-基于模板生成html页面并保存的技术-（页面静态化）"><a href="#freemark-基于模板生成html页面并保存的技术-（页面静态化）" class="headerlink" title="freemark 基于模板生成html页面并保存的技术  （页面静态化）"></a>freemark 基于模板生成html页面并保存的技术  （页面静态化）</h2><p>页面请求服务器，服务器现在本地查找是否存在静态页面资源，如果存在则直接返回。不存在则需要到数据库中查找，并生成静态页面保存到服务器端，并将结果返回给浏览器端。</p>
+<ol>
+<li><p>服务器端处理请求的代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Action</span>(value=<span class="string">"promotion_showdetail"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">showdetail</span><span class="params">()</span></span></div><div class="line"><span class="function">	<span class="keyword">throws</span> TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException </span>&#123;</div><div class="line">System.err.println(<span class="string">"id:"</span> + model.getId());</div><div class="line">ServletActionContext.getResponse().setContentType(<span class="string">"text/html;charset=utf-8"</span>);</div><div class="line">String filename = model.getId() + <span class="string">".html"</span>;</div><div class="line">File file = <span class="keyword">new</span> File(ServletActionContext.getServletContext().getRealPath(<span class="string">"html"</span>) + <span class="string">"/"</span> + filename);</div><div class="line">System.out.println(file.getAbsolutePath());</div><div class="line"><span class="comment">//判断文件是否存在</span></div><div class="line"><span class="keyword">if</span> (!file.exists()) &#123;</div><div class="line">	<span class="comment">//文件不存在</span></div><div class="line">	System.out.println(<span class="string">"基于freeMark模板生成文件："</span> + filename);</div><div class="line">	Promotion promotion = WebClient</div><div class="line">			.create(Constant.BOS_MANAGEMENT_URL + <span class="string">"/services/promotionService/promotion/"</span> + model.getId())</div><div class="line">			.accept(MediaType.APPLICATION_JSON).get(Promotion.class);</div><div class="line">	Configuration configuration = <span class="keyword">new</span> Configuration(Configuration.VERSION_2_3_22);</div><div class="line">	<span class="comment">//   /cn/itcast/bos/templates---&gt;html模板文件存在的位置</span></div><div class="line">	configuration.setClassForTemplateLoading(<span class="keyword">this</span>.getClass(), <span class="string">"/cn/itcast/bos/templates"</span>);</div><div class="line">	configuration.setDefaultEncoding(<span class="string">"utf-8"</span>);</div><div class="line">	</div><div class="line">	Template template = configuration.getTemplate(<span class="string">"promotion.ftl"</span>);</div><div class="line">	Map&lt;String, Object&gt; paramMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">	paramMap.put(<span class="string">"globalItem"</span>, promotion);</div><div class="line">	</div><div class="line">	FileOutputStream out = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">	Writer writer = <span class="keyword">new</span> OutputStreamWriter(out,<span class="string">"utf-8"</span>);</div><div class="line">	template.process(paramMap, writer);</div><div class="line">	writer.close();</div><div class="line">	System.out.println(<span class="string">"生成tml页面"</span>);</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">	FileUtils.copyFile(file, ServletActionContext.getResponse().getOutputStream());</div><div class="line">	<span class="keyword">return</span> NONE;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>模板内容编写(promotion.ftl文件)  </p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"css/promotion_detail.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container promotions"</span> &gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-2 prolist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/promotion"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>返回促销列表<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/pro.jpg"</span> <span class="attr">class</span>=<span class="string">"img-responsive"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10 procontent"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>$&#123;globalItem.title&#125;<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"intro"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动范围: $&#123;globalItem.activeScope&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动时间: $&#123;globalItem.startDate?string("yyyy-MM-dd HH:mm:ss")&#125; - $&#123;globalItem.endDate?string("yyyy-MM-dd HH:mm:ss")&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"partline clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"promotionbox"</span> &gt;</span></div><div class="line">			$&#123;globalItem.description&#125;</div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">模板静态化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/freemark/">继续探索 >></a>
         </p>
       
 
@@ -737,7 +624,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -832,11 +719,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -844,7 +743,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">模板静态化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -856,11 +763,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+                <a href="javascript:void(0)" class="js-tag color2">quartz</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color5">日志技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>

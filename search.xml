@@ -4,6 +4,620 @@
     
     <entry>
       <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/</url>
+      <content type="html"><![CDATA[<p>##js使用代码小片段</p>
+<h3 id="将表单内容序列化成一个json片段（需要依赖jQ）"><a href="#将表单内容序列化成一个json片段（需要依赖jQ）" class="headerlink" title="将表单内容序列化成一个json片段（需要依赖jQ）"></a>将表单内容序列化成一个json片段（需要依赖jQ）</h3><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$.fn.serializeJson=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">           <span class="keyword">var</span> serializeObj=&#123;&#125;;  </div><div class="line">           <span class="keyword">var</span> array=<span class="keyword">this</span>.serializeArray();  </div><div class="line">           <span class="keyword">var</span> str=<span class="keyword">this</span>.serialize();  </div><div class="line">           $(array).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">               <span class="keyword">if</span>(serializeObj[<span class="keyword">this</span>.name])&#123;  </div><div class="line">                   <span class="keyword">if</span>($.isArray(serializeObj[<span class="keyword">this</span>.name]))&#123;  </div><div class="line">                       serializeObj[<span class="keyword">this</span>.name].push(<span class="keyword">this</span>.value);  </div><div class="line">                   &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                       serializeObj[<span class="keyword">this</span>.name]=[serializeObj[<span class="keyword">this</span>.name],<span class="keyword">this</span>.value];  </div><div class="line">                   &#125;  </div><div class="line">               &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                   serializeObj[<span class="keyword">this</span>.name]=<span class="keyword">this</span>.value;   </div><div class="line">               &#125;  </div><div class="line">           &#125;);  </div><div class="line">           <span class="keyword">return</span> serializeObj;  </div><div class="line">       &#125;;</div></pre></td></tr></table></figure>
+</code></pre><h3 id="跨域请求原理（需要依赖jQ）"><a href="#跨域请求原理（需要依赖jQ）" class="headerlink" title="跨域请求原理（需要依赖jQ）"></a>跨域请求原理（需要依赖jQ）</h3><ol>
+<li>跨域问题简述：<ul>
+<li>这里说的js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。只要协议、域名、端口有任何一个不同，都被当作是不同的域。</li>
+</ul>
+</li>
+<li><p>跨域问题的解决方法：</p>
+<ul>
+<li>使用jQuery发起ajax请求,在路径后加上callback参数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">"utl=?callback=?"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">	code...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>原理分析</p>
+<ul>
+<li>浏览器将ajax请求中的匿名函数,起名<code>&lt;script src = &quot;url?callback=JQuery12345&quot;&gt;</code></li>
+<li>将请求发送给服务器，并得到返回的结果</li>
+<li>调用匿名函数执行函数中的代码<h3 id="仿百度分页效果js代码（需要依赖jQ）"><a href="#仿百度分页效果js代码（需要依赖jQ）" class="headerlink" title="仿百度分页效果js代码（需要依赖jQ）"></a>仿百度分页效果js代码（需要依赖jQ）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>BootStrap+AngularJS分页显示 <span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/bootstrap.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../css/bootstrap/bootstrap.css"</span> /&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">"paginationApp"</span> <span class="attr">ng-controller</span>=<span class="string">"paginationCtrl"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination pull-middle"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> <span class="attr">ng-click</span>=<span class="string">"prev()"</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"page in pageList"</span> <span class="attr">ng-class</span>=<span class="string">"&#123;active: isActivePage(page)&#125;"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">ng-click</span>=<span class="string">" selectPage(page) "</span>&gt;</span>&#123;&#123;page&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> <span class="attr">ng-click</span>=<span class="string">"next() "</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript "</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">		<span class="keyword">var</span> paginationApp = angular.module(<span class="string">"paginationApp"</span>, []);</span></div><div class="line"><span class="javascript">		paginationApp.controller(<span class="string">"paginationCtrl"</span>, [<span class="string">"$scope"</span>, <span class="string">"$http"</span>, </span></div><div class="line"><span class="javascript">			<span class="function"><span class="keyword">function</span>(<span class="params">$scope, $http</span>) </span>&#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			<span class="comment">// 全局属性 </span></span></div><div class="line"><span class="javascript">			$scope.currentPage = <span class="number">1</span>; <span class="comment">//当前页码 </span></span></div><div class="line"><span class="javascript">			$scope.pageSize = <span class="number">4</span>; <span class="comment">// 每页多少条</span></span></div><div class="line"><span class="javascript">			$scope.totalCount = <span class="number">0</span>; <span class="comment">// 总记录数 </span></span></div><div class="line"><span class="javascript">			$scope.totalPages = <span class="number">0</span>; <span class="comment">// 总页数，根据总记录数和每页多少条进行计算 </span></span></div><div class="line"><span class="javascript">			<span class="comment">//链接到上一页</span></span></div><div class="line"><span class="javascript">			$scope.prev = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>($scope.currentPage &gt; <span class="number">1</span>) &#123;</span></div><div class="line"><span class="undefined">					$scope.selectPage($scope.currentPage - 1);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">			&#125;;</span></div><div class="line"><span class="javascript">			<span class="comment">//链接到下一页</span></span></div><div class="line"><span class="javascript">			$scope.next = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>($scope.currentPage &lt; $scope.totalPages) &#123;</span></div><div class="line"><span class="undefined">					$scope.selectPage($scope.currentPage + 1);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">			&#125;;</span></div><div class="line"><span class="javascript">			$scope.selectPage = <span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span></div><div class="line"><span class="undefined">				$http(&#123;</span></div><div class="line"><span class="javascript">					method: <span class="string">'GET'</span>,</span></div><div class="line"><span class="javascript">					url: <span class="string">''</span>,</span></div><div class="line"><span class="undefined">					params: &#123;</span></div><div class="line"><span class="undefined">						page: page,</span></div><div class="line"><span class="undefined">						pageSize: $scope.pageSize</span></div><div class="line"><span class="undefined">					&#125;</span></div><div class="line"><span class="javascript">				&#125;).success(<span class="function"><span class="keyword">function</span>(<span class="params">data, status, headers, config</span>) </span>&#123;</span></div><div class="line"><span class="javascript">					<span class="comment">// 计算总页数</span></span></div><div class="line"><span class="undefined">					$scope.totalPages = 13;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">				<span class="keyword">var</span> begin ;</span></div><div class="line"><span class="javascript">				<span class="keyword">var</span> end; </span></div><div class="line"><span class="undefined">				begin = page - 5;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(begin &lt;= <span class="number">0</span>)&#123;</span></div><div class="line"><span class="undefined">					begin = 1;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				end = begin + 9 ;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(end &gt; $scope.totalPages)&#123;</span></div><div class="line"><span class="undefined">					end = $scope.totalPages;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				begin = end - 9;</span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(begin &lt; <span class="number">1</span>)&#123;</span></div><div class="line"><span class="undefined">					begin = 1;</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="javascript">				$scope.pageList = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></div><div class="line"><span class="javascript">				<span class="keyword">for</span>(<span class="keyword">var</span> i= begin;i &lt;= end; i ++)&#123;</span></div><div class="line"><span class="undefined">					$scope.pageList.push(i);</span></div><div class="line"><span class="undefined">				&#125;</span></div><div class="line"><span class="undefined">				&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">				<span class="comment">// 不能小于1大于最大</span></span></div><div class="line"><span class="javascript">				<span class="keyword">if</span>(page &lt; <span class="number">1</span> || page &gt; $scope.totalPages) <span class="keyword">return</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">				$scope.currentPage = page;</span></div><div class="line"><span class="undefined">				$scope.isActivePage(page);</span></div><div class="line"><span class="undefined">			&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$scope.isActivePage = <span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span></div><div class="line"><span class="javascript">				<span class="keyword">return</span> page == $scope.currentPage;</span></div><div class="line"><span class="undefined">			&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">			$scope.selectPage($scope.currentPage);</span></div><div class="line"><span class="undefined">		&#125;]);</span></div><div class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="在线html编辑器（kindeditor）"><a href="#在线html编辑器（kindeditor）" class="headerlink" title="在线html编辑器（kindeditor）"></a>在线html编辑器（kindeditor）</h2><ol>
+<li><p>在使用kindeditor的页面上导入</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--导入在线HTML编辑器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../editor/kindeditor.js"</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../editor/lang/zh_CN.js"</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../../editor/themes/default/default.css"</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>应用kindeditor,页面需要提供的元素</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"description"</span> </span></div><div class="line"><span class="tag">	<span class="attr">id</span>=<span class="string">"description"</span> <span class="attr">style</span>=<span class="string">"width:80%"</span> <span class="attr">rows</span>=<span class="string">"20"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>js 代码:</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">KindEditor.ready(<span class="function"><span class="keyword">function</span>(<span class="params">K</span>) </span>&#123;</div><div class="line">    <span class="built_in">window</span>.editor = K.create(<span class="string">'#description'</span>,&#123;</div><div class="line">		<span class="comment">//开启图片空间管理</span></div><div class="line">    	allowFileManager:<span class="literal">true</span>,</div><div class="line">		<span class="comment">//文件上传处理的请求路径</span></div><div class="line">		uploadJson : <span class="string">'../../image_upload.action'</span>,</div><div class="line">		<span class="comment">//管理图片的服务器请求路径</span></div><div class="line">   		fileManagerJson : <span class="string">'../../image_manage.action'</span></div><div class="line">    &#125;);</div><div class="line">	&#125;);</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/quartz/</url>
+      <content type="html"><![CDATA[<h2 id="quartz任务调度框架"><a href="#quartz任务调度框架" class="headerlink" title="quartz任务调度框架"></a>quartz任务调度框架</h2><ol>
+<li><p>在maven项目的pom文件中引入依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;quartz&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line"></div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;quartz-jobs&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>quartz中的基本元素： </p>
+</li>
+</ol>
+<ul>
+<li><p>job 工作任务，你要做什么</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJob</span> <span class="keyword">implements</span> <span class="title">Job</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</div><div class="line">		System.out.println(<span class="string">"hello,quartz !!!...."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>trigger执行工作任务 触发条件，什么时间执行，多久执行一次</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置任务立即开始并且隔5秒钟执行一次</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException </span>&#123;</div><div class="line">	<span class="comment">// 定时器对象</span></div><div class="line">	Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();</div><div class="line"></div><div class="line">	<span class="comment">// 定义一个工作对象</span></div><div class="line">	JobDetail job = JobBuilder.newJob(HelloJob.class)</div><div class="line">			.withIdentity(<span class="string">"job1"</span>, <span class="string">"group1"</span>).build();</div><div class="line">	<span class="comment">// 定义触发器</span></div><div class="line">	Trigger trigger = TriggerBuilder.newTrigger()</div><div class="line">			.withIdentity(<span class="string">"trigger1"</span>, <span class="string">"group1"</span>).startNow()</div><div class="line">			.withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(<span class="number">5</span>))</div><div class="line">			.build();</div><div class="line">	scheduler.scheduleJob(job,trigger);</div><div class="line">	<span class="comment">// 开启定时器</span></div><div class="line">	scheduler.start();</div><div class="line">	<span class="comment">// 关闭定时器</span></div><div class="line">	scheduler.shutdown();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>trigger执行工作任务 触发条件，什么时间执行，多久执行一次(每天的特定时间执行)</p>
+<a id="more"></a>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException </span>&#123;</div><div class="line">	<span class="comment">// 定时器对象</span></div><div class="line">	Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();</div><div class="line"></div><div class="line">	<span class="comment">// 定义一个工作对象</span></div><div class="line">	JobDetail job = JobBuilder.newJob(HelloJob.class)</div><div class="line">			.withIdentity(<span class="string">"job1"</span>, <span class="string">"group1"</span>).build();</div><div class="line">	<span class="comment">// 定义触发器</span></div><div class="line">	Trigger trigger = TriggerBuilder.newTrigger()</div><div class="line">			.withIdentity(<span class="string">"trigger1"</span>, <span class="string">"group1"</span>)</div><div class="line">			.withSchedule(CronScheduleBuilder.cronSchedule(<span class="string">"0 0 0 ? * * *"</span>))</div><div class="line">			.build();</div><div class="line">	</div><div class="line">	scheduler.scheduleJob(job,trigger);</div><div class="line">	</div><div class="line">	<span class="comment">// 开启定时器</span></div><div class="line">	scheduler.start();</div><div class="line">	<span class="comment">// 关闭定时器</span></div><div class="line">	<span class="comment">//	scheduler.shutdown();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h3 id="cronTrigger的使用，cron表达式：（-）"><a href="#cronTrigger的使用，cron表达式：（-）" class="headerlink" title="cronTrigger的使用，cron表达式：（      ）"></a>cronTrigger的使用，cron表达式：（<em> </em> <em> </em> <em> </em> ）</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. second 秒</div><div class="line">2. minutes 分钟</div><div class="line">3. hours 小时</div><div class="line">4. day-of-month 月中的天</div><div class="line">5. month yue</div><div class="line">6. day-of-week 周中的天</div><div class="line">7. year（optional field） 年 （可选的域）</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="quartz和spring集成使用"><a href="#quartz和spring集成使用" class="headerlink" title="quartz和spring集成使用"></a>quartz和spring集成使用</h3><ol>
+<li><p>在spring的maven项目中引入 依赖</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line"> 		&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line"> 		&lt;artifactId&gt;quartz&lt;/artifactId&gt;</div><div class="line"> 		&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line"> 	&lt;/dependency&gt;</div><div class="line"></div><div class="line"> 	&lt;dependency&gt;</div><div class="line"> 		&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</div><div class="line"> 		&lt;artifactId&gt;quartz-jobs&lt;/artifactId&gt;</div><div class="line"> 		&lt;version&gt;2.2.1&lt;/version&gt;</div><div class="line"> 	&lt;/dependency&gt;</div><div class="line">&lt;!--spring对其他框架的支持--&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">&lt;!--spring 的web开发包--&gt;</div><div class="line"> 	&lt;dependency&gt;</div><div class="line"> 		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line"> 		&lt;artifactId&gt;spring-web&lt;/artifactId&gt;</div><div class="line"> 		&lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line"> 	&lt;/dependency&gt;</div><div class="line">&lt;!--spring中事务管理的包--&gt;</div><div class="line"> 	&lt;dependency&gt;</div><div class="line"> 		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line"> 		&lt;artifactId&gt;spring-tx&lt;/artifactId&gt;</div><div class="line"> 		&lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line"> 	&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置web.xml 文件 spring的监听器</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- spring 配置文件位置 --&gt;</div><div class="line">&lt;context-param&gt;</div><div class="line">	&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</div><div class="line">	&lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;</div><div class="line">&lt;/context-param&gt;</div><div class="line">&lt;!-- spring核心监听 --&gt;</div><div class="line">&lt;listener&gt;</div><div class="line">	&lt;listener-<span class="class"><span class="keyword">class</span>&gt;<span class="title">org</span>.<span class="title">springframework</span>.<span class="title">web</span>.<span class="title">context</span>.<span class="title">ContextLoaderListener</span>&lt;/<span class="title">listener</span>-<span class="title">class</span>&gt;</span></div><div class="line"><span class="class">&lt;/<span class="title">listener</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>编写job程序</p>
+</li>
+<li><p>配置spring的applicationContext.xml</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">"cn.itcast"</span> /&gt;</div><div class="line">&lt;!--定义工作的bean--&gt;</div><div class="line">&lt;bean id=<span class="string">"helloJob"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.JobDetailFactoryBean"</span>&gt;  </div><div class="line">  		&lt;property name=<span class="string">"jobClass"</span> value=<span class="string">"cn.itcast.HelloJob"</span>/&gt;  </div><div class="line">&lt;/bean&gt; </div><div class="line">&lt;!-- ======================== 调度触发器 ======================== --&gt;</div><div class="line">&lt;bean id=<span class="string">"simpleTriggerBean"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"</span>&gt;</div><div class="line">	&lt;property name=<span class="string">"jobDetail"</span> ref=<span class="string">"helloJob"</span>/&gt;</div><div class="line">	&lt;property name=<span class="string">"startDelay"</span> value=<span class="string">"3000"</span>/&gt;</div><div class="line">	&lt;property name=<span class="string">"repeatInterval"</span> value=<span class="string">"5000"</span>/&gt;</div><div class="line">&lt;/bean&gt;</div><div class="line">&lt;!-- ======================== 调度工厂 ======================== --&gt;</div><div class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;</div><div class="line">	&lt;property name=<span class="string">"jobFactory"</span> ref=<span class="string">"jobFactory"</span>/&gt;</div><div class="line">	&lt;property name=<span class="string">"triggers"</span>&gt;</div><div class="line">		&lt;list&gt;</div><div class="line">			&lt;ref bean=<span class="string">"simpleTriggerBean"</span> /&gt;</div><div class="line">		&lt;/list&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>解决quartz和spring集成后bean注入的问题</p>
+</li>
+<li>问题描述：<ul>
+<li>spring和quartz集成后，无法在job中注入写好的service bean</li>
+</ul>
+</li>
+<li><p>解决办法–在Scheduler中自定义一个jobfactory</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span>(<span class="string">"jobFactory"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JobFactory</span> <span class="keyword">extends</span> <span class="title">AdaptableJobFactory</span> </span>&#123;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> AutowireCapableBeanFactory capableBeanFactory;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> Object <span class="title">createJobInstance</span><span class="params">(TriggerFiredBundle bundle)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 调用父类的方法</span></div><div class="line">		Object jobInstance = <span class="keyword">super</span>.createJobInstance(bundle);</div><div class="line">		<span class="comment">// 进行注入</span></div><div class="line">		capableBeanFactory.autowireBean(jobInstance);</div><div class="line">		<span class="keyword">return</span> jobInstance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件applicationContext.xml</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;</div><div class="line">	&lt;!--在此引入jobfactory--&gt;</div><div class="line">	&lt;property name=<span class="string">"jobFactory"</span> ref=<span class="string">"jobFactory"</span>/&gt;</div><div class="line">	&lt;property name=<span class="string">"triggers"</span>&gt;</div><div class="line">		&lt;list&gt;</div><div class="line">			&lt;ref bean=<span class="string">"simpleTriggerBean"</span> /&gt;</div><div class="line">		&lt;/list&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> quartz </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/reids/</url>
+      <content type="html"><![CDATA[<h2 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h2><h3 id="String字符串类型（存变量）"><a href="#String字符串类型（存变量）" class="headerlink" title="String字符串类型（存变量）"></a>String字符串类型（存变量）</h3><ol>
+<li>set key value 【赋值】</li>
+<li>get key    【取值】</li>
+<li>getset key value    【取值并赋值】</li>
+<li>del key 【删除】</li>
+<li>incr key 【整数数据增加1】</li>
+<li>incrby key increment    【整数数据安步长增加】</li>
+<li>decr key 【整数数据减少1】</li>
+<li>decrby key decrement    【整数数据安步长减少】</li>
+<li>append key value 【向尾部追加值】</li>
+<li>setlen key 【获取字符串长度】</li>
+<li>mset key1 value1 key2 value2 【同时设置多个键值】</li>
+<li>mget key1 key2 key3    【同时获取多个值】<h3 id="Hash类型（存对象）"><a href="#Hash类型（存对象）" class="headerlink" title="Hash类型（存对象）"></a>Hash类型（存对象）</h3></li>
+<li>hset key field value 【赋值】</li>
+<li>hmset key field value [field value…] 【多字段赋值】</li>
+<li>hget key field 【取值】</li>
+<li>hmget key field1 field2 【多字段取值】</li>
+<li>hgetall key 【获取所有字段值】<a id="more"></a></li>
+<li>hdel key field [field …]【删除字段，可以同时删除多个字段】</li>
+<li>hincrby key field increment【增加数字】</li>
+<li>hexists key field 【判断字段是否存在–返回值为0或1】</li>
+<li>hkeys key 【获取对象中的所有字段】</li>
+<li>hvals key    【获取对象中所有字段的值】</li>
+<li>hlen key 【获取字段数量】<h3 id="List列表类型"><a href="#List列表类型" class="headerlink" title="List列表类型"></a>List列表类型</h3></li>
+<li>lpush key value [value2 value3…]【向列表左边增加元素】</li>
+<li>rpush key value [value2 value3…]【向列表右边增加元素】</li>
+<li>lrange key start stop 【查看列表】</li>
+<li>lpop key 【从列表左侧弹出元素】</li>
+<li>rpop key 【从列表右侧弹出元素】</li>
+<li>llen key 【获取列表中元素个数】</li>
+<li>lrem key count value    【删除列表中指定的值】<ul>
+<li>当count&gt;0时， LREM会从列表左边开始删除。 </li>
+<li>当count&lt;0时， LREM会从列表后边开始删除。 </li>
+<li>当count=0时， LREM删除所有值为value的元素。</li>
+</ul>
+</li>
+<li>lindex key index 【获得指定索引的元素值】</li>
+<li>lset key index value 【设置指定索引的元素值】</li>
+<li>ltrim key start stop 【只保留列表指定片段，从左边算】</li>
+<li><p>LINSERT key BEFORE|AFTER pivot value</p>
+<blockquote>
+<p>该命令首先会在列表中从左到右查找值为pivot的元素，然后根据第二个参数是BEFORE还是AFTER来决定将value插入到该元素的前面还是后面。</p>
+</blockquote>
+</li>
+<li><p>RPOPLPUSH source destination【将元素从一个列表转移到另一个列表中】</p>
+<h3 id="Set集合类型（不重复没有顺序）"><a href="#Set集合类型（不重复没有顺序）" class="headerlink" title="Set集合类型（不重复没有顺序）"></a>Set集合类型（不重复没有顺序）</h3></li>
+<li>SADD key member [member …]    【增加元素】</li>
+<li>srem key member [member …]    【删除元素】</li>
+<li>smembers key 【获得集合中的所有元素】</li>
+<li>sismember key member 【判断元素是否在集合中】</li>
+<li>SDIFF key [key …]    【求集合补集，前面有后面没有的】</li>
+<li>SINTER key [key …]    【求集合交集】</li>
+<li>SUNION key [key …]    【求集合并集】</li>
+<li>SCARD key    【获取集合中元素个数】</li>
+<li><p>spop key 【随机弹出一个元素】</p>
+<h3 id="sortedSet类型–Zset（排序的集合）"><a href="#sortedSet类型–Zset（排序的集合）" class="headerlink" title="sortedSet类型–Zset（排序的集合）"></a>sortedSet类型–Zset（排序的集合）</h3><blockquote>
+<p>在集合类型的基础上，有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元素是否存在在集合中，还能够获得分数最高或最低的前N个元素、获取指定分数范围内的元素等与分数有关的操作。</p>
+</blockquote>
+</li>
+<li><p>ZADD key score member [score member …]    【增加元素】</p>
+</li>
+<li>ZRANGE key start stop [WITHSCORES]    【元素从小到大排名】</li>
+<li>ZREVRANGE key start stop [WITHSCORES]【元素从大到小排名】</li>
+<li>ZSCORE key member 【获得指定元素分数】</li>
+<li>ZREM key member [member …] 【删除元素】</li>
+<li>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]    【获得指定分数范围的元素】</li>
+<li>ZINCRBY  key increment member 【增加某个元素的分数】</li>
+<li>ZCARD key    【获得集合中元素数量】</li>
+<li>ZCOUNT key min max 【获得指定分数范围内的元素个数】</li>
+<li>ZREMRANGEBYRANK key start stop 【按照排名范围删除元素】</li>
+<li>ZREMRANGEBYSCORE key min max    【按照分数范围删除元素】</li>
+<li>ZRANK key member 【    获取元素的排名】<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>EXPIRE key seconds             设置key的生存时间（单位：秒）key在多少秒后会自动删除</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>TTL key                     查看key生于的生存时间</li>
+<li>PERSIST key                清除生存时间 </li>
+<li>PEXPIRE key milliseconds    生存时间设置单位为：毫秒</li>
+<li>rename oldkey newkey    重命名key</li>
+<li>type key 返回值的类型</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> redis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/dubbo/</url>
+      <content type="html"><![CDATA[<h1 id="Dubbo架构"><a href="#Dubbo架构" class="headerlink" title="Dubbo架构"></a>Dubbo架构</h1><ol>
+<li>•Provider: 暴露服务的服务提供方。</li>
+<li>•Consumer: 调用远程服务的服务消费方。</li>
+<li>•Registry: 服务注册与发现的注册中心。</li>
+<li>•Monitor: 统计服务的调用次调和调用时间的监控中心。</li>
+<li>•Container: 服务运行容器。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 使用dubbo发布服务 --&gt;</div><div class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager"</span> /&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span></div><div class="line">	address=<span class="string">"192.168.25.154:2181,192.168.25.154:2182,192.168.25.154:2183"</span> /&gt;</div><div class="line">&lt;!-- 用dubbo协议在<span class="number">20880</span>端口暴露服务 --&gt;</div><div class="line">&lt;dubbo:protocol name=<span class="string">"dubbo"</span> port=<span class="string">"20880"</span> /&gt;</div><div class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</div><div class="line">&lt;dubbo:service <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> ref=<span class="string">"itemServiceImpl"</span> /&gt;</div></pre></td></tr></table></figure>
+<!-- -->
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 引用dubbo服务 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager-web"</span>/&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span> address=<span class="string">"192.168.25.154:2181,</span></div><div class="line"><span class="string">192.168.25.154:2182,  192.168.25.154:2183"</span>/&gt;	</div><div class="line">&lt;dubbo:reference <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> id=<span class="string">"itemService"</span> /&gt;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> dubbo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/freemark/</url>
+      <content type="html"><![CDATA[<h2 id="freemark-基于模板生成html页面并保存的技术-（页面静态化）"><a href="#freemark-基于模板生成html页面并保存的技术-（页面静态化）" class="headerlink" title="freemark 基于模板生成html页面并保存的技术  （页面静态化）"></a>freemark 基于模板生成html页面并保存的技术  （页面静态化）</h2><p>页面请求服务器，服务器现在本地查找是否存在静态页面资源，如果存在则直接返回。不存在则需要到数据库中查找，并生成静态页面保存到服务器端，并将结果返回给浏览器端。</p>
+<ol>
+<li><p>服务器端处理请求的代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Action</span>(value=<span class="string">"promotion_showdetail"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">showdetail</span><span class="params">()</span></span></div><div class="line"><span class="function">	<span class="keyword">throws</span> TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException </span>&#123;</div><div class="line">System.err.println(<span class="string">"id:"</span> + model.getId());</div><div class="line">ServletActionContext.getResponse().setContentType(<span class="string">"text/html;charset=utf-8"</span>);</div><div class="line">String filename = model.getId() + <span class="string">".html"</span>;</div><div class="line">File file = <span class="keyword">new</span> File(ServletActionContext.getServletContext().getRealPath(<span class="string">"html"</span>) + <span class="string">"/"</span> + filename);</div><div class="line">System.out.println(file.getAbsolutePath());</div><div class="line"><span class="comment">//判断文件是否存在</span></div><div class="line"><span class="keyword">if</span> (!file.exists()) &#123;</div><div class="line">	<span class="comment">//文件不存在</span></div><div class="line">	System.out.println(<span class="string">"基于freeMark模板生成文件："</span> + filename);</div><div class="line">	Promotion promotion = WebClient</div><div class="line">			.create(Constant.BOS_MANAGEMENT_URL + <span class="string">"/services/promotionService/promotion/"</span> + model.getId())</div><div class="line">			.accept(MediaType.APPLICATION_JSON).get(Promotion.class);</div><div class="line">	Configuration configuration = <span class="keyword">new</span> Configuration(Configuration.VERSION_2_3_22);</div><div class="line">	<span class="comment">//   /cn/itcast/bos/templates---&gt;html模板文件存在的位置</span></div><div class="line">	configuration.setClassForTemplateLoading(<span class="keyword">this</span>.getClass(), <span class="string">"/cn/itcast/bos/templates"</span>);</div><div class="line">	configuration.setDefaultEncoding(<span class="string">"utf-8"</span>);</div><div class="line">	</div><div class="line">	Template template = configuration.getTemplate(<span class="string">"promotion.ftl"</span>);</div><div class="line">	Map&lt;String, Object&gt; paramMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">	paramMap.put(<span class="string">"globalItem"</span>, promotion);</div><div class="line">	</div><div class="line">	FileOutputStream out = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">	Writer writer = <span class="keyword">new</span> OutputStreamWriter(out,<span class="string">"utf-8"</span>);</div><div class="line">	template.process(paramMap, writer);</div><div class="line">	writer.close();</div><div class="line">	System.out.println(<span class="string">"生成tml页面"</span>);</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">	FileUtils.copyFile(file, ServletActionContext.getResponse().getOutputStream());</div><div class="line">	<span class="keyword">return</span> NONE;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>模板内容编写(promotion.ftl文件)  </p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"css/promotion_detail.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container promotions"</span> &gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-2 prolist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/promotion"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>返回促销列表<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/pro.jpg"</span> <span class="attr">class</span>=<span class="string">"img-responsive"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10 procontent"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>$&#123;globalItem.title&#125;<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"intro"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动范围: $&#123;globalItem.activeScope&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动时间: $&#123;globalItem.startDate?string("yyyy-MM-dd HH:mm:ss")&#125; - $&#123;globalItem.endDate?string("yyyy-MM-dd HH:mm:ss")&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"partline clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"promotionbox"</span> &gt;</span></div><div class="line">			$&#123;globalItem.description&#125;</div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> 模板静态化 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/logger/</url>
+      <content type="html"><![CDATA[<h2 id="日志技术"><a href="#日志技术" class="headerlink" title="日志技术"></a>日志技术</h2><h3 id="常用日志技术"><a href="#常用日志技术" class="headerlink" title="常用日志技术"></a>常用日志技术</h3><ol>
+<li>log4j (日志框架 )</li>
+<li>slf4j （简单日志门面 接口 必须有实现）</li>
+<li>apache commons-logging —-  JCL （日志接口 ，自带一个简单实现 ） </li>
+<li>JDK java.util.logging —- JUL （JDK自带日志技术）<ul>
+<li>slf4j和JCL 是接口 </li>
+<li>log4j和JUL 是实现 </li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>JCL有两个基本的抽象类：Log(基本记录器)和LogFactory(负责创建Log实例)。当commons-logging.jar被加入到 CLASSPATH之后，它会心可能合理地猜测你想用的日志工具，然后进行自我设置，用户根本不需要做任何设置。默认的LogFactory是按照下列的步骤去发现并决定那个日志工具将被使用的（按照顺序，寻找过程会在找到第一个工具时中止）:</p>
+<ol>
+<li>寻找当前factory中名叫org.apache.commons.logging.Log配置属性的值</li>
+<li>寻找系统中属性中名叫org.apache.commons.logging.Log的值</li>
+<li>如果应用程序的classpath中有log4j,则使用相关的包装(wrapper)类(Log4JLogger)</li>
+<li>如果应用程序运行在jdk1.4的系统中，使用相关的包装类(Jdk14Logger)</li>
+<li>使用简易日志包装类(SimpleLog)<br>commons-logging + log4j <a id="more"></a></li>
+</ol>
+</li>
+<li>slf4j 静态实现 ，必须指定实现 classpath 加入实现包<br>slf4j-api.jar 接口 + slf4j-log4j + log4j </li>
+</ul>
+<h3 id="编程基于接口编程"><a href="#编程基于接口编程" class="headerlink" title="编程基于接口编程"></a>编程基于接口编程</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用 JCL commons-logging 记录日志</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Log LOG1 = LogFactory.getLog(JCLTest.class);</div><div class="line"><span class="comment">// 使用 JUL 记录日志</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG2 = Logger</div><div class="line">		.getLogger(JCLTest.class.getName());</div><div class="line"><span class="comment">// 使用Log4j</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> org.apache.log4j.Logger LOG3 = org.apache.log4j.Logger</div><div class="line">		.getLogger(JCLTest.class);</div><div class="line"><span class="comment">// 使用slf4j</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> org.slf4j.Logger LOG4 = LoggerFactory</div><div class="line">		.getLogger(JCLTest.class);</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>log4j 使用 （只显示更高级别的日志  开发调试级别， 上线错误级别）<ul>
+<li>在classpath 加入 log4j.properties 或者 log4j.xml </li>
+<li>日志级别 <ul>
+<li>fatal 致命错误</li>
+<li>error 普通错误</li>
+<li>warn 警告信息</li>
+<li>info 普通信息</li>
+<li>debug 调试信息</li>
+<li>trace 堆栈信息  </li>
+</ul>
+</li>
+<li><strong>在log4j.properties 配置日志级别</strong><br>语法： 记录器 = 日志级别，输出源1，输出源2<ul>
+<li>log4j.rootLogger=DEBUG, A1 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">log4j.rootLogger=DEBUG, A1</div><div class="line">log4j.appender.A1=org.apache.log4j.ConsoleAppender</div><div class="line">log4j.appender.A1.layout=org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.A1.layout.ConversionPattern= %-<span class="number">4</span>r [%t] %-<span class="number">5</span>p %c %x - %m%n</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Log4j提供的输出目的地"><a href="#Log4j提供的输出目的地" class="headerlink" title="Log4j提供的输出目的地"></a>Log4j提供的输出目的地</h4><pre><code>org.apache.log4j.ConsoleAppender(控制台) 
+org.apache.log4j.FileAppender(文件) 
+org.apache.log4j.DailyRollingFileAppender(每天产生一个日志文件) 
+org.apache.log4j.RollingFileAppender(文件到达指定大小时产生一个新文件) 
+org.apache.log4j.WriterAppender(将日志信息以流格式发送到任何地方) 
+</code></pre><h4 id="Log4j提供的layout"><a href="#Log4j提供的layout" class="headerlink" title="Log4j提供的layout"></a>Log4j提供的layout</h4><pre><code>org.apache.log4j.HTMLLayout（以HTML表格形式布局）
+org.apache.log4j.PatternLayout（可以灵活地指定布局模式）
+org.apache.log4j.SimpleLayout（包含日志信息的级别和信息字符串）
+org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等信息）
+</code></pre><h4 id="log4j使用示例代码"><a href="#log4j使用示例代码" class="headerlink" title="log4j使用示例代码"></a>log4j使用示例代码</h4><pre><code>package org.javaresearch.log4j;
+import org.apache.log4j.*;
+
+public class TestLog4J {
+  static Logger log = Logger.getLogger(TestLog4J.class.getName());
+   public static void main(String args[]) {
+        // logging的各种方法
+        log.debug(&quot;Start of main()&quot;);
+   }
+}
+</code></pre><h4 id="日志应用于文件"><a href="#日志应用于文件" class="headerlink" title="日志应用于文件"></a>日志应用于文件</h4><pre><code>log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.File=file.log log4j.appender.FILE.Append=false
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=
+[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n 
+</code></pre><h4 id="将日志应用于控制台"><a href="#将日志应用于控制台" class="headerlink" title="将日志应用于控制台"></a>将日志应用于控制台</h4><pre><code>log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.Target=System.out
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=
+[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n
+</code></pre><ul>
+<li>jul 使用 <ul>
+<li>在classpath 加入logging.properties </li>
+<li>日志级别 SEVERE 、WARNING、 INFO、 CONFIG、FINE、FINER、 FINEST  </li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> 日志技术 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
+      <url>/2017/08/22/hadoop/</url>
+      <content type="html"><![CDATA[<h2 id="hadoop入门"><a href="#hadoop入门" class="headerlink" title="hadoop入门"></a>hadoop入门</h2><ol>
+<li>hadoop的两个大功能<ul>
+<li>提供海量数据的<strong>存储</strong>服务</li>
+<li>提供<strong>分析海量数据</strong>的编程框架及运行平台</li>
+</ul>
+</li>
+<li>hadoop3大核心组件<ul>
+<li>Hdfs——hadoop分布式文件系统海量数据的存储</li>
+<li>MapReduce——分布式运算框架，海量数据运算分析（spark）</li>
+<li>Yarn——资源调度管理集群<blockquote>
+<p>1.可以把hadoop理解为一个编程框架（类比：structs、spring、hibernate/mybatis），有着自己特定的API封装和用户编程规范，用户可借助这些API来实现数据处理逻辑；<br>2.从另一个角度，hadoop又可以理解为一个提供服务的软件（类比：数据库服务oracle/mysql、索引服务solr，缓存服务redis等），用户程序通过客户端向hadoop集群请求服务来实现特定的功能；</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="hdfs的优缺点"><a href="#hdfs的优缺点" class="headerlink" title="hdfs的优缺点"></a>hdfs的优缺点</h2><h3 id="1-hdfs的优点"><a href="#1-hdfs的优点" class="headerlink" title="1.hdfs的优点"></a>1.hdfs的优点</h3><ol>
+<li>高容错性————数据自动保存多个副本；副本丢失后，自动恢复</li>
+<li>适合批处理————移动计算而非数据，数据位置暴露给计算框架</li>
+<li>适合大数据处理————GB、TB甚至TB级数据百万规模以上的文件量，10K+节点</li>
+<li>可构建在廉价机器上————通过多个副本提供可靠性，提供容错和恢复机制</li>
+</ol>
+<h3 id="2-hdfs缺点"><a href="#2-hdfs缺点" class="headerlink" title="2.hdfs缺点"></a>2.hdfs缺点</h3><ol>
+<li>低延迟数据访问————比如毫秒级，低延迟与高吞吐率</li>
+<li>小文件存取————占用NameNode大量内存，寻道时间超过读取时间</li>
+<li>并发写入、文件随机修改————一个文件只能有一个写者，仅支持append（2.0）</li>
+</ol>
+<h3 id="hadoop集群部署安装"><a href="#hadoop集群部署安装" class="headerlink" title="hadoop集群部署安装"></a>hadoop集群部署安装</h3><a id="more"></a>
+<p>环境：Linux操作系统（CentOS）、Hadoop安装包Linux版，VM虚拟机</p>
+<ol>
+<li>在虚拟机上安装CentOS系统（网卡配置为NAT模式）</li>
+<li>配置静态ip地址，更改主机名和本地映射</li>
+</ol>
+<ul>
+<li>在centOS的操作桌面，修改网卡配置（Manual）添加Addresses<blockquote>
+<p>address(固定的ip)，netmask（255.255.255.0），gateWay（网关），dns和网关相同</p>
+</blockquote>
+</li>
+<li>使用secureCRT工具连接到linux，通过sftp上传jdk和hadoop的安装包</li>
+<li><p>修改主机名：vi /etc/sysconfig/network</p>
+<blockquote>
+<p>HOSTNAME=你的主机名（Hadoop-server-00）</p>
+</blockquote>
+</li>
+<li><p>修改host配置文件：vi /etc/hosts</p>
+<blockquote>
+<p>192.168.102.200  hadoop-server-00<br>192.168.102.201  hadoop-server-01<br>192.168.102.202  hadoop-server-02</p>
+</blockquote>
+</li>
+<li><p>关闭服务器的图形化界面：vi /etc/inittab</p>
+<blockquote>
+<p>d:3:initdefault:</p>
+</blockquote>
+</li>
+<li><p>配置防火墙关闭</p>
+<blockquote>
+<p>service iptable stop 关闭防火墙<br>chkconfig iptable off 关闭开机启动防火墙</p>
+</blockquote>
+</li>
+<li><p>配置完毕，reboot重启linux系统</p>
+</li>
+<li>创建软件安装目录： mkdir /usr/local/apps</li>
+</ul>
+<ol>
+<li>安装jdk</li>
+</ol>
+<ul>
+<li><p>解压上传的jdk文件</p>
+<blockquote>
+<p>tar -zxvf jdk的压缩包 -C /usr/local/apps(自定义的解压路径)</p>
+</blockquote>
+</li>
+<li><p>修改配置文件 ：vi /etc/profile</p>
+<blockquote>
+<p>在末尾添加<br>export JAVA_HOME=/usr/local/apps/jdk目录<br>export PATH=$PATH:$JAVA_HOME/bin</p>
+</blockquote>
+</li>
+<li><p>配置文件生效：source /etc/profile</p>
+</li>
+</ul>
+<ol>
+<li>安装hadoop</li>
+</ol>
+<ul>
+<li>解压hadoop文件：<blockquote>
+<p>tar -zxvf hadoop的压缩包 -C /usr/local/apps(自定义的解压路径)</p>
+</blockquote>
+</li>
+<li>进入hadoop的安装目录（解压目录）</li>
+<li><p>删除/share目录下的doc（帮助文档）【可选操作】在share目录下进行操作</p>
+<blockquote>
+<p>rm -rf doc</p>
+</blockquote>
+</li>
+<li><p>进入hadoop安装目录下etc目录，再进入etc下的hadoop目录</p>
+</li>
+<li>修改hadoop-env.sh文件中的javaHome<blockquote>
+<p>export JAVA_NOME=jdk安装目录（文件中间几行）</p>
+</blockquote>
+</li>
+<li><p>修改 core-site.xml文件（hadoop运行时的公共配置）    </p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">		&lt;value&gt;hdfs:<span class="comment">//hadoop-server-00:9000&lt;/value&gt;</span></div><div class="line">	&lt;/property&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;!-- 工作进程临时目录 --&gt;</div><div class="line">		&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">		&lt;value&gt;/usr/local/apps/hadoop安装目录/tmp&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改hdfs-site.xml文件（与hadfs相关）</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;!-- 默认副本数量 --&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">		&lt;value&gt;3&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改mapred-site.xml</p>
+<blockquote>
+<p>首先去掉mapred-site.xml.templete的后缀名<br>mv mapred-site.xml.templete  mapred-site.xml    </p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;!-- mapreduce运行的平台 --&gt;</div><div class="line">		&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">		&lt;value&gt;yarn&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>修改yarn-site.xml文件</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;!-- 配置集群的主节点 --&gt;</div><div class="line">		&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">		&lt;value&gt;hodoop-server-00&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">		&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置从节点名称 vi slaves</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;hadoop-server-<span class="number">00</span>  </div><div class="line">&gt;hadoop-server-<span class="number">01</span>  </div><div class="line">&gt;……</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>启动hadoop集群服务（伪集群）</li>
+</ol>
+<ul>
+<li>格式化namenode bin/hadoop namenode -format</li>
+<li><p>手动启动服务,首先进入sbin目录</p>
+<blockquote>
+<p>./hadoop-daemon.sh start namenode<br>./hadoop-daemon.sh start datanode<br>./hadoop-daemon.sh start secondarynode<br>./yarn-daemon.sh start resourcemanager<br>./yarn-daemon.sh start nodemanager</p>
+</blockquote>
+</li>
+<li><p>自动启动服务</p>
+<ol>
+<li>在主节点目录下生成秘钥对 ssh-keygen</li>
+<li>拷贝秘钥到目标主机 ssh-copy-id 目标主机名</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>配置hadoop多节点分布式服务<blockquote>
+<p>1.配置无密码登录<br>2.scp -r /usr/local/apps/hadoop安装目录 目标主机：目标目录<br>3.删除从节点中的tmp目录<br>4.在主节点服务器上，修改slaves文件，将从节点加入集群。</p>
+</blockquote>
+</li>
+<li>配置hadoop sbin目录到主机的profile文件<blockquote>
+<p>export HADOOP_HOME=/usr/local/apps/hadoop-2.4.1<br>export PATH=$PATH:$HADOOP_HOME/sbin:$PATH:$HADOOP_HOME/bin</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="使用java程序操作hdfs"><a href="#使用java程序操作hdfs" class="headerlink" title="使用java程序操作hdfs"></a>使用java程序操作hdfs</h2><ol>
+<li>获得fileSystem对象<br><code>fs = FileSystem.get(new URI(&quot;hdfs://hadoop-server-00:9000&quot;), new Configuration(), &quot;root&quot;);</code></li>
+<li>常用API<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下载文件到本地</span></div><div class="line"><span class="keyword">void</span> org.apache.hadoop.fs.FileSystem.copyToLocalFile(<span class="keyword">boolean</span> delSrc, Path src, Path dst, <span class="keyword">boolean</span> useRawLocalFileSystem) <span class="keyword">throws</span> IOException</div><div class="line"><span class="comment">//新建文件夹	  </span></div><div class="line"><span class="keyword">boolean</span> org.apache.hadoop.fs.FileSystem.mkdirs(Path f) <span class="keyword">throws</span> IOException</div><div class="line"><span class="comment">//判断文件是否存在</span></div><div class="line"><span class="keyword">boolean</span> org.apache.hadoop.fs.FileSystem.exists(Path arg0) <span class="keyword">throws</span> IOException</div><div class="line"><span class="comment">//上传文件到hdfs</span></div><div class="line"><span class="keyword">void</span> org.apache.hadoop.fs.FileSystem.copyFromLocalFile(Path src, Path dst) <span class="keyword">throws</span> IOException</div><div class="line"><span class="comment">//查看文件系统状态</span></div><div class="line">RemoteIterator&lt;LocatedFileStatus&gt; org.apache.hadoop.fs.FileSystem.listFiles(Path f, <span class="keyword">boolean</span> recursive) <span class="keyword">throws</span> FileNotFoundException, IOException</div><div class="line"><span class="comment">//使用io下载文件</span></div><div class="line">FSDataInputStream in = fs.open(<span class="keyword">new</span> Path(<span class="string">"test1.htm"</span>));</div><div class="line">FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"f:/deom.txt"</span>);</div><div class="line">IOUtils.copyBytes(in, out, <span class="keyword">new</span> Configuration());</div><div class="line">IOUtils.closeStream(in);</div><div class="line">IOUtils.closeStream(out);</div><div class="line"><span class="comment">//使用io操作hdfs时，设置偏移量</span></div><div class="line"><span class="keyword">void</span> org.apache.hadoop.fs.FSDataInputStream.seek(<span class="keyword">long</span> desired) <span class="keyword">throws</span> IOException</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="hadoop的rpc框架"><a href="#hadoop的rpc框架" class="headerlink" title="hadoop的rpc框架"></a>hadoop的rpc框架</h2><ol>
+<li><p>定义接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//RCP通信的两端共同遵守的协议（本质上就是业务实现类的接口）</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ClientNameNodeProtocal</span> </span>&#123;</div><div class="line">	<span class="comment">//RPC通信双方一致的版本号</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> versionID = <span class="number">1L</span>;</div><div class="line">	<span class="comment">//业务方法签名</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getMetaData</span><span class="params">(String path)</span></span>;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写接口的业务实现类</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamNodeNameSystemImpl</span> <span class="keyword">implements</span> <span class="title">ClientNameNodeProtocal</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getMetaData</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">		</div><div class="line">		<span class="comment">//many logic code to find the meta data in meta data pool</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"&#123;/aa/bb/bian4.mp4;300M;[BLK_1,BLK_2,BLK_3];3;</span></div><div class="line"><span class="string">&#123;[BLK_1:DN-A,DN-B,DN-E],[BLK_2:DN-A,DN-B,DN-C],[BLK_3:DN-A,DN-D,DN-E]&#125;&#125;"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>发布rpc服务</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PublishServiceTool</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> HadoopIllegalArgumentException, IOException </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">//创建一个RPC服务builder</span></div><div class="line">	Builder builder = <span class="keyword">new</span> RPC.Builder(<span class="keyword">new</span> Configuration());</div><div class="line">	<span class="comment">//将要发布的服务的信息设置到builder中</span></div><div class="line">	builder.setBindAddress(<span class="string">"spark01"</span>).setPort(<span class="number">10000</span>).setProtocol(ClientNameNodeProtocal.class).setInstance(<span class="keyword">new</span> NamNodeNameSystemImpl());</div><div class="line">	</div><div class="line">	<span class="comment">//用builder构建出一个socket服务</span></div><div class="line">	Server server = builder.build();</div><div class="line">	<span class="comment">//将服务启动，就可以等待客户端请求</span></div><div class="line">	server.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>客户端访问rpc服务</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;		</div><div class="line">		<span class="comment">//首先用RPC框架获得要调用的远端服务的引用（动态代理对象）</span></div><div class="line">		ClientNameNodeProtocal namenodeImpl = RPC.getProxy(ClientNameNodeProtocal.class, <span class="number">1L</span>, <span class="keyword">new</span> InetSocketAddress(<span class="string">"spark01"</span>,<span class="number">10000</span>), <span class="keyword">new</span> Configuration());</div><div class="line">		<span class="comment">//因为这个动态代理对象实现了业务类的接口，所以可以直接通过这个引用来调用业务类的实现方法(本质上，具体实现在远端，走的是socket通信请求)</span></div><div class="line">		String metaData = namenodeImpl.getMetaData(<span class="string">"/aa/bb/bian4.mp4"</span>);</div><div class="line">		</div><div class="line">		System.out.println(metaData);</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="mapreduce框架计算编程"><a href="#mapreduce框架计算编程" class="headerlink" title="mapreduce框架计算编程"></a>mapreduce框架计算编程</h2><ol>
+<li>导入hadoop-common包(工具包和rpc包)，mapreduce包，hdfs包</li>
+<li>编写mapper（继承org.apache.hadoop.mapreduce.Mapper），重写mapper方法，且需要确定几个泛型。<br>KEYIN,VALUEIN,KEYOUT,VALUEOUT</li>
+</ol>
+<ul>
+<li>KEYIN:输入KV数据对中的Key的数据类型</li>
+<li>VALUEIN:输入KV数据对中的vlaue的数据类型</li>
+<li>KEYOUT:输出KV数据中key的数据类型</li>
+<li>VALUEOUT:输出KV数据中vlaue的数据类型  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowCountMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">FlowBean</span>&gt;</span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span></span></div><div class="line"><span class="function">			<span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</div><div class="line">		<span class="comment">//使用工具类，切分一行中的数据</span></div><div class="line">		String[] field = StringUtils.split(value.toString(),<span class="string">"\t"</span>);</div><div class="line">		</div><div class="line">		<span class="comment">//增强代码健壮性，如果一行中的字段数量少，不读，减少报错内容</span></div><div class="line">		<span class="keyword">if</span>(field.length &gt; <span class="number">4</span>)&#123;</div><div class="line">			String phone = field[<span class="number">1</span>];</div><div class="line">			<span class="keyword">long</span> upFlow =Long.parseLong(field[field.length -<span class="number">3</span>]);</div><div class="line">			<span class="keyword">long</span> dFlow = Long.parseLong(field[field.length -<span class="number">2</span>]);</div><div class="line">			</div><div class="line">			FlowBean bean = <span class="keyword">new</span> FlowBean(upFlow, dFlow);</div><div class="line">			context.write(<span class="keyword">new</span> Text(phone), bean);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>编写reducer类，继承（org.apache.hadoop.mapreduce.Reducer）类，重写reduce方法。泛型类型和mapper中相同</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;FlowBean&gt; values, Context context)</span></span></div><div class="line"><span class="function">	<span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</div><div class="line">	<span class="comment">//准备容器</span></div><div class="line">	<span class="keyword">long</span> sumUpFlow = <span class="number">0</span>;</div><div class="line">	<span class="keyword">long</span> sumDFlow = <span class="number">0</span>;</div><div class="line">	<span class="comment">//遍历数据</span></div><div class="line">	<span class="keyword">for</span> (FlowBean value : values) &#123;</div><div class="line">		sumUpFlow += value.getUpFlow();</div><div class="line">		sumDFlow += value.getdFlow();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	FlowBean bean = <span class="keyword">new</span> FlowBean(sumUpFlow, sumDFlow);</div><div class="line">	context.write(key, bean);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写客户端，submitter，hadoop通过这个类将mapper和reducer发布到不同的hadoop主机上，运行算法，得出结果。</p>
+<ol>
+<li>需要设定jar路径，告诉hadoopmapper和reducer的位置</li>
+<li>需要设定mapper类，</li>
+<li>需要设定reducer类，</li>
+<li>需要确定map阶段输出的KV类型</li>
+<li>需要确定（最终）reducer阶段输出的KV类型</li>
+<li>需要确定数据来源位置</li>
+<li>需要确定结果的存放路径</li>
+<li>发布服务 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="comment">//准备对象</span></div><div class="line">	Job flowCountJob = Job.getInstance(<span class="keyword">new</span> Configuration());</div><div class="line">	<span class="comment">//设置路径</span></div><div class="line">	flowCountJob.setJarByClass(FlowCountSubmitter.class);</div><div class="line">	</div><div class="line">	<span class="comment">//设置mapper和reducer</span></div><div class="line">	flowCountJob.setMapperClass(FlowCountMapper.class);</div><div class="line">	flowCountJob.setReducerClass(FlowCountReducer.class);</div><div class="line">	</div><div class="line">	<span class="comment">//设置mapper阶段的输出类型</span></div><div class="line">	flowCountJob.setMapOutputValueClass(FlowBean.class);</div><div class="line">	flowCountJob.setMapOutputKeyClass(Text.class);</div><div class="line">	</div><div class="line">	<span class="comment">//设置最终的输出类型</span></div><div class="line">	flowCountJob.setOutputKeyClass(Text.class);</div><div class="line">	flowCountJob.setMapOutputValueClass(FlowBean.class);</div><div class="line">	</div><div class="line">	<span class="comment">//设置数据源</span></div><div class="line">	FileInputFormat.setInputPaths(flowCountJob, args[<span class="number">0</span>]);</div><div class="line">	FileOutputFormat.setOutputPath(flowCountJob, <span class="keyword">new</span> Path(args[<span class="number">1</span>]));</div><div class="line">	</div><div class="line">	<span class="comment">//将job发布到hadoop集群中</span></div><div class="line">	flowCountJob.waitForCompletion(<span class="keyword">true</span>);</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="如果需要传递的KV类型中有自定义的bean，bean需要实现序列化接口（writable）"><a href="#如果需要传递的KV类型中有自定义的bean，bean需要实现序列化接口（writable）" class="headerlink" title="如果需要传递的KV类型中有自定义的bean，bean需要实现序列化接口（writable）"></a>如果需要传递的KV类型中有自定义的bean，bean需要实现序列化接口（writable）</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//反序列化方法</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFields</span><span class="params">(DataInput in)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	upFlow = in.readLong();</div><div class="line">	dFlow = in.readLong();</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="comment">//序列化方法</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(DataOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	out.writeLong(upFlow);</div><div class="line">	out.writeLong(dFlow);</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><h3 id="重写改实体类javabean的tostring-方法，确定最终输出形式"><a href="#重写改实体类javabean的tostring-方法，确定最终输出形式" class="headerlink" title="重写改实体类javabean的tostring() 方法，确定最终输出形式"></a>重写改实体类javabean的tostring() 方法，确定最终输出形式</h3><h2 id="分省统计手机号的流量消耗"><a href="#分省统计手机号的流量消耗" class="headerlink" title="分省统计手机号的流量消耗"></a>分省统计手机号的流量消耗</h2><ol>
+<li><p>首先需要写一个partition类，该类继承partitioner类，确定对maper中的数据的分类处理结果有几个，根据返回值数量确定</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//电话号码前三位和省份代码对应的字典对象，真实开发需要从数据库中调取数据</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> HashMap&lt;String,Integer&gt; provinceMap = <span class="keyword">new</span> HashMap&lt;String,Integer&gt;();</div><div class="line"><span class="comment">//初始化字典数据</span></div><div class="line"></div><div class="line"><span class="keyword">static</span> &#123;</div><div class="line">	provinceMap.put(<span class="string">"136"</span>,<span class="number">0</span>);</div><div class="line">	provinceMap.put(<span class="string">"137"</span>,<span class="number">1</span>);</div><div class="line">	provinceMap.put(<span class="string">"138"</span>,<span class="number">2</span>);</div><div class="line">	provinceMap.put(<span class="string">"139"</span>,<span class="number">3</span>);</div><div class="line">&#125;</div><div class="line">	</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(Text phone, FlowBean bean, <span class="keyword">int</span> numberReducerTask)</span> </span>&#123;</div><div class="line">	<span class="comment">//获取开头三个数字</span></div><div class="line">	String start = phone.toString().substring(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line">	<span class="comment">//查找匹配内容的省份代码</span></div><div class="line">	Integer provinceNum = provinceMap.get(start);</div><div class="line">	<span class="comment">//返回结果</span></div><div class="line">	<span class="keyword">if</span>(provinceNum == <span class="keyword">null</span>) provinceNum = <span class="number">4</span>;</div><div class="line">	<span class="keyword">return</span> provinceNum;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>在submitter中设置reducer处理器的数量<strong>有几个处理器就会在结果路径中创建几个结果文件</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置的数量应该和partitioner中结果的数量相对应，多了浪费空间，少了程序报错</span></div><div class="line">flowCountJob.setNumReduceTasks(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在shuffle的处理过程中，可以对主键进行排序。如果是自定义的bean类型需要实现WritableComparable接口，重写compareto方法。</p>
+</li>
+</ol>
+<p><strong>shuffl是map和reduce中间数据调度&lt;机制&gt;过程，主要包含:缓存，分区，排序</strong></p>
+<h3 id="hadoop的决定机制"><a href="#hadoop的决定机制" class="headerlink" title="hadoop的决定机制"></a>hadoop的决定机制</h3><ol>
+<li>reduce task数量的决定机制:<ul>
+<li>业务逻辑需要，需要配置partitioner的返回值</li>
+<li>数据量大小（数据非常大的时候需要多个reduce分担压力）</li>
+</ul>
+</li>
+<li>map task数量的决定机制：<ul>
+<li>切片机制：<blockquote>
+<p>Mapreduce框架中默认的切片机制：<br>TextInputFormat.getSplits()继承自FileInputFormat.getSplits()<br>通常切片大小和hdfs中设置的block的大小一致</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="mapReduce编程练习"><a href="#mapReduce编程练习" class="headerlink" title="mapReduce编程练习"></a>mapReduce编程练习</h2><h4 id="1-查看两个人的共同好友"><a href="#1-查看两个人的共同好友" class="headerlink" title="1.查看两个人的共同好友"></a>1.查看两个人的共同好友</h4><ol>
+<li>原始数据：每个人的好友列表 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">A:B,C,D,F,E,O</div><div class="line">B:A,C,E,K</div><div class="line">C:F,A,D,I</div><div class="line">D:A,E,F,L</div><div class="line">E:B,C,D,M,L</div><div class="line">F:A,B,C,D,E,O,M</div><div class="line">G:A,C,D,E,F</div><div class="line">H:A,C,D,E,O</div><div class="line">I:A,O</div><div class="line">J:B,O</div><div class="line">K:A,C,D</div><div class="line">L:D,E,F</div><div class="line">M:E,F,G</div><div class="line">O:A,H,I,J</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<!-- -->
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">输出结果：每个人和其他各人所拥有的功能好友</div><div class="line">A-B	C,E,</div><div class="line">A-C	D,F,</div><div class="line">A-D	E,F,</div><div class="line">A-E	B,C,D,</div><div class="line">A-F	B,C,D,E,O,</div><div class="line">A-G	C,D,E,F,</div><div class="line">A-H	C,D,E,O,</div><div class="line">A-I	O,</div><div class="line">A-J	B,O,</div><div class="line">A-K	C,D,</div><div class="line">A-L	D,E,F,</div><div class="line">A-M	E,F,</div><div class="line">B-C	A,</div><div class="line">B-D	A,E,</div><div class="line">……</div></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>解题思路：<br>根据结果倒退：  </p>
+<ol>
+<li>结果要求，求出共同好友—关键在共同好友  </li>
+<li><p>首先找到每个人都在谁的好友列表中，结果示例如下 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;C ： a,b,c,d,e --&gt;c是(ab)(ac)(ad)(ae)……的共同好友  </div><div class="line">&gt;F ： a,d,e --&gt;F是（ad）(ae)(de)的共同好友</div></pre></td></tr></table></figure>
+</li>
+<li><p>所以(ad)的共同好友包含c和f</p>
+</li>
+<li>在mapper中获得（ad,d）样式的键值对，在reducer中处理，将值叠加</li>
+<li>向前推，先获得C ： a,b,c,d,e </li>
+<li>加一个阶段，先求出c都在谁的好友列表中出现了</li>
+<li>根据所给数据：A:B,C,D,F,E,O–&gt;(b,a)(b,c)的kV对</li>
+<li>在mapper中,将数据整合</li>
+<li>整理以上思路求解</li>
+</ol>
+</li>
+</ol>
+<h3 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h3><p>hadoop将处理数据时需要用到的文件，共享到hadoop集群中。mapper自动请求，处理<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">(Mapper&lt;LongWritable, Text, NullWritable, JoinProduct&gt;.Context context)</span></span></div><div class="line"><span class="function">		<span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</div><div class="line">	<span class="comment">//普通的文件读取操作</span></div><div class="line">	BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"iteminfo.txt"</span>));</div><div class="line">	</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span>((line = br.readLine()) != <span class="keyword">null</span>)&#123;</div><div class="line">		</div><div class="line">		String[] fields = line.split(<span class="string">","</span>);</div><div class="line">		itemInfo.put(fields[<span class="number">0</span>], fields[<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> hadoop </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[项目开发小笔记]]></title>
       <url>/2017/08/20/Apache%20shiro/</url>
       <content type="html"><![CDATA[<h2 id="apache-shiro-权限控制和缓存框架ehcache的使用"><a href="#apache-shiro-权限控制和缓存框架ehcache的使用" class="headerlink" title="apache shiro(权限控制和缓存框架ehcache的使用)"></a>apache shiro(权限控制和缓存框架ehcache的使用)</h2><h4 id="实现权限控制三种方式"><a href="#实现权限控制三种方式" class="headerlink" title="实现权限控制三种方式:"></a>实现权限控制三种方式:</h4><ol>
 <li>spring security</li>
@@ -26,7 +640,9 @@
 <li>配置filter实现url级别权限控制</li>
 <li>配置代理，基于注解实现细粒度权限控制</li>
 <li>在jsp页面中使用shiro自定义标签控制</li>
-<li>程序中通过subject编程实现<h4 id="url权限控制（常用）"><a href="#url权限控制（常用）" class="headerlink" title="url权限控制（常用）"></a>url权限控制（常用）</h4></li>
+<li>程序中通过subject编程实现</li>
+<li><a id="more"></a>
+<h4 id="url权限控制（常用）"><a href="#url权限控制（常用）" class="headerlink" title="url权限控制（常用）"></a>url权限控制（常用）</h4></li>
 </ol>
 <ul>
 <li><p>anon 未认证可以访问</p>
@@ -190,9 +806,10 @@
       <url>/2017/08/20/code004/</url>
       <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
 
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <ol>
 <li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
+<li><a href="http://blog.csdn.net/u011127019/article/details/51226104" target="_blank" rel="external">二维码和图片格式转换</a></li>
 <li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
 </ol>
 <h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
@@ -211,9 +828,9 @@
             
             <tag> code </tag>
             
-            <tag> 服务端 </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> 服务端 </tag>
             
         </tags>
         

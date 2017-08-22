@@ -9,14 +9,14 @@
   <title>技术积累（QRcode,fileReader） | 沉默的游鱼</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前端技术使用js，在本地生成二维码QRcode的基本介绍基本使用方法，最终生成的是h5的一个canvas元素，不能选中1234567891011&amp;lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/jque">
-<meta name="keywords" content="code,服务端,前端">
+<meta name="keywords" content="code,前端,服务端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技术积累（QRcode,fileReader）">
 <meta property="og:url" content="http://yoursite.com/2017/08/20/code004/index.html">
 <meta property="og:site_name" content="沉默的游鱼">
 <meta property="og:description" content="前端技术使用js，在本地生成二维码QRcode的基本介绍基本使用方法，最终生成的是h5的一个canvas元素，不能选中1234567891011&amp;lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/jque">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-20T04:51:03.928Z">
+<meta property="og:updated_time" content="2017-08-22T14:16:45.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技术积累（QRcode,fileReader）">
 <meta name="twitter:description" content="前端技术使用js，在本地生成二维码QRcode的基本介绍基本使用方法，最终生成的是h5的一个canvas元素，不能选中1234567891011&amp;lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/jque">
@@ -175,9 +175,10 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
 
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <ol>
 <li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
+<li><a href="http://blog.csdn.net/u011127019/article/details/51226104" target="_blank" rel="external">二维码和图片格式转换</a></li>
 <li><a href="https://www.baidufe.com/item/65c055482d26ec59e27e.html" target="_blank" rel="external">将canvas中的内容变成img，并强制浏览器进行下载</a> </li>
 </ol>
 <h3 id="原生js中有一个fileReader对象可以实现在上传之前的图片预览"><a href="#原生js中有一个fileReader对象可以实现在上传之前的图片预览" class="headerlink" title="原生js中有一个fileReader对象可以实现在上传之前的图片预览"></a>原生js中有一个fileReader对象可以实现在上传之前的图片预览</h3><h3 id="多文件上传，-file中有一个multiple属性可以满足需求"><a href="#多文件上传，-file中有一个multiple属性可以满足需求" class="headerlink" title="多文件上传， file中有一个multiple属性可以满足需求"></a>多文件上传， file中有一个multiple属性可以满足需求</h3><h2 id="服务端技术"><a href="#服务端技术" class="headerlink" title="服务端技术"></a>服务端技术</h2><ol>
@@ -232,11 +233,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务端</a>
         		</li>
       		
 		</ul>
@@ -470,11 +471,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +495,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">模板静态化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +515,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">poi</a>
+                <a href="javascript:void(0)" class="js-tag color2">quartz</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color5">日志技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>

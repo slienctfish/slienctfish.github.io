@@ -150,6 +150,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-dairy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/27/dairy/">春风十里不如你</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/27/dairy/" class="archive-article-date">
+  	<time datetime="2017-08-27T14:19:28.748Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=473571905&auto=0&height=66"></iframe>
+
+<h3 id="致橡树"><a href="#致橡树" class="headerlink" title="致橡树"></a>致橡树</h3><blockquote>
+<ul>
+<li>我如果爱你——</li>
+<li>绝不像攀援的凌霄花，</li>
+<li>借你的高枝炫耀自己：</li>
+<li>我如果爱你——</li>
+<li>绝不学痴情的鸟儿，</li>
+<li>为绿荫重复单调的歌曲；</li>
+<li>也不止像泉源，</li>
+<li>常年送来清凉的慰籍；</li>
+<li>也不止像险峰，增加你的高度，衬托你的威仪。</li>
+<li>甚至日光。</li>
+<li>甚至春雨。</li>
+<li>不，这些都还不够！</li>
+<li>我必须是你近旁的一株木棉，</li>
+<li>做为树的形象和你站在一起。
+        
+          <a class="article-more-a" href="/2017/08/27/dairy/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">journal</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/27/dairy/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js代码片段" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -537,91 +630,6 @@
 
 
   
-    <article id="post-freemark" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/freemark/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/22/freemark/" class="archive-article-date">
-  	<time datetime="2017-08-22T13:46:39.013Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="freemark-基于模板生成html页面并保存的技术-（页面静态化）"><a href="#freemark-基于模板生成html页面并保存的技术-（页面静态化）" class="headerlink" title="freemark 基于模板生成html页面并保存的技术  （页面静态化）"></a>freemark 基于模板生成html页面并保存的技术  （页面静态化）</h2><p>页面请求服务器，服务器现在本地查找是否存在静态页面资源，如果存在则直接返回。不存在则需要到数据库中查找，并生成静态页面保存到服务器端，并将结果返回给浏览器端。</p>
-<ol>
-<li><p>服务器端处理请求的代码</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Action</span>(value=<span class="string">"promotion_showdetail"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">showdetail</span><span class="params">()</span></span></div><div class="line"><span class="function">	<span class="keyword">throws</span> TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException </span>&#123;</div><div class="line">System.err.println(<span class="string">"id:"</span> + model.getId());</div><div class="line">ServletActionContext.getResponse().setContentType(<span class="string">"text/html;charset=utf-8"</span>);</div><div class="line">String filename = model.getId() + <span class="string">".html"</span>;</div><div class="line">File file = <span class="keyword">new</span> File(ServletActionContext.getServletContext().getRealPath(<span class="string">"html"</span>) + <span class="string">"/"</span> + filename);</div><div class="line">System.out.println(file.getAbsolutePath());</div><div class="line"><span class="comment">//判断文件是否存在</span></div><div class="line"><span class="keyword">if</span> (!file.exists()) &#123;</div><div class="line">	<span class="comment">//文件不存在</span></div><div class="line">	System.out.println(<span class="string">"基于freeMark模板生成文件："</span> + filename);</div><div class="line">	Promotion promotion = WebClient</div><div class="line">			.create(Constant.BOS_MANAGEMENT_URL + <span class="string">"/services/promotionService/promotion/"</span> + model.getId())</div><div class="line">			.accept(MediaType.APPLICATION_JSON).get(Promotion.class);</div><div class="line">	Configuration configuration = <span class="keyword">new</span> Configuration(Configuration.VERSION_2_3_22);</div><div class="line">	<span class="comment">//   /cn/itcast/bos/templates---&gt;html模板文件存在的位置</span></div><div class="line">	configuration.setClassForTemplateLoading(<span class="keyword">this</span>.getClass(), <span class="string">"/cn/itcast/bos/templates"</span>);</div><div class="line">	configuration.setDefaultEncoding(<span class="string">"utf-8"</span>);</div><div class="line">	</div><div class="line">	Template template = configuration.getTemplate(<span class="string">"promotion.ftl"</span>);</div><div class="line">	Map&lt;String, Object&gt; paramMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">	paramMap.put(<span class="string">"globalItem"</span>, promotion);</div><div class="line">	</div><div class="line">	FileOutputStream out = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">	Writer writer = <span class="keyword">new</span> OutputStreamWriter(out,<span class="string">"utf-8"</span>);</div><div class="line">	template.process(paramMap, writer);</div><div class="line">	writer.close();</div><div class="line">	System.out.println(<span class="string">"生成tml页面"</span>);</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">	FileUtils.copyFile(file, ServletActionContext.getResponse().getOutputStream());</div><div class="line">	<span class="keyword">return</span> NONE;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>模板内容编写(promotion.ftl文件)  </p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"css/promotion_detail.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container promotions"</span> &gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-2 prolist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/promotion"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>返回促销列表<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/pro.jpg"</span> <span class="attr">class</span>=<span class="string">"img-responsive"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10 procontent"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>$&#123;globalItem.title&#125;<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"intro"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动范围: $&#123;globalItem.activeScope&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>活动时间: $&#123;globalItem.startDate?string("yyyy-MM-dd HH:mm:ss")&#125; - $&#123;globalItem.endDate?string("yyyy-MM-dd HH:mm:ss")&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"partline clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"promotionbox"</span> &gt;</span></div><div class="line">			$&#123;globalItem.description&#125;</div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">模板静态化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/freemark/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -739,6 +747,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">journal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务端</a>
               </li>
              
@@ -751,19 +763,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">quartz</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>项目开发小笔记 | 沉默的游鱼</title>
+  <title>Archives: 2017/12 | 沉默的游鱼</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="redis的数据类型String字符串类型（存变量） set key value 【赋值】 get key    【取值】 getset key value    【取值并赋值】 del key 【删除】 incr key 【整数数据增加1】 incrby key increment    【整数数据安步长增加】 decr key 【整数数据减少1】 decrby key decrement">
-<meta name="keywords" content="code,redis">
-<meta property="og:type" content="article">
-<meta property="og:title" content="项目开发小笔记">
-<meta property="og:url" content="http://yoursite.com/2017/08/22/reids/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="沉默的游鱼">
+<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
 <meta property="og:site_name" content="沉默的游鱼">
-<meta property="og:description" content="redis的数据类型String字符串类型（存变量） set key value 【赋值】 get key    【取值】 getset key value    【取值并赋值】 del key 【删除】 incr key 【整数数据增加1】 incrby key increment    【整数数据安步长增加】 decr key 【整数数据减少1】 decrby key decrement">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-22T13:54:50.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="项目开发小笔记">
-<meta name="twitter:description" content="redis的数据类型String字符串类型（存变量） set key value 【赋值】 get key    【取值】 getset key value    【取值并赋值】 del key 【删除】 incr key 【整数数据增加1】 incrby key increment    【整数数据安步长增加】 decr key 【整数数据减少1】 decrby key decrement">
+<meta name="twitter:title" content="沉默的游鱼">
   
     <link rel="alternative" href="/atom.xml" title="沉默的游鱼" type="application/atom+xml">
   
@@ -153,143 +148,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-reids" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      项目开发小笔记
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/26/MBA1/" class="archive-article-date">
+  	<time datetime="2017-12-26T15:52:09.672Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/26/MBA1/">有用的商学课</a>
     </h1>
   
 
-        
-        <a href="/2017/08/22/reids/" class="archive-article-date">
-  	<time datetime="2017-08-22T13:53:35.379Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h2><h3 id="String字符串类型（存变量）"><a href="#String字符串类型（存变量）" class="headerlink" title="String字符串类型（存变量）"></a>String字符串类型（存变量）</h3><ol>
-<li>set key value 【赋值】</li>
-<li>get key    【取值】</li>
-<li>getset key value    【取值并赋值】</li>
-<li>del key 【删除】</li>
-<li>incr key 【整数数据增加1】</li>
-<li>incrby key increment    【整数数据安步长增加】</li>
-<li>decr key 【整数数据减少1】</li>
-<li>decrby key decrement    【整数数据安步长减少】</li>
-<li>append key value 【向尾部追加值】</li>
-<li>setlen key 【获取字符串长度】</li>
-<li>mset key1 value1 key2 value2 【同时设置多个键值】</li>
-<li>mget key1 key2 key3    【同时获取多个值】<h3 id="Hash类型（存对象）"><a href="#Hash类型（存对象）" class="headerlink" title="Hash类型（存对象）"></a>Hash类型（存对象）</h3></li>
-<li>hset key field value 【赋值】</li>
-<li>hmset key field value [field value…] 【多字段赋值】</li>
-<li>hget key field 【取值】</li>
-<li>hmget key field1 field2 【多字段取值】</li>
-<li>hgetall key 【获取所有字段值】<a id="more"></a></li>
-<li>hdel key field [field …]【删除字段，可以同时删除多个字段】</li>
-<li>hincrby key field increment【增加数字】</li>
-<li>hexists key field 【判断字段是否存在–返回值为0或1】</li>
-<li>hkeys key 【获取对象中的所有字段】</li>
-<li>hvals key    【获取对象中所有字段的值】</li>
-<li>hlen key 【获取字段数量】<h3 id="List列表类型"><a href="#List列表类型" class="headerlink" title="List列表类型"></a>List列表类型</h3></li>
-<li>lpush key value [value2 value3…]【向列表左边增加元素】</li>
-<li>rpush key value [value2 value3…]【向列表右边增加元素】</li>
-<li>lrange key start stop 【查看列表】</li>
-<li>lpop key 【从列表左侧弹出元素】</li>
-<li>rpop key 【从列表右侧弹出元素】</li>
-<li>llen key 【获取列表中元素个数】</li>
-<li>lrem key count value    【删除列表中指定的值】<ul>
-<li>当count&gt;0时， LREM会从列表左边开始删除。 </li>
-<li>当count&lt;0时， LREM会从列表后边开始删除。 </li>
-<li>当count=0时， LREM删除所有值为value的元素。</li>
-</ul>
-</li>
-<li>lindex key index 【获得指定索引的元素值】</li>
-<li>lset key index value 【设置指定索引的元素值】</li>
-<li>ltrim key start stop 【只保留列表指定片段，从左边算】</li>
-<li><p>LINSERT key BEFORE|AFTER pivot value</p>
-<blockquote>
-<p>该命令首先会在列表中从左到右查找值为pivot的元素，然后根据第二个参数是BEFORE还是AFTER来决定将value插入到该元素的前面还是后面。</p>
-</blockquote>
-</li>
-<li><p>RPOPLPUSH source destination【将元素从一个列表转移到另一个列表中】</p>
-<h3 id="Set集合类型（不重复没有顺序）"><a href="#Set集合类型（不重复没有顺序）" class="headerlink" title="Set集合类型（不重复没有顺序）"></a>Set集合类型（不重复没有顺序）</h3></li>
-<li>SADD key member [member …]    【增加元素】</li>
-<li>srem key member [member …]    【删除元素】</li>
-<li>smembers key 【获得集合中的所有元素】</li>
-<li>sismember key member 【判断元素是否在集合中】</li>
-<li>SDIFF key [key …]    【求集合补集，前面有后面没有的】</li>
-<li>SINTER key [key …]    【求集合交集】</li>
-<li>SUNION key [key …]    【求集合并集】</li>
-<li>SCARD key    【获取集合中元素个数】</li>
-<li><p>spop key 【随机弹出一个元素】</p>
-<h3 id="sortedSet类型–Zset（排序的集合）"><a href="#sortedSet类型–Zset（排序的集合）" class="headerlink" title="sortedSet类型–Zset（排序的集合）"></a>sortedSet类型–Zset（排序的集合）</h3><blockquote>
-<p>在集合类型的基础上，有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元素是否存在在集合中，还能够获得分数最高或最低的前N个元素、获取指定分数范围内的元素等与分数有关的操作。</p>
-</blockquote>
-</li>
-<li><p>ZADD key score member [score member …]    【增加元素】</p>
-</li>
-<li>ZRANGE key start stop [WITHSCORES]    【元素从小到大排名】</li>
-<li>ZREVRANGE key start stop [WITHSCORES]【元素从大到小排名】</li>
-<li>ZSCORE key member 【获得指定元素分数】</li>
-<li>ZREM key member [member …] 【删除元素】</li>
-<li>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]    【获得指定分数范围的元素】</li>
-<li>ZINCRBY  key increment member 【增加某个元素的分数】</li>
-<li>ZCARD key    【获得集合中元素数量】</li>
-<li>ZCOUNT key min max 【获得指定分数范围内的元素个数】</li>
-<li>ZREMRANGEBYRANK key start stop 【按照排名范围删除元素】</li>
-<li>ZREMRANGEBYSCORE key min max    【按照分数范围删除元素】</li>
-<li>ZRANK key member 【    获取元素的排名】<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>EXPIRE key seconds             设置key的生存时间（单位：秒）key在多少秒后会自动删除</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>TTL key                     查看key生于的生存时间</li>
-<li>PERSIST key                清除生存时间 </li>
-<li>PEXPIRE key milliseconds    生存时间设置单位为：毫秒</li>
-<li>rename oldkey newkey    重命名key</li>
-<li>type key 返回值的类型</li>
-</ul>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>洒家好几天没吃过饱饭了<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/QRcode.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -299,148 +187,25 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">poi</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/22/reids/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/22/quartz/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          项目开发小笔记
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/22/dubbo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">项目开发小笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis的数据类型"><span class="toc-number">1.</span> <span class="toc-text">redis的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String字符串类型（存变量）"><span class="toc-number">1.1.</span> <span class="toc-text">String字符串类型（存变量）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型（存对象）"><span class="toc-number">1.2.</span> <span class="toc-text">Hash类型（存对象）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List列表类型"><span class="toc-number">1.3.</span> <span class="toc-text">List列表类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set集合类型（不重复没有顺序）"><span class="toc-number">1.4.</span> <span class="toc-text">Set集合类型（不重复没有顺序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sortedSet类型–Zset（排序的集合）"><span class="toc-number">1.5.</span> <span class="toc-text">sortedSet类型–Zset（排序的集合）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.6.</span> <span class="toc-text">其他</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'true'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
+    
 
 
           </div>
@@ -463,8 +228,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -150,6 +150,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-code001" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/code001/">技术积累（ajax-sync，闭包）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/code001/" class="archive-article-date">
+  	<time datetime="2017-08-20T03:16:41.300Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407002091&auto=0&height=66"></iframe>
+
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><ul>
+<li><p>如何解决页面中具有相同id的对象的问题：如在两个页面中同时存在id为datagrid的表格，在对象后面添加.element();为对象ID添加时间戳  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">element: function() &#123;</div><div class="line">   var idStr = this.attr(&apos;id&apos;) + &apos;_&apos; + new Date().getTime();</div><div class="line">   this.attr(&apos;id&apos;, idStr);</div><div class="line">   return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编码风格：将同一类型的或者完成相似功能的函数，定义到统一对象中，方便调用</p>
+</li>
+<li><p>js中闭包的好处：</p>
+<ul>
+<li>什么是闭包</li>
+<li>闭包就是能够在函数内部读取函数外部的变量的一座桥梁  </li>
+<li>闭包的作用：  <ol>
+<li>可以读取到函数内部的数据</li>
+<li>闭包让变量始终存在于内存中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var name = &quot;The Window&quot;;   </div><div class="line">　　var object = &#123;   </div><div class="line">　　　　name : &quot;My Object&quot;,   </div><div class="line">　　　　getNameFunc : function()&#123;   </div><div class="line">　　　　　　return function()&#123;   </div><div class="line">　　　　　　　　return this.name;   </div><div class="line">　　　　　&#125;;   </div><div class="line">　　　　&#125;   </div><div class="line">&#125;;   </div><div class="line">alert(object.getNameFunc()());  //The Window</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>在匿名函数前面加上这些符号后，就把一个函数声明语句变成了一个函数表达式，是表达式就会在script标签中自动执行。</p>
+</li>
+<li>ajax请求中的asyn 该值默认为true，即进行同步请求，当该值为false时，该ajax请求将会被锁死,适用于异步请求之后的代码，需要用到此次异步请求中返回的数据。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;  </div><div class="line">        async: false,  </div><div class="line">        type : &quot;GET&quot;,  </div><div class="line">        url : &apos;tet.php&apos;,  </div><div class="line">        complete: function(msg)&#123;  </div><div class="line">            alert(&apos;complete&apos;);  </div><div class="line">        &#125;,  </div><div class="line">        success : function(data) &#123;  </div><div class="line">            alert(&apos;success&apos;);  </div><div class="line">            temp=data;  </div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    alert(temp+&apos;end&apos;);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/code001/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/20/note/">关于hacker的信仰</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/20/note/" class="archive-article-date">
+  	<time datetime="2017-08-20T02:45:43.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=483671599&auto=0&height=66"></iframe>
+
+<h2 id="hacker的信仰"><a href="#hacker的信仰" class="headerlink" title="hacker的信仰"></a>hacker的信仰</h2><ol>
+<li>The world is full of fascinating problems waiting to be solved.</li>
+<li>No problem should ever have to be solved twice.</li>
+<li>Boredom and drudgery are evil.</li>
+<li>Freedom is good.</li>
+<li>Attitude is so subsititute for competence.<blockquote>
+<p>1、这个世界充满了待解决的迷人问题<br>2、一个问题都不应该被解决两次<br>3、无趣和乏味的工作是犯罪<br>4、追求自由<br>5、态度不能代替能力（态度无法替代技术）</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="程序设计基本原则"><a href="#程序设计基本原则" class="headerlink" title="程序设计基本原则"></a>程序设计基本原则</h3><pre><code>模块原则：使用简洁的接口拼合简单的部件
+清晰原则：清晰胜于机巧
+组合原则：设计时，考虑拼接组合
+分离原则：策略同机制分离，接口同引擎分离
+简洁原则：设计要简洁，复杂度能低则低
+吝啬原则：除非确无他法，不要编写庞大的程序
+透明性原则：设计要可见，以便审查和调试
+健壮性原则：健壮性源于透明和简洁
+通俗原则：接口设计避免标新立异
+表示原则：把知识叠入数据以求逻辑质朴而健壮
+缄默原则：如果一个程序没什么好说的，就沉默
+经济原则：宁花机器一分，不花程序员一秒
+补救原则：出现异常时，马上退出并给出足够的错误信息
+生成原则：避免手工hack，尽量编写程序去生成程序
+优化原则：雕琢前先要有原型，跑之前先学会走
+多样原则：决不相信所谓“不二法门”的断言
+扩展原则：设计着眼未来，未来总比预想来的快
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/20/note/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vpn_help" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,15 +695,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,6 +748,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mytest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
             
             <div class="clearfix"></div>

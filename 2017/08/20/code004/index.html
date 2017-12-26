@@ -175,7 +175,7 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=381433&auto=1&height=66"></iframe>
 
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><h3 id="使用js，在本地生成二维码"><a href="#使用js，在本地生成二维码" class="headerlink" title="使用js，在本地生成二维码"></a>使用js，在本地生成二维码</h3><p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="external">QRcode的基本介绍</a><br>基本使用方法，最终生成的是h5的一个canvas元素，不能选中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;div id=<span class="string">"code"</span>&gt;&lt;/div&gt; </div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">"#code"</span>).qrcode(&#123; </div><div class="line">    render: <span class="string">"table"</span>, <span class="comment">//table方式 </span></div><div class="line">    width: <span class="number">200</span>, <span class="comment">//宽度 </span></div><div class="line">    height:<span class="number">200</span>, <span class="comment">//高度 </span></div><div class="line">    text: <span class="string">"www.helloweba.com"</span> <span class="comment">//任意内容 </span></div><div class="line">&#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <ol>
 <li><a href="https://segmentfault.com/q/1010000004988831" target="_blank" rel="external">如何将canvas标签中的内容编程img标签，显示到页面上</a>   </li>
 <li><a href="http://blog.csdn.net/u011127019/article/details/51226104" target="_blank" rel="external">二维码和图片格式转换</a></li>
@@ -471,15 +471,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,6 +524,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mytest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
             
             <div class="clearfix"></div>

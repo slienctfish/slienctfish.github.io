@@ -150,6 +150,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-reids" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/reids/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/reids/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:53:35.379Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h2><h3 id="String字符串类型（存变量）"><a href="#String字符串类型（存变量）" class="headerlink" title="String字符串类型（存变量）"></a>String字符串类型（存变量）</h3><ol>
+<li>set key value 【赋值】</li>
+<li>get key    【取值】</li>
+<li>getset key value    【取值并赋值】</li>
+<li>del key 【删除】</li>
+<li>incr key 【整数数据增加1】</li>
+<li>incrby key increment    【整数数据安步长增加】</li>
+<li>decr key 【整数数据减少1】</li>
+<li>decrby key decrement    【整数数据安步长减少】</li>
+<li>append key value 【向尾部追加值】</li>
+<li>setlen key 【获取字符串长度】</li>
+<li>mset key1 value1 key2 value2 【同时设置多个键值】</li>
+<li>mget key1 key2 key3    【同时获取多个值】<h3 id="Hash类型（存对象）"><a href="#Hash类型（存对象）" class="headerlink" title="Hash类型（存对象）"></a>Hash类型（存对象）</h3></li>
+<li>hset key field value 【赋值】</li>
+<li>hmset key field value [field value…] 【多字段赋值】</li>
+<li>hget key field 【取值】</li>
+<li>hmget key field1 field2 【多字段取值】</li>
+<li>hgetall key 【获取所有字段值】
+        
+          <a class="article-more-a" href="/2017/08/22/reids/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/reids/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-dubbo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/dubbo/">项目开发小笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/dubbo/" class="archive-article-date">
+  	<time datetime="2017-08-22T13:50:24.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Dubbo架构"><a href="#Dubbo架构" class="headerlink" title="Dubbo架构"></a>Dubbo架构</h1><ol>
+<li>•Provider: 暴露服务的服务提供方。</li>
+<li>•Consumer: 调用远程服务的服务消费方。</li>
+<li>•Registry: 服务注册与发现的注册中心。</li>
+<li>•Monitor: 统计服务的调用次调和调用时间的监控中心。</li>
+<li>•Container: 服务运行容器。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 使用dubbo发布服务 --&gt;</div><div class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager"</span> /&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span></div><div class="line">	address=<span class="string">"192.168.25.154:2181,192.168.25.154:2182,192.168.25.154:2183"</span> /&gt;</div><div class="line">&lt;!-- 用dubbo协议在<span class="number">20880</span>端口暴露服务 --&gt;</div><div class="line">&lt;dubbo:protocol name=<span class="string">"dubbo"</span> port=<span class="string">"20880"</span> /&gt;</div><div class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</div><div class="line">&lt;dubbo:service <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> ref=<span class="string">"itemServiceImpl"</span> /&gt;</div></pre></td></tr></table></figure>
+<!-- -->
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 引用dubbo服务 --&gt;</div><div class="line">&lt;dubbo:application name=<span class="string">"taotao-manager-web"</span>/&gt;</div><div class="line">&lt;dubbo:registry protocol=<span class="string">"zookeeper"</span> address=<span class="string">"192.168.25.154:2181,</span></div><div class="line"><span class="string">192.168.25.154:2182,  192.168.25.154:2183"</span>/&gt;	</div><div class="line">&lt;dubbo:reference <span class="class"><span class="keyword">interface</span></span>=<span class="string">"com.taotao.service.ItemService"</span> id=<span class="string">"itemService"</span> /&gt;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/dubbo/">继续探索 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-freemark" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -439,192 +623,6 @@
 
 
   
-    <article id="post-Apache shiro" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/Apache shiro/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/Apache shiro/" class="archive-article-date">
-  	<time datetime="2017-08-20T15:03:53.535Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="apache-shiro-权限控制和缓存框架ehcache的使用"><a href="#apache-shiro-权限控制和缓存框架ehcache的使用" class="headerlink" title="apache shiro(权限控制和缓存框架ehcache的使用)"></a>apache shiro(权限控制和缓存框架ehcache的使用)</h2><h4 id="实现权限控制三种方式"><a href="#实现权限控制三种方式" class="headerlink" title="实现权限控制三种方式:"></a>实现权限控制三种方式:</h4><ol>
-<li>spring security</li>
-<li>apache shiro</li>
-<li>自己写权限框架<h3 id="shiro-的结构："><a href="#shiro-的结构：" class="headerlink" title="shiro 的结构："></a>shiro 的结构：</h3></li>
-</ol>
-<ul>
-<li>Authentication 用户登录</li>
-<li>Authorization 授权</li>
-<li>Cryptography 安全数据加密</li>
-<li>Session Management 会话管理</li>
-<li>Web Integration Web 系统集成</li>
-<li>Interations 集成其他应用<h3 id="shiro的运行主要流程"><a href="#shiro的运行主要流程" class="headerlink" title="shiro的运行主要流程"></a>shiro的运行主要流程</h3></li>
-<li>application code</li>
-<li>subject（the current user）</li>
-<li>shiro SecurityManager (manages all subject)</li>
-<li>Realm (access your security data)<br>流程：应用程序–subject–securityManger–realm–安全数据<h3 id="shiro权限控制四中方式"><a href="#shiro权限控制四中方式" class="headerlink" title="shiro权限控制四中方式"></a>shiro权限控制四中方式</h3></li>
-</ul>
-<ol>
-<li>配置filter实现url级别权限控制</li>
-<li>配置代理，基于注解实现细粒度权限控制</li>
-<li>在jsp页面中使用shiro自定义标签控制</li>
-<li>程序中通过subject编程实现</li>
-<li>
-        
-          <a class="article-more-a" href="/2017/08/20/Apache shiro/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/Apache shiro/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-apache poi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/apache poi/">项目开发小笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/apache poi/" class="archive-article-date">
-  	<time datetime="2017-08-20T15:02:01.173Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Apache-POI技术-读取和生成excel文件"><a href="#Apache-POI技术-读取和生成excel文件" class="headerlink" title="Apache POI技术 读取和生成excel文件"></a>Apache POI技术 读取和生成excel文件</h2><ol>
-<li><p>读取excel文件</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">HSSFWorkbook workbook = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	workbook = <span class="keyword">new</span> HSSFWorkbook(<span class="keyword">new</span> FileInputStream(file));</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line">	</div><div class="line">HSSFSheet sheet = workbook.getSheetAt(<span class="number">0</span>);</div><div class="line">	</div><div class="line">List&lt;Area&gt; areas = <span class="keyword">new</span> ArrayList&lt;Area&gt;();</div><div class="line">	</div><div class="line"><span class="keyword">for</span> (Row row : sheet) &#123;</div><div class="line">	System.out.println(<span class="string">"read data"</span>);</div><div class="line">	<span class="comment">// 跳过第一行</span></div><div class="line">	<span class="keyword">if</span> (row.getRowNum() == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 跳过空行</span></div><div class="line">	<span class="keyword">if</span> (row.getCell(<span class="number">0</span>) == <span class="keyword">null</span> || StringUtils.isBlank(row.getCell(<span class="number">0</span>).getStringCellValue())) &#123;</div><div class="line">		<span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	Area area = <span class="keyword">new</span> Area();</div><div class="line">	</div><div class="line">	area.setId(row.getCell(<span class="number">0</span>).getStringCellValue());</div><div class="line">	area.setProvince(row.getCell(<span class="number">1</span>).getStringCellValue());</div><div class="line">	area.setCity(row.getCell(<span class="number">2</span>).getStringCellValue());</div><div class="line">	area.setDistrict(row.getCell(<span class="number">3</span>).getStringCellValue());</div><div class="line">	area.setPostcode(row.getCell(<span class="number">4</span>).getStringCellValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>生成excel文件</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">List&lt;WayBill&gt; wayBills = wayBillService.findWayBills(model);</div><div class="line"></div><div class="line">HSSFWorkbook hssfWorkbook = <span class="keyword">new</span> HSSFWorkbook();</div><div class="line">HSSFSheet sheet = hssfWorkbook.createSheet(<span class="string">"运单数据"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表头</span></div><div class="line">HSSFRow headRow = sheet.createRow(<span class="number">0</span>);</div><div class="line">headRow.createCell(<span class="number">0</span>).setCellValue(<span class="string">"运单号"</span>);</div><div class="line">headRow.createCell(<span class="number">1</span>).setCellValue(<span class="string">"寄件人"</span>);</div><div class="line">headRow.createCell(<span class="number">2</span>).setCellValue(<span class="string">"寄件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">3</span>).setCellValue(<span class="string">"寄件人地址"</span>);</div><div class="line">headRow.createCell(<span class="number">4</span>).setCellValue(<span class="string">"收件人"</span>);</div><div class="line">headRow.createCell(<span class="number">5</span>).setCellValue(<span class="string">"收件人电话"</span>);</div><div class="line">headRow.createCell(<span class="number">6</span>).setCellValue(<span class="string">"收件人地址"</span>);</div><div class="line"></div><div class="line"><span class="comment">//表格数据</span></div><div class="line"><span class="keyword">for</span> (WayBill wayBill: wayBills) &#123;</div><div class="line">	HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum()+<span class="number">1</span>);</div><div class="line">	dataRow.createCell(<span class="number">0</span>).setCellValue(wayBill.getWayBillNum());</div><div class="line">	dataRow.createCell(<span class="number">1</span>).setCellValue(wayBill.getSendName());</div><div class="line">	dataRow.createCell(<span class="number">2</span>).setCellValue(wayBill.getSendMobile());</div><div class="line">	dataRow.createCell(<span class="number">3</span>).setCellValue(wayBill.getSendAddress());</div><div class="line">	dataRow.createCell(<span class="number">4</span>).setCellValue(wayBill.getRecName());</div><div class="line">	dataRow.createCell(<span class="number">5</span>).setCellValue(wayBill.getRecMobile());</div><div class="line">	dataRow.createCell(<span class="number">6</span>).setCellValue(wayBill.getRecAddress());</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">poi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/apache poi/">继续探索 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -722,15 +720,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">work</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,6 +773,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mytest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
             
             <div class="clearfix"></div>
